@@ -176,8 +176,6 @@ var a, b, c, d;
   c.textAlign = 'center';
   c.textBaseline = 'middle';
 
-  var F = 0.85;
-
   // this loop changes the current symbol
   function swap() {
     c.clearRect(OX, OY, M, M);
@@ -213,12 +211,15 @@ var a, b, c, d;
     c.clearRect(OX, OY, M, M);
   }
 
+  var F = 0.85; // friction. lower means faster pixels.
   var atomx = M2;
   var atomy = M2;
   var atomvx = 5; // free number
   var atomvy = 3; // free number
   var mt = 32; // keep 32
   var swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
+  var hunned = 50;
+  var fitty = 50;
 
   // this loop updates the pixels
   var Z = 0;
@@ -229,9 +230,9 @@ var a, b, c, d;
     var tp = SIN(time / mt);
     var st200 = SIN(time) * 200;
 
-    if (atomx < 100 || atomx > M - 100) atomvx *= -1;
+    if (atomx < hunned || atomx > M - hunned) atomvx *= -1;
     atomx += atomvx;
-    if (atomy < 100 || atomy > M - 100) atomvy *= -1;
+    if (atomy < hunned || atomy > M - hunned) atomvy *= -1;
     atomy += atomvy;
 
     c.clearRect(OX - 10, OY - 10, M + 20, M + 20);
@@ -252,16 +253,16 @@ var a, b, c, d;
 
         switch (p.u % 3) {
           case 0:
-            var ax = atomx + COS(b) * tp * 50;
-            var ay = atomy + SIN(b) * 100;
+            var ax = atomx + COS(b) * tp * fitty;
+            var ay = atomy + SIN(b) * hunned;
             break;
           case 1:
-            var ax = atomx + COS(b) * 100;
-            var ay = atomy + SIN(b) * tp * 50;
+            var ax = atomx + COS(b) * hunned;
+            var ay = atomy + SIN(b) * tp * fitty;
             break;
           case 2:
-            var ax = atomx + COS(b) * tp * 100;
-            var ay = atomy + SIN(b) * tp * 100;
+            var ax = atomx + COS(b) * tp * hunned;
+            var ay = atomy + SIN(b) * tp * hunned;
             break;
         }
 
@@ -335,7 +336,6 @@ var a, b, c, d;
     requestAnimationFrame(R);
   })();
 })();
-
 
 
 
