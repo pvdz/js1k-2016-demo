@@ -199,15 +199,13 @@ var a, b, c, d;
     for (var i = 0; i < pixels.length; ++i) {
       var p = pixels[i];
 
-      var x = p.tx;
-      var y = p.ty;
-      var t = (x + y * M) * 4;
-      if (p.off = data[t]) {
-        p.u = ++u;
-      } else {
-        p.q = data[t + 1]; // qfox.nl
-        p.num = data[t + 2]; // number
-      }
+      var t = (p.tx + p.ty * M) * 4;
+      (p.off = data[t]) ?
+        p.u = ++u
+      :(
+        p.q = data[t + 1], // qfox.nl
+        p.num = data[t + 2] // number
+      );
     }
 
     c.clearRect(OX, OY, M, M);
