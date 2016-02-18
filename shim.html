@@ -124,223 +124,224 @@
     </script>
     <script type="demo">
       // THIS IS WHERE YOUR DEMO GOES
-(function(){
-var elements = 'H HeLiBeB C N O F NeNaMgAlSiP S ClArK CaScTiV CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY ZrNbMoTcRuRhPdAgCdInSnSbTeI XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn_tFl_pLv_s_o';
-elements = elements.match(/../g);
 
-var K = 200; // particle count wide and high (so total num of particles is K*K)
 
-var M = Math.min(a.width, a.height); // get smallest dimension
-var offsetx = Math.floor((a.width - M) / 2);
-var offsety = Math.floor((a.height - M) / 2);
-var N = M / K; // pixel step per particle
 
-var pixels = [];
-for (var i=0; i<K; ++i) {
-  for (var j=0; j<K; ++j) {
-    pixels.push({
-      r: 0,
-      g: 0,
-      b: 0,
 
-      x: Math.floor(i * N),
-      y: Math.floor(j * N),
-      vx: Math.random(),
-      vy: Math.random(),
 
-      tx: Math.floor(i * N),
-      ty: Math.floor(j * N),
-      i: i,
-      j: j,
+var a, b, c, d;
+(function () {
+  var elements = 'H HeLiBeB C N O F NeNaMgAlSiP S ClArK CaScTiV CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY ZrNbMoTcRuRhPdAgCdInSnSbTeI XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn_tFl_pLv_s_o'
+    .match(/../g);
 
-      on: true,
-    });
-  }
-}
+  var FLOOR = Math.floor;
+  var MIN = Math.min;
+  var RANDOM = Math.random;
+  var SIN = Math.sin;
+  var COS = Math.cos;
+  var PI = Math.PI;
+  var SQRT = Math.sqrt;
+  var ABS = Math.abs;
+  var CEIL = Math.ceil;
 
-c.fillStyle = 'black';
-c.font = M+'px serif';
-c.textAlign = 'center';
-c.textBaseline = 'middle';
+  var K = 200; // particle count wide and high (so total num of particles is K*K)
 
-var F = 0.85;
+  var W = a.width;
+  var H = a.height;
+  var M = MIN(W, H); // get smallest dimension, serves as view dimensions (a square)
+  var M2 = FLOOR(M/2); // mid of view
+  var OX = FLOOR(W/2 - M2);
+  var OY = FLOOR(H/2 - M2);
+  var N = M / K; // pixel step per particle
 
-// this loop changes the current symbol
-var E = 0;
-var T = setInterval((function R(){
-//  if (index == 2) clearInterval(T);
+  var pixels = [];
+  for (var i = 0; i < K; ++i) {
+    for (var j = 0; j < K; ++j) {
+      pixels.push({
+        r: 0,
+        g: 0,
+        b: 0,
 
-  c.clearRect(offsetx, offsety, M, M);
+        x: FLOOR(i * N),
+        y: FLOOR(j * N),
+        vx: RANDOM(),
+        vy: RANDOM(),
 
-  var sn = Math.floor(Math.random() * elements.length);
-  var s = elements[sn];
-  c.font = M+'px serif';
-  c.fillStyle = 'blue';
-  c.fillText(String(sn), Math.floor(a.width/2), Math.floor(a.height/2), M);
-  c.fillStyle = 'red';
-  c.fillText(s[1]==' '?s[0]:s[0]=='_'?'Uu'+s[1]:s, Math.floor(a.width/2), Math.floor(a.height/2), M);
-  c.font = Math.floor(0.08*M)+'px serif';
-  c.fillStyle = 'green';
-  c.fillText('qfox.nl', offsetx+M-100, offsety+M-60);
+        tx: FLOOR(i * N),
+        ty: FLOOR(j * N),
+        i: i,
+        j: j,
 
-  var id = c.getImageData(offsetx, offsety, M, M);
-  var data = id.data;
-
-  var u = 0;
-  for (var i=0; i<pixels.length; ++i) {
-    var p = pixels[i];
-
-    var t = (Math.floor(p.i * N) + Math.floor(p.j * N) * M) * 4;
-    if (data[t]) {
-      p.on = false;
-      p.u = ++u;
-    } else {
-      p.on = true;
-
-      p.tx = Math.floor(p.i * N);
-      p.ty = Math.floor(p.j * N);
-
-      p.q = !!data[t+1]; // qfox.nl
-      p.num = !!data[t+2]; // number
+        off: false,
+      });
     }
   }
 
-  c.clearRect(offsetx, offsety, M, M);
+  c.fillStyle = 'black';
+  c.font = M + 'px serif';
+  c.textAlign = 'center';
+  c.textBaseline = 'middle';
 
-  return R;
-})(), 5000);
+  var F = 0.85;
 
-var atomx = M/2;
-var atomy = M/2;
-var atomvx = 5;
-var atomvy = 3;
+  // this loop changes the current symbol
+  function swap() {
+    c.clearRect(OX, OY, M, M);
+
+    var sn = FLOOR(RANDOM() * elements.length);
+    var s = elements[sn];
+    c.font = M + 'px serif';
+    c.fillStyle = 'blue';
+    c.fillText(String(sn), OX+M2, OY+M2, M);
+    c.fillStyle = 'red';
+    c.fillText(s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
+    c.font = FLOOR(0.08 * M) + 'px serif';
+    c.fillStyle = 'green';
+    c.fillText('qfox.nl', OX + M - 100, OY + M - 60);
+
+    var data = c.getImageData(OX, OY, M, M).data;
+
+    var u = 0;
+    for (var i = 0; i < pixels.length; ++i) {
+      var p = pixels[i];
+
+      var t = (FLOOR(p.i * N) + FLOOR(p.j * N) * M) * 4;
+      if (p.off = data[t]) {
+        p.u = ++u;
+      } else {
+        p.tx = FLOOR(p.i * N);
+        p.ty = FLOOR(p.j * N);
+
+        p.q = !!data[t + 1]; // qfox.nl
+        p.num = !!data[t + 2]; // number
+      }
+    }
+
+    c.clearRect(OX, OY, M, M);
+  }
+
+  var atomx = M2;
+  var atomy = M2;
+  var atomvx = 5;
+  var atomvy = 3;
 // this loop updates the pixels
-var Z = 0;
-(function R(){
-  ++Z;
+  var Z = 0;
+  (function R() {
+    if (!(Z % 150)) swap();
 
-  var mt = 32;
-  var mt2 = mt/2;
-  var time = (Z % mt) + Z % mt2;
-  var tp = Math.sin(time/mt);
+    ++Z;
 
-  if (atomx < 100 || atomx > M-100) atomvx *= -1;
-  atomx += atomvx;
-  if (atomy < 100 || atomy > M-100) atomvy *= -1;
-  atomy += atomvy;
+    var mt = 32;
+    var mt2 = 16;
+    var time = (Z % mt) + Z % mt2;
+    var tp = SIN(time / mt);
 
-  c.clearRect(offsetx-10, offsety-10, M+20, M+20);
-  for (var i=0; i<pixels.length; ++i) {
-    var p = pixels[i];
+    if (atomx < 100 || atomx > M - 100) atomvx *= -1;
+    atomx += atomvx;
+    if (atomy < 100 || atomy > M - 100) atomvy *= -1;
+    atomy += atomvy;
 
-    // position
-    var x = p.x;
-    var y = p.y;
+    c.clearRect(OX - 10, OY - 10, M + 20, M + 20);
+    for (var i = 0; i < pixels.length; ++i) {
+      var p = pixels[i];
 
-    // want to be at
-    var I = i % pixels.length;
-    var targetx = p.tx;
-    var targety = p.ty;
+      // position
+      var x = p.x;
+      var y = p.y;
 
-    if (!p.on) {
-      var waves = 200;
-      var b = p.u % 600;
-      var progress = b / (Math.PI * 2);
+      // want to be at
+      var I = i % pixels.length;
+      var targetx = p.tx;
+      var targety = p.ty;
 
-      switch (p.u % 3) {
-        case 0:
-          var ax = atomx + Math.cos(b) * tp * 50;
-          var ay = atomy + Math.sin(b) * 100;
-          break;
-        case 1:
-          var ax = atomx + Math.cos(b) * 100;
-          var ay = atomy + Math.sin(b) * tp * 50;
-          break;
-        case 2:
-          var ax = atomx + Math.cos(b) * tp * 100;
-          var ay = atomy + Math.sin(b) * tp * 100;
-          break;
+      if (p.off) {
+        var b = p.u % 600;
+
+        switch (p.u % 3) {
+          case 0:
+            var ax = atomx + COS(b) * tp * 50;
+            var ay = atomy + SIN(b) * 100;
+            break;
+          case 1:
+            var ax = atomx + COS(b) * 100;
+            var ay = atomy + SIN(b) * tp * 50;
+            break;
+          case 2:
+            var ax = atomx + COS(b) * tp * 100;
+            var ay = atomy + SIN(b) * tp * 100;
+            break;
+        }
+
+        targetx = ax;
+        targety = ay;
+      } else if (p.q) {
+        targetx -= (Z * 15) % M;
+        targety += SIN(time) * 200;
       }
 
-      targetx = ax;
-      targety = ay;
-    } else if (p.q) {
-      targetx -= (Z * 15) % M;
-      targety += Math.sin(time) * 200;
+      // velocity vector
+      var vx = p.vx;
+      var vy = p.vy;
+
+      // distance
+      var dx = x - targetx;
+      var dy = y - targety;
+      var d = SQRT(dx * dx + dy * dy);
+
+      // magic
+      var dtan = Math.atan2(dy, dx);
+      var dcos = COS(dtan);
+      var dsin = SIN(dtan);
+
+      // update speed
+      var acc = (1 - (d / 1000)) * 2;
+      vx -= dcos * acc;
+      vy -= dsin * acc;
+
+      vx *= F;
+      vy *= F;
+
+      // force speed (causes jitter)
+      if (ABS(vx) < .1) vx *= RANDOM() * 3;
+      if (ABS(vy) < .1) vy *= RANDOM() * 3;
+
+      // size of pixel
+      var size = CEIL((vx + vy) * .2);
+      if (p.q) size *= 4;
+
+      // next target
+      var nx = x + vx;
+      var ny = y + vy;
+
+      // bounce on walls
+      if (nx < 0 || nx > M) {
+        if (nx < 0) nx = 0;
+        else nx = M;
+        vx *= -1;
+      }
+      if (ny < 0 || ny > M) {
+        if (ny < 0) ny = 0;
+        else ny = M;
+        vy *= -1;
+      }
+
+      p.x = nx;
+      p.y = ny;
+      p.vx = vx;
+      p.vy = vy;
+
+      // paint pixel
+      if (!p.off) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
+      else if (p.u % 3 === 0) c.fillStyle = 'blue';
+      else if (p.u % 3 === 1) c.fillStyle = 'red';
+      else c.fillStyle = 'green';
+
+      c.fillRect(OX + FLOOR(nx) + .5, OY + FLOOR(ny) + .5, size, size);
     }
 
-    // velocity vector
-    var vx = p.vx;
-    var vy = p.vy;
-
-    // distance
-    var dx = x-targetx;
-    var dy = y-targety;
-    var d = Math.sqrt(dx * dx + dy * dy);
-
-    // magic
-    var dtan = Math.atan2(dy, dx);
-    var dcos = Math.cos(dtan);
-    var dsin = Math.sin(dtan);
-
-    // update speed
-    var D = 1000; // try to stay at least this close to target
-    var tod = D / 1; 
-    var acc = (1 - (d / tod)) * D * .002;
-    vx -= dcos * acc;
-    vy -= dsin * acc;
-
-    vx *= F;
-    vy *= F;
-
-    // force speed (causes jitter)
-    if (Math.abs(vx) < .1) vx *= Math.random() * 3;
-    if (Math.abs(vy) < .1) vy *= Math.random() * 3;
-
-    // size of pixel
-    var size = Math.ceil((vx + vy) * .2);
-    if (p.q) size *= 4;
-
-    // next target
-    var nx = x + vx;
-    var ny = y + vy;
-
-    // bounce on walls
-    if (nx < 0 || nx > M) {
-      if (nx < 0) nx = 0;
-      else nx = M;
-      vx *= -1;
-    }
-    if (ny < 0 || ny > M) {
-      if (ny < 0) ny = 0;
-      else ny = M;
-      vy *= -1;
-    }
-
-    p.x = nx;
-    p.y = ny;
-    p.vx = vx;
-    p.vy = vy;
-
-    // paint pixel
-    if (p.on) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
-    else if (p.u % 3 === 0) c.fillStyle = 'blue';
-    else if (p.u % 3 === 1) c.fillStyle = 'red';
-    else c.fillStyle = 'green';
-    //else c.fillStyle = '#'+(i*500%0xffffff).toString(16);
-    //else c.fillStyle = 'hsl('+(i%360)+', 100%, 50%)';
-
-    c.fillRect(offsetx + Math.floor(nx) + .5, offsety + Math.floor(ny) + .5, size, size);
-
-//    if (i == (pixels.length / 2)) console.log(JSON.stringify(p), d, dx, dy, acc);
-  }
-
-  requestAnimationFrame(R);
+    requestAnimationFrame(R);
+  })();
 })();
-})();
-
-
-
 
 
 
