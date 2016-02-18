@@ -207,7 +207,8 @@ var a, b, c, d;
       p.q = data[t + 1], // qfox.nl
       p.num = data[t + 2] // number
     ) {
-      if (p.off = data[t=(p.tx + p.ty * M) * 4]) p.u = ++u; // element letter
+      // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
+      p.u = data[t=(p.tx + p.ty * M) * 4] ? ++u : 0;
     }
 
     c.clearRect(OX, OY, M, M);
@@ -250,7 +251,7 @@ var a, b, c, d;
       var targetx = p.tx;
       var targety = p.ty;
 
-      if (p.off) {
+      if (p.u) {
         var b = p.u % atomloop;
 
         switch (p.u % 3) {
@@ -304,7 +305,7 @@ var a, b, c, d;
       var ny = y + vy;
 
       // paint pixel
-      if (!p.off) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
+      if (!p.u) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
       else if (p.u % 3 === 0) c.fillStyle = 'blue';
       else if (p.u % 3 === 1) c.fillStyle = 'red';
       else c.fillStyle = 'green';
