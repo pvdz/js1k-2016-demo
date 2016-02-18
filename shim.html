@@ -177,8 +177,6 @@ var a, b, c, d;
     }
   }
 
-  c.fillStyle = 'black';
-  c.font = M + 'px serif';
   c.textAlign = 'center';
   c.textBaseline = 'middle';
 
@@ -205,15 +203,14 @@ var a, b, c, d;
     for (var i = 0; i < pixels.length; ++i) {
       var p = pixels[i];
 
-      var t = (FLOOR(p.i * N) + FLOOR(p.j * N) * M) * 4;
+      var x = FLOOR(p.i * N);
+      var y = FLOOR(p.j * N);
+      var t = (x + y * M) * 4;
       if (p.off = data[t]) {
         p.u = ++u;
       } else {
-        p.tx = FLOOR(p.i * N);
-        p.ty = FLOOR(p.j * N);
-
-        p.q = !!data[t + 1]; // qfox.nl
-        p.num = !!data[t + 2]; // number
+        p.q = data[t + 1]; // qfox.nl
+        p.num = data[t + 2]; // number
       }
     }
 
