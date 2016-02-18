@@ -201,13 +201,13 @@ var a, b, c, d;
 
     var data = c.getImageData(OX, OY, M, M).data;
 
-    for (i=u=0; p=pixels[i++]; FREESPACE=0) {
-      (p.off = data[t=(p.tx + p.ty * M) * 4]) ?
-        p.u = ++u // element letter
-      :
-        p.q = data[t + 1], // qfox.nl
-        p.num = data[t + 2] // number
-      ;
+    for (
+      i=u=0;
+      p=pixels[i++];
+      p.q = data[t + 1], // qfox.nl
+      p.num = data[t + 2] // number
+    ) {
+      if (p.off = data[t=(p.tx + p.ty * M) * 4]) p.u = ++u; // element letter
     }
 
     c.clearRect(OX, OY, M, M);
