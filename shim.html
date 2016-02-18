@@ -183,12 +183,12 @@ var a, b, c, d;
     var
       t, // index in image data
       p, // pixel
-      i; // loop counter
+      i, // loop counter
+      sn = FLOOR(RANDOM() * elements.length),
+      s = elements[sn]
 
     c.clearRect(OX, OY, M, M);
 
-    var sn = FLOOR(RANDOM() * elements.length);
-    var s = elements[sn];
     c.font = M + 'px serif';
     c.fillStyle = 'blue';
     c.fillText(sn, OX+M2, OY+M2, M);
