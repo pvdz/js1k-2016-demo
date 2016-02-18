@@ -216,12 +216,13 @@ var a, b, c, d;
   var F = 0.85; // friction. lower means faster pixels.
   var atomx = M2;
   var atomy = M2;
-  var atomvx = 5; // free number
-  var atomvy = 3; // free number
+  var atomvx = 5; // atom movement delta.
+  var atomvy = 3; // atom movement delta.
   var mt = 32; // keep 32
   var swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
   var hunned = 50;
   var fitty = 50;
+  var atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
 
   // this loop updates the pixels
   var Z = 0;
@@ -251,7 +252,7 @@ var a, b, c, d;
       var targety = p.ty;
 
       if (p.off) {
-        var b = p.u % 600;
+        var b = p.u % atomloop;
 
         switch (p.u % 3) {
           case 0:
