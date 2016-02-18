@@ -126,7 +126,7 @@
       // THIS IS WHERE YOUR DEMO GOES
 
 
-down from 1600 to 1550 (regpacked)
+//down from 1600 to 1550 (regpacked)
 
 
 var a, b, c, d;
@@ -288,7 +288,8 @@ var a, b, c, d;
       var dtan = ATAN2(dy, dx);
 
       // update speed
-      var acc = (1 - (d / 1000)) * 2;
+      var acc = 2-d/500;
+
       vx = (vx - COS(dtan) * acc) * F;
       vy = (vy - SIN(dtan) * acc) * F;
 
