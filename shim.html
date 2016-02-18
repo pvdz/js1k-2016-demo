@@ -308,16 +308,9 @@ var a, b, c, d;
       var ny = y + vy;
 
       // bounce on walls
-      if (nx < 0 || nx > M) {
-        if (nx < 0) nx = 0;
-        else nx = M;
-        vx *= -1;
-      }
-      if (ny < 0 || ny > M) {
-        if (ny < 0) ny = 0;
-        else ny = M;
-        vy *= -1;
-      }
+
+      if ((nx < 0 ? nx = 0 : 1e9) != (nx > M ? nx = M : 1e9)) vx *= -1;
+      if ((ny < 0 ? ny = 0 : 1e9) != (ny > M ? ny = M : 1e9)) vy *= -1;
 
       p.x = nx;
       p.y = ny;
