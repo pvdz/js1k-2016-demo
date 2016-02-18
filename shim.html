@@ -180,6 +180,12 @@ var a, b, c, d;
 
   // this loop changes the current symbol
   function swap() {
+    var
+      t, // index in image data
+      p, // pixel
+      u, // counter of letter pixels, ensures they are evenly distributed
+      i; // loop counter
+
     c.clearRect(OX, OY, M, M);
 
     var sn = FLOOR(RANDOM() * elements.length);
@@ -195,13 +201,9 @@ var a, b, c, d;
 
     var data = c.getImageData(OX, OY, M, M).data;
 
-    var u = 0;
-    for (var i = 0; i < pixels.length; ++i) {
-      var p = pixels[i];
-
-      var t = (p.tx + p.ty * M) * 4;
-      (p.off = data[t]) ?
-        p.u = ++u
+    for (i=u=0; p=pixels[i]; ++i) {
+      (p.off = data[t=(p.tx + p.ty * M) * 4]) ?
+        p.u = ++u // element letter
       :(
         p.q = data[t + 1], // qfox.nl
         p.num = data[t + 2] // number
