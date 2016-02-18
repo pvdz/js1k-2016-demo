@@ -290,11 +290,8 @@ var a, b, c, d;
 
       // update speed
       var acc = (1 - (d / 1000)) * 2;
-      vx -= COS(dtan) * acc;
-      vy -= SIN(dtan) * acc;
-
-      vx *= F;
-      vy *= F;
+      vx = (vx - COS(dtan) * acc) * F;
+      vy = (vy - SIN(dtan) * acc) * F;
 
       // force speed (causes jitter)
       if (ABS(vx) < .1) vx *= RANDOM() * 3;
