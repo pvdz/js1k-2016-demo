@@ -220,14 +220,14 @@ var a, b, c, d;
   var atomvy = 3; // atom movement delta.
   var mt = 32; // keep 32
   var swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
-  var hunned = 50;
+  var hunned = 100;
   var fitty = 50;
   var atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
 
   // this loop updates the pixels
   var Z = 0;
   (function R() {
-    if (!(Z++ % swapRate)) swap();
+    Z++ % swapRate ? c.clearRect(OX - 25, OY - 25, M + 50, M + 50) : swap();
 
     var time = (Z % mt) + Z % mt/2;
     var tp = SIN(time / mt);
@@ -238,7 +238,6 @@ var a, b, c, d;
     if (atomy < hunned || atomy > M - hunned) atomvy *= -1;
     atomy += atomvy;
 
-    c.clearRect(OX - 10, OY - 10, M + 20, M + 20);
     for (var i = 0; i < pixels.length; ++i) {
       var p = pixels[i];
 
@@ -309,11 +308,6 @@ var a, b, c, d;
       // next target
       var nx = x + vx;
       var ny = y + vy;
-
-      // bounce on walls
-
-      if ((nx < 0 ? nx = 0 : 1e9) != (nx > M ? nx = M : 1e9)) vx *= -1;
-      if ((ny < 0 ? ny = 0 : 1e9) != (ny > M ? ny = M : 1e9)) vy *= -1;
 
       // paint pixel
       if (!p.off) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
