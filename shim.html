@@ -298,7 +298,7 @@ var a, b, c, d;
       if (ABS(vy) < .1) vy *= RANDOM() * 3;
 
       // size of pixel
-      var size = CEIL((vx + vy) * .2);
+      var size = FLOOR((vx + vy) * .2 + 1);
       if (p.q) size *= 4;
 
       // next target
