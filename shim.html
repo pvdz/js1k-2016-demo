@@ -144,7 +144,6 @@ var a, b, c, d;
       PI = PI,
       SQRT = sqrt,
       ABS = abs,
-      CEIL = ceil,
       ATAN2 = atan2;
 
   var K = 200; // particle count wide and high (so total num of particles is K*K)
@@ -298,8 +297,7 @@ var a, b, c, d;
       if (ABS(vy) < .1) vy *= RANDOM() * 3;
 
       // size of pixel
-      var size = FLOOR((vx + vy) * .2 + 1);
-      if (p.q) size *= 4;
+      var size = FLOOR(1+(vx+vy)*(p.q ?.8:.2));
 
       // next target
       var nx = x + vx;
