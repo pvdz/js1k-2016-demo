@@ -158,21 +158,17 @@ var a, b, c, d;
   for (var i = 0; i < K; ++i) {
     for (var j = 0; j < K; ++j) {
       pixels.push({
-        r: 0,
-        g: 0,
-        b: 0,
+        // init in centrum
+        x: M2,
+        y: M2,
 
-        x: FLOOR(i * N),
-        y: FLOOR(j * N),
-        vx: RANDOM(),
-        vy: RANDOM(),
+        // give a random speed, otherwise awkward patterns emerge
+        vx: v=RANDOM(),
+        vy: v,
 
+        // default position unless special
         tx: FLOOR(i * N),
         ty: FLOOR(j * N),
-        i: i,
-        j: j,
-
-        off: false,
       });
     }
   }
@@ -203,8 +199,8 @@ var a, b, c, d;
     for (var i = 0; i < pixels.length; ++i) {
       var p = pixels[i];
 
-      var x = FLOOR(p.i * N);
-      var y = FLOOR(p.j * N);
+      var x = p.tx;
+      var y = p.ty;
       var t = (x + y * M) * 4;
       if (p.off = data[t]) {
         p.u = ++u;
@@ -219,19 +215,19 @@ var a, b, c, d;
 
   var atomx = M2;
   var atomy = M2;
-  var atomvx = 5;
-  var atomvy = 3;
-// this loop updates the pixels
+  var atomvx = 5; // free number
+  var atomvy = 3; // free number
+  var mt = 32; // keep 32
+  var swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
+
+  // this loop updates the pixels
   var Z = 0;
   (function R() {
-    if (!(Z % 150)) swap();
+    if (!(Z++ % swapRate)) swap();
 
-    ++Z;
-
-    var mt = 32;
-    var mt2 = 16;
-    var time = (Z % mt) + Z % mt2;
+    var time = (Z % mt) + Z % mt/2;
     var tp = SIN(time / mt);
+    var st200 = SIN(time) * 200;
 
     if (atomx < 100 || atomx > M - 100) atomvx *= -1;
     atomx += atomvx;
@@ -273,7 +269,7 @@ var a, b, c, d;
         targety = ay;
       } else if (p.q) {
         targetx -= (Z * 15) % M;
-        targety += SIN(time) * 200;
+        targety += st200;
       }
 
       // velocity vector
