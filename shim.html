@@ -154,13 +154,13 @@ var a, b, c, d;
   var M2 = FLOOR(M/2); // mid of view
   var OX = FLOOR(W/2 - M2);
   var OY = FLOOR(H/2 - M2);
-  var N = M / K; // pixel step per particle
 
   var pixels = [];
   for (var i = 0; i < K; ++i) {
     for (var j = 0; j < K; ++j) {
+      var v;
       pixels.push({
-        // init in centrum
+        // init in centre
         x: M2,
         y: M2,
 
@@ -169,8 +169,8 @@ var a, b, c, d;
         vy: v,
 
         // default position unless special
-        tx: FLOOR(i * N),
-        ty: FLOOR(j * N),
+        tx: FLOOR(i * M/K),
+        ty: FLOOR(j * M/K),
       });
     }
   }
@@ -290,12 +290,11 @@ var a, b, c, d;
       // update speed
       var acc = 2-d/500;
 
-      vx = (vx - COS(dtan) * acc) * F;
-      vy = (vy - SIN(dtan) * acc) * F;
-
       // force speed (causes jitter)
       if (ABS(vx) < .1) vx *= RANDOM() * 3;
       if (ABS(vy) < .1) vy *= RANDOM() * 3;
+      p.vx = vx = (vx - COS(dtan) * acc) * F;
+      p.vy = vy = (vy - SIN(dtan) * acc) * F;
 
       // size of pixel
       var size = FLOOR(1+(vx+vy)*(p.q ?.8:.2));
@@ -307,9 +306,6 @@ var a, b, c, d;
       else c.fillStyle = 'green';
 
       c.fillRect(OX + FLOOR(p.x=x + vx) + .5, OY + FLOOR(p.y=y + vy) + .5, size, size);
-
-      p.vx = vx;
-      p.vy = vy;
     }
 
     requestAnimationFrame(R);
