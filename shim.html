@@ -134,15 +134,17 @@ var a, b, c, d;
   var elements = 'H HeLiBeB C N O F NeNaMgAlSiP S ClArK CaScTiV CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY ZrNbMoTcRuRhPdAgCdInSnSbTeI XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn_tFl_pLv_s_o'
     .match(/../g);
 
-  var FLOOR = Math.floor;
-  var MIN = Math.min;
-  var RANDOM = Math.random;
-  var SIN = Math.sin;
-  var COS = Math.cos;
-  var PI = Math.PI;
-  var SQRT = Math.sqrt;
-  var ABS = Math.abs;
-  var CEIL = Math.ceil;
+  with(Math)
+    var
+      FLOOR = floor,
+      MIN = min,
+      RANDOM = random,
+      SIN = sin,
+      COS = cos,
+      PI = PI,
+      SQRT = sqrt,
+      ABS = abs,
+      CEIL = ceil;
 
   var K = 200; // particle count wide and high (so total num of particles is K*K)
 
@@ -312,11 +314,6 @@ var a, b, c, d;
       if ((nx < 0 ? nx = 0 : 1e9) != (nx > M ? nx = M : 1e9)) vx *= -1;
       if ((ny < 0 ? ny = 0 : 1e9) != (ny > M ? ny = M : 1e9)) vy *= -1;
 
-      p.x = nx;
-      p.y = ny;
-      p.vx = vx;
-      p.vy = vy;
-
       // paint pixel
       if (!p.off) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
       else if (p.u % 3 === 0) c.fillStyle = 'blue';
@@ -324,6 +321,11 @@ var a, b, c, d;
       else c.fillStyle = 'green';
 
       c.fillRect(OX + FLOOR(nx) + .5, OY + FLOOR(ny) + .5, size, size);
+
+      p.x = nx;
+      p.y = ny;
+      p.vx = vx;
+      p.vy = vy;
     }
 
     requestAnimationFrame(R);
