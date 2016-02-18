@@ -300,20 +300,14 @@ var a, b, c, d;
       // size of pixel
       var size = FLOOR(1+(vx+vy)*(p.q ?.8:.2));
 
-      // next target
-      var nx = x + vx;
-      var ny = y + vy;
-
       // paint pixel
       if (!p.u) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
       else if (p.u % 3 === 0) c.fillStyle = 'blue';
       else if (p.u % 3 === 1) c.fillStyle = 'red';
       else c.fillStyle = 'green';
 
-      c.fillRect(OX + FLOOR(nx) + .5, OY + FLOOR(ny) + .5, size, size);
+      c.fillRect(OX + FLOOR(p.x=x + vx) + .5, OY + FLOOR(p.y=y + vy) + .5, size, size);
 
-      p.x = nx;
-      p.y = ny;
       p.vx = vx;
       p.vy = vy;
     }
