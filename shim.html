@@ -144,7 +144,8 @@ var a, b, c, d;
       PI = PI,
       SQRT = sqrt,
       ABS = abs,
-      CEIL = ceil;
+      CEIL = ceil,
+      ATAN2 = atan2;
 
   var K = 200; // particle count wide and high (so total num of particles is K*K)
 
@@ -284,15 +285,13 @@ var a, b, c, d;
       var dy = y - targety;
       var d = SQRT(dx * dx + dy * dy);
 
-      // magic
-      var dtan = Math.atan2(dy, dx);
-      var dcos = COS(dtan);
-      var dsin = SIN(dtan);
+      // angle of delta vector
+      var dtan = ATAN2(dy, dx);
 
       // update speed
       var acc = (1 - (d / 1000)) * 2;
-      vx -= dcos * acc;
-      vy -= dsin * acc;
+      vx -= COS(dtan) * acc;
+      vy -= SIN(dtan) * acc;
 
       vx *= F;
       vy *= F;
