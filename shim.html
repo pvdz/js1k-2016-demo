@@ -183,7 +183,6 @@ var a, b, c, d;
     var
       t, // index in image data
       p, // pixel
-      u, // counter of letter pixels, ensures they are evenly distributed
       i; // loop counter
 
     c.clearRect(OX, OY, M, M);
@@ -208,7 +207,7 @@ var a, b, c, d;
       p.num = data[t + 2] // number
     ) {
       // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
-      p.u = data[t=(p.tx + p.ty * M) * 4] ? ++u : 0;
+      p.u = data[t=(p.tx + p.ty * M) * 4] ? i : 0;
     }
 
     c.clearRect(OX, OY, M, M);
