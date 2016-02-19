@@ -255,29 +255,22 @@ var a, b, c, d;
 
         switch (p.u % 3) {
           case 0:
-            var ax = atomx + COS(b) * tp * fitty;
-            var ay = atomy + SIN(b) * hunned;
+            targetx = atomx + COS(b) * tp * fitty;
+            targety = atomy + SIN(b) * hunned;
             break;
           case 1:
-            var ax = atomx + COS(b) * hunned;
-            var ay = atomy + SIN(b) * tp * fitty;
+            targetx = atomx + COS(b) * hunned;
+            targety = atomy + SIN(b) * tp * fitty;
             break;
           case 2:
-            var ax = atomx + COS(b) * tp * hunned;
-            var ay = atomy + SIN(b) * tp * hunned;
+            targetx = atomx + COS(b) * tp * hunned;
+            targety = atomy + SIN(b) * tp * hunned;
             break;
         }
-
-        targetx = ax;
-        targety = ay;
       } else if (p.q) {
         targetx -= (Z * 15) % M;
         targety += st200;
       }
-
-      // velocity vector
-      var vx = p.vx;
-      var vy = p.vy;
 
       // distance
       var dx = x - targetx;
@@ -287,9 +280,12 @@ var a, b, c, d;
       // angle of delta vector
       var dtan = ATAN2(dy, dx);
 
-      // update speed
+      // update-speed
       var acc = 2-d/500;
 
+      // velocity vector
+      var vx = p.vx;
+      var vy = p.vy;
       // force speed (causes jitter)
       if (ABS(vx) < .1) vx *= RANDOM() * 3;
       if (ABS(vy) < .1) vy *= RANDOM() * 3;
