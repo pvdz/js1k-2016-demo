@@ -253,20 +253,9 @@ var a, b, c, d;
       if (p.u) {
         var b = p.u % atomloop;
 
-        switch (p.u % 3) {
-          case 0:
-            targetx = atomx + COS(b) * tp * fitty;
-            targety = atomy + SIN(b) * hunned;
-            break;
-          case 1:
-            targetx = atomx + COS(b) * hunned;
-            targety = atomy + SIN(b) * tp * fitty;
-            break;
-          case 2:
-            targetx = atomx + COS(b) * tp * hunned;
-            targety = atomy + SIN(b) * tp * hunned;
-            break;
-        }
+        var k = p.u%3;
+        targetx = atomx + COS(b) * (k==1?hunned:k==0?tp * fitty:tp * hunned);
+        targety = atomy + SIN(b) * (k==0?hunned:k==1?tp * fitty:tp * hunned);
       } else if (p.q) {
         targetx -= (Z * 15) % M;
         targety += st200;
