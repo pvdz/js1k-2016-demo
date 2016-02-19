@@ -138,19 +138,19 @@ var a, b, c, d;
     var
       FLOOR = floor,
       MIN = min,
+      MAX = max,
       RANDOM = random,
       SIN = sin,
       COS = cos,
-      PI = PI,
       SQRT = sqrt,
       ABS = abs,
       ATAN2 = atan2;
 
   var K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  var W = a.width;
-  var H = a.height;
-  var M = MIN(W, H); // get smallest dimension, serves as view dimensions (a square)
+  var W;
+  var H;
+  var M = MIN(W= a.width, H= a.height); // get smallest dimension, serves as view dimensions (a square)
   var M2 = FLOOR(M/2); // mid of view
   var OX = FLOOR(W/2 - M2);
   var OY = FLOOR(H/2 - M2);
