@@ -257,6 +257,7 @@ var a, b, c, d;
         targety += st200;
       }
 
+      // distance
       var dx;
       var dy;
       // angle of delta vector
@@ -266,11 +267,11 @@ var a, b, c, d;
       var acc = 2-SQRT(dx * dx + dy * dy)/500;
 
       // velocity vector
-      var vx = p.vx;
-      var vy = p.vy;
+      var vx;
+      var vy;
       // force speed (causes jitter)
-      if (ABS(vx) < .1) vx *= RANDOM() * 3;
-      if (ABS(vy) < .1) vy *= RANDOM() * 3;
+      if (ABS(vx= p.vx) < .1) vx *= RANDOM() * 3;
+      if (ABS(vy= p.vy) < .1) vy *= RANDOM() * 3;
       p.vx = vx = (vx - COS(dtan) * acc) * F;
       p.vy = vy = (vy - SIN(dtan) * acc) * F;
 
