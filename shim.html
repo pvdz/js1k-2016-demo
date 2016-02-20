@@ -233,6 +233,8 @@ var a, b, c, d;
   // this loop updates the pixels
   var Z = 0;
   (function R() {
+    var p;
+
     Z++ % swapRate ? c.clearRect(OX - 25, OY - 25, M + 50, M + 50) : swap();
 
     var time = (Z % mt) + Z % mt/2;
@@ -244,11 +246,8 @@ var a, b, c, d;
     if (atomy < hunned || atomy > M - hunned) atomvy *= -1;
     atomy += atomvy;
 
-    for (var i = 0; i < pixels.length; ++i) {
-      var p = pixels[i];
+    for (var i = 0; p = pixels[i++];) {
 
-      // want to be at
-      var I = i % pixels.length;
       var targetx = p.tx;
       var targety = p.ty;
 
