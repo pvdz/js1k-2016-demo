@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1427 (regpacked)
+// 1415 (regpacked)
 
 
 var a, b, c, d;
@@ -233,7 +233,12 @@ var a, b, c, d;
   // this loop updates the pixels
   var Z = 0;
   (function R() {
-    var p;
+    var
+      p, // pixel
+      b, // for atom turning sine
+      k, // which circle of the atom
+      targetx,
+      targety
 
     Z++ % swapRate ? c.clearRect(OX - 25, OY - 25, M + 50, M + 50) : swap();
 
@@ -248,19 +253,18 @@ var a, b, c, d;
 
     for (var i = 0; p = pixels[i++];) {
 
-      var targetx = p.tx;
-      var targety = p.ty;
 
-      if (p.u) {
-        var b = p.u % atomloop;
-
-        var k = p.u%3;
-        targetx = atomx + COS(b) * (k==1?hunned:k==0?tp * fitty:tp * hunned);
-        targety = atomy + SIN(b) * (k==0?hunned:k==1?tp * fitty:tp * hunned);
-      } else if (p.q) {
-        targetx -= (Z * 15) % M;
-        targety += st200;
-      }
+      targetx = p.tx,
+      targety = p.ty
+      p.u ? (
+        b = p.u % atomloop,
+        k = p.u%3,
+        targetx = atomx + COS(b) * (k==1?hunned:k==0?tp * fitty:tp * hunned),
+        targety = atomy + SIN(b) * (k==0?hunned:k==1?tp * fitty:tp * hunned)
+      ): p.q ? (
+        targetx -= (Z * 15) % M,
+        targety += st200
+      ): '';
 
       // distance
       var dx;
