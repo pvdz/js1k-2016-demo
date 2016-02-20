@@ -262,9 +262,8 @@ var a, b, c, d;
       // angle of delta vector
       var dtan = ATAN2(dy=p.y - targety, dx=p.x - targetx);
 
-      var d = SQRT(dx * dx + dy * dy);
       // update-speed
-      var acc = 2-d/500;
+      var acc = 2-SQRT(dx * dx + dy * dy)/500;
 
       // velocity vector
       var vx = p.vx;
