@@ -272,11 +272,11 @@ var a, b, c, d;
       // force speed (causes jitter)
       if (ABS(vx= p.vx) < .1) vx *= RANDOM() * 3;
       if (ABS(vy= p.vy) < .1) vy *= RANDOM() * 3;
-      p.vx = vx = (vx - COS(dtan) * acc) * F;
-      p.vy = vy = (vy - SIN(dtan) * acc) * F;
+      vx = vx - COS(dtan) * acc;
+      vy = vy - SIN(dtan) * acc;
 
       // size of pixel
-      var size = FLOOR(1+(vx+vy)*(p.q ?.8:.2));
+      var size = p.q ? 4 : FLOOR(1+(vx+vy)*F*.2);
 
       // paint pixel
       if (!p.u) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
@@ -284,7 +284,7 @@ var a, b, c, d;
       else if (p.u % 3 === 1) c.fillStyle = 'red';
       else c.fillStyle = 'green';
 
-      c.fillRect(OX + FLOOR(p.x+=vx) + .5, OY + FLOOR(p.y+=vy) + .5, size, size);
+      c.fillRect(OX + FLOOR(p.x+=p.vx=vx*F) + .5, OY + FLOOR(p.y+=p.vy=vy*F) + .5, size, size);
     }
 
     requestAnimationFrame(R);
