@@ -266,18 +266,16 @@ var a, b, c, d;
         targety += st200
       ): '';
 
-      // distance
-      var dx;
-      var dy;
       // angle of delta vector
-      var dtan = ATAN2(dy=p.y - targety, dx=p.x - targetx);
+      var dtan = ATAN2(p.y - targety, p.x - targetx);
 
       // update-speed
-      var acc = 2-SQRT(dx * dx + dy * dy)/500;
+      var acc = 1.8 + .2 * RANDOM();
 
       // velocity vector
       var vx;
       var vy;
+
       // force speed (causes jitter)
       if (ABS(vx= p.vx) < .1) vx *= RANDOM() * 3;
       if (ABS(vy= p.vy) < .1) vy *= RANDOM() * 3;
