@@ -204,7 +204,7 @@ var a, b, c, d;
       i=0;
       p=pixels[i++];
       p.q = data[t + 1], // qfox.nl
-      p.num = data[t + 2] // number
+        p.num = data[t + 2] // number
     ) {
       // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
       p.u = data[t=(p.tx + p.ty * M) * 4] ? i : 0;
@@ -241,10 +241,6 @@ var a, b, c, d;
     for (var i = 0; i < pixels.length; ++i) {
       var p = pixels[i];
 
-      // position
-      var x = p.x;
-      var y = p.y;
-
       // want to be at
       var I = i % pixels.length;
       var targetx = p.tx;
@@ -262,8 +258,8 @@ var a, b, c, d;
       }
 
       // distance
-      var dx = x - targetx;
-      var dy = y - targety;
+      var dx = p.x - targetx;
+      var dy = p.y - targety;
       var d = SQRT(dx * dx + dy * dy);
 
       // angle of delta vector
@@ -290,7 +286,7 @@ var a, b, c, d;
       else if (p.u % 3 === 1) c.fillStyle = 'red';
       else c.fillStyle = 'green';
 
-      c.fillRect(OX + FLOOR(p.x=x + vx) + .5, OY + FLOOR(p.y=y + vy) + .5, size, size);
+      c.fillRect(OX + FLOOR(p.x+=vx) + .5, OY + FLOOR(p.y+=vy) + .5, size, size);
     }
 
     requestAnimationFrame(R);
