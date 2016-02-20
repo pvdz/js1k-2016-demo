@@ -157,23 +157,21 @@ var a, b, c, d;
   var OY = FLOOR(H/2 - M2);
 
   var pixels = [];
-  for (var i = 0; i < K; ++i) {
-    for (var j = 0; j < K; ++j) {
-      var v;
-      pixels.push({
-        // init in centre
-        x: M2,
-        y: M2,
+  for (var i = 0; i < K*K; ++i) {
+    var v;
+    pixels.push({
+      // init in centre
+      x: M2,
+      y: M2,
 
-        // give a random speed, otherwise awkward patterns emerge
-        vx: v=RANDOM(),
-        vy: v,
+      // give a random speed, otherwise awkward patterns emerge
+      vx: v=RANDOM(),
+      vy: v,
 
-        // default position unless special
-        tx: FLOOR(i * M/K),
-        ty: FLOOR(j * M/K),
-      });
-    }
+      // default position unless special
+      tx: FLOOR(i%K * M/K),
+      ty: FLOOR(i/K * M/K),
+    });
   }
 
   c.textAlign = 'center';
@@ -194,6 +192,7 @@ var a, b, c, d;
     c.fillStyle = 'blue';
     c.fillText(sn, OX+M2, OY+M2, M);
     c.fillStyle = 'red';
+    // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
     c.fillText(s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
     c.font = 0.1 * M + 'px serif';
     c.fillStyle = 'green';
@@ -202,7 +201,7 @@ var a, b, c, d;
     var data = c.getImageData(OX, OY, M, M).data;
 
     for (
-      i=u=0;
+      i=0;
       p=pixels[i++];
       p.q = data[t + 1], // qfox.nl
       p.num = data[t + 2] // number
