@@ -171,6 +171,10 @@ var a, b, c, d;
       // default position unless special
       tx: FLOOR(i%K * M/K),
       ty: FLOOR(i/K * M/K),
+
+      // num
+      // q
+      // u
     });
   }
 
@@ -189,13 +193,13 @@ var a, b, c, d;
     c.clearRect(OX, OY, M, M);
 
     c.font = M + 'px serif';
-    c.fillStyle = 'blue';
+    c.fillStyle = '#00f';
     c.fillText(sn, OX+M2, OY+M2, M);
-    c.fillStyle = 'red';
+    c.fillStyle = '#f00';
     // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
     c.fillText(s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
     c.font = 0.1 * M + 'px serif';
-    c.fillStyle = 'green';
+    c.fillStyle = '#0f0';
     c.fillText('qfox.nl', OX + M - 100, OY + M - 60);
 
     var data = c.getImageData(OX, OY, M, M).data;
@@ -203,11 +207,13 @@ var a, b, c, d;
     for (
       i=0;
       p=pixels[i++];
-      p.q = data[t + 1], // qfox.nl
-        p.num = data[t + 2] // number
+      // pixel color
+      p.c = (!p.u) ? p.num ? '#ff0' : (p.q ? '#f0f' : '#000') : (p.u % 3 === 0) ? c.fillStyle = '#00f' : (p.u % 3 === 1) ? c.fillStyle = '#f00' : '#0f0'
     ) {
       // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
       p.u = data[t=(p.tx + p.ty * M) * 4] ? i : 0;
+      p.q = data[t + 1]; // qfox.nl
+      p.num = data[t + 2]; // number
     }
 
     c.clearRect(OX, OY, M, M);
@@ -278,12 +284,7 @@ var a, b, c, d;
       // size of pixel
       var size = p.q ? 4 : FLOOR(1+(vx+vy)*F*.2);
 
-      // paint pixel
-      if (!p.u) c.fillStyle = p.num ? 'yellow' : p.q ? 'pink' : 'black';
-      else if (p.u % 3 === 0) c.fillStyle = 'blue';
-      else if (p.u % 3 === 1) c.fillStyle = 'red';
-      else c.fillStyle = 'green';
-
+      c.fillStyle = p.c;
       c.fillRect(OX + FLOOR(p.x+=p.vx=vx*F) + .5, OY + FLOOR(p.y+=p.vy=vy*F) + .5, size, size);
     }
 
