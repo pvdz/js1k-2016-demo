@@ -272,8 +272,8 @@ var a, b, c, d;
       // force speed (causes jitter)
       if (ABS(vx= p.vx) < .1) vx *= RANDOM() * 3;
       if (ABS(vy= p.vy) < .1) vy *= RANDOM() * 3;
-      vx = vx - COS(dtan) * acc;
-      vy = vy - SIN(dtan) * acc;
+      vx -= COS(dtan) * acc;
+      vy -= SIN(dtan) * acc;
 
       // size of pixel
       var size = p.q ? 4 : FLOOR(1+(vx+vy)*F*.2);
