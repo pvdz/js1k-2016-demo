@@ -310,9 +310,8 @@ var a, b, c, d;
 
     for (i = 0; p = pixels[i++];) {
       p.u ? (
-        b = p.u % atomloop,
         k = p.u % 3,
-        targetx = atomx + COS(b) * fitty * (k==1?2:k*tp||tp),
+        targetx = atomx + COS(b=p.u%atomloop) * fitty * (k==1?2:k*tp||tp),
         targety = atomy + SIN(b) * fitty * (k*tp||2)
       ): p.q ? (
         targetx = p.X + stw,
