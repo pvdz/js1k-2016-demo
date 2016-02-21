@@ -176,6 +176,10 @@ var a, b, c, d;
     rr, // force speed if too slow (causes jitter). update speed with delta
     size, // size of pixel to paint (depends on speed in most cases)
 
+    clearRect = 'clearRect',
+    fillStyle = 'fillStyle',
+    fillText = 'fillText',
+
     // math constants
     FLOOR,
     MIN,
@@ -239,17 +243,17 @@ var a, b, c, d;
     sn = FLOOR(RANDOM() * elements.length);
     s = elements[sn];
 
-    c.clearRect(OX, OY, M, M);
+    c[clearRect](OX, OY, M, M);
 
     c.font = M + 'px serif';
-    c.fillStyle = '#00f';
-    c.fillText(sn, OX+M2, OY+M2, M);
-    c.fillStyle = '#f00';
+    c[fillStyle] = '#00f';
+    c[fillText](sn, OX+M2, OY+M2, M);
+    c[fillStyle] = '#f00';
     // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
-    c.fillText(s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
+    c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
     c.font = 0.1 * M + 'px serif';
-    c.fillStyle = '#0f0';
-    c.fillText('qfox.nl', OX + M2, OY + M *.9);
+    c[fillStyle] = '#0f0';
+    c[fillText]('qfox.nl', OX + M2, OY + M *.9);
     qw = c.measureText('qfox.nl').width/2*1.2;
 
     data = c.getImageData(OX, OY, M, M).data;
@@ -258,7 +262,7 @@ var a, b, c, d;
       i=0;
       p=pixels[i++];
       // pixel color
-      p.c = (!p.u) ? p.num ? '#ff0' : (p.q ? '#f0f' : '#000') : (p.u % 3 === 0) ? c.fillStyle = '#00f' : (p.u % 3 === 1) ? c.fillStyle = '#f00' : '#0f0'
+      p.c = (!p.u) ? p.num ? '#ff0' : (p.q ? '#f0f' : '#000') : (p.u % 3 === 0) ? c[fillStyle] = '#00f' : (p.u % 3 === 1) ? c[fillStyle] = '#f00' : '#0f0'
     ) {
       // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
       p.u = data[t=(p.tx + p.ty * M) * 4] ? i : 0;
@@ -266,7 +270,7 @@ var a, b, c, d;
       p.num = data[t + 2]; // number
     }
 
-    c.clearRect(OX, OY, M, M);
+    c[clearRect](OX, OY, M, M);
   }
 
    F = 0.85; // friction. lower means faster pixels.
@@ -283,7 +287,7 @@ var a, b, c, d;
   // this loop updates the pixels
   Z = 0;
   (function R() {
-    Z++ % swapRate ? c.clearRect(OX - 25, OY - 25, M + 50, M + 50) : swap();
+    Z++ % swapRate ? c[clearRect](OX - 25, OY - 25, M + 50, M + 50) : swap();
 
     time = Z % mt / mt;
     tp = SIN(time);
@@ -317,7 +321,7 @@ var a, b, c, d;
       // size of pixel
       size = p.q ? 4 : FLOOR(1+(vx+vy)*.2);
 
-      c.fillStyle = p.c;
+      c[fillStyle] = p.c;
       c.fillRect(OX + FLOOR(p.x+=p.vx=vx*F) + .5, OY + FLOOR(p.y+=p.vy=vy*F) + .5, size, size);
     }
 
