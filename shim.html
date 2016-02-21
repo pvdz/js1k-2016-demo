@@ -218,6 +218,8 @@ var a, b, c, d;
   OY = FLOOR(H/2 - M2);
 
   cc = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
+  pxserif = 'px serif';
+  qfoxnl = 'qfox.nl';
 
   pixels = [];
   for (i = K*K; --i;) {
@@ -248,16 +250,16 @@ var a, b, c, d;
 
     c[clearRect](OX, OY, M, M);
 
-    c.font = M + 'px serif';
+    c.font = M + pxserif;
     c[fillStyle] = cc[2];
     c[fillText](sn, OX+M2, OY+M2, M);
     c[fillStyle] = cc[0];
     // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
     c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
-    c.font = 0.1 * M + 'px serif';
+    c.font = 0.1 * M + pxserif;
     c[fillStyle] = cc[1];
-    c[fillText]('qfox.nl', OX + M2, OY + M *.9);
-    qw = c.measureText('qfox.nl').width/2*1.2;
+    c[fillText](qfoxnl, OX + M2, OY + M *.9);
+    qw = c.measureText(qfoxnl).width/2*1.2;
 
     data = c.getImageData(OX, OY, M, M).data;
 
