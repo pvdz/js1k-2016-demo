@@ -298,17 +298,18 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < hunned || atomy > M-hunned) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
-      targetx = p.X;
-      targety = p.Y;
       p.u ? (
         b = p.u % atomloop,
-          k = p.u%3,
-          targetx = atomx + COS(b) * (k==1?hunned:k==0?tp * fitty:tp * hunned),
-          targety = atomy + SIN(b) * (k==0?hunned:k==1?tp * fitty:tp * hunned)
+        k = p.u % 3,
+        targetx = atomx + COS(b) * (k==1?hunned:k==0?tp * fitty:tp * hunned),
+        targety = atomy + SIN(b) * (k==0?hunned:k==1?tp * fitty:tp * hunned)
       ): p.q ? (
-        targetx += stw,
-          targety += sth
-      ): '';
+        targetx = p.X + stw,
+        targety = p.Y + sth
+      ):(
+        targetx = p.X,
+        targety = p.Y
+      );
 
       //acc = 1.8 + .2 * RANDOM();
       //acc = 2+ RANDOM()/2;
