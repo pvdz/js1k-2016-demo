@@ -280,8 +280,7 @@ var a, b, c, d;
   atomvy = 3; // atom movement delta.
   mt = 32; // time factor, cycle progress (0..1) every this many loops. keep 32
   swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
-  hunned = M2/4; // outer size of atom
-  fitty = hunned/2; // inner circle of atom
+  fitty = M2/8; // circle of atom
   atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
 
   // this loop updates the pixels
@@ -294,15 +293,15 @@ var a, b, c, d;
     sth = COS(pi * time) * M*0.07;
     stw = SIN(((Z*3)%M * pi)/M2)*(M2-qw);
 
-    atomx += atomvx *= (atomx < hunned || atomx > M-hunned) ? -1 : 1;
-    atomy += atomvy *= (atomy < hunned || atomy > M-hunned) ? -1 : 1;
+    atomx += atomvx *= (atomx < fitty || atomx > M-fitty) ? -1 : 1;
+    atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
       p.u ? (
         b = p.u % atomloop,
         k = p.u % 3,
-        targetx = atomx + COS(b) * (k==1?hunned:k==0?tp * fitty:tp * hunned),
-        targety = atomy + SIN(b) * (k==0?hunned:k==1?tp * fitty:tp * hunned)
+        targetx = atomx + COS(b) * fitty * (k==1?2:k*tp||tp),
+        targety = atomy + SIN(b) * fitty * (k*tp||2)
       ): p.q ? (
         targetx = p.X + stw,
         targety = p.Y + sth
