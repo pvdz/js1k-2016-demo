@@ -228,14 +228,11 @@ var a, b, c, d;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  M = MIN(W= a.width, H= a.height); // get smallest dimension, serves as view dimensions (a square)
-  M2 = FLOOR(M/2);
+  atomy = atomx = M2 = FLOOR(M=MIN(W= a.width, H= a.height))/2;
   OX = FLOOR(W/2 - M2);
   OY = FLOOR(H/2 - M2);
 
   F = 0.85; // friction. lower means faster pixels.
-  atomx = M2;
-  atomy = M2;
   atomvx = 5; // atom movement delta.
   atomvy = 3; // atom movement delta.
   mt = 32; // time factor, cycle progress (0..1) every this many loops. keep 32
