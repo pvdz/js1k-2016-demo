@@ -311,10 +311,10 @@ var a, b, c, d;
       //acc = 1.8 + .2 * RANDOM();
       //acc = 2+ RANDOM()/2;
 
-      // force speed if too slow (causes jitter). update speed with delta
-      rr = RANDOM() * .5
-      vx = p.A + rr - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * (acc=2+rr);
-      vy = p.B + rr - SIN(dtan) * acc;
+      // update speed, add a little random to keep it jittery
+      rr = 2 + RANDOM() * .5
+      vx = p.A + rr - 2 - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * rr;
+      vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       // size of pixel
       size = p.q ? 4 : FLOOR(1+(vx+vy)*.2);
