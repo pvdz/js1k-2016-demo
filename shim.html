@@ -218,15 +218,15 @@ var a, b, c, d;
   for (i = K*K; --i;) {
     pixels.push({
       // init in centre
-      x: M2,
-      y: M2,
+      x: 0,
+      y: 0,
 
-      vx: 0,
-      vy: 0,
+      A: 0,
+      B: 0,
 
       // default position unless special
-      tx: FLOOR(i%K * M/K),
-      ty: FLOOR(i/K * M/K), // i*M/(K*K)
+      X: FLOOR(i%K * M/K),
+      Y: FLOOR(i/K * M/K), // i*M/(K*K)
 
       // num
       // q
@@ -263,7 +263,7 @@ var a, b, c, d;
       p.c = (!p.u) ? p.num ? '#ff0' : (p.q ? '#f0f' : '#000') : (p.u % 3 === 0) ? c[fillStyle] = '#00f' : (p.u % 3 === 1) ? c[fillStyle] = '#f00' : '#0f0'
     ) {
       // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
-      p.u = data[t=(p.tx + p.ty * M) * 4] ? i : 0;
+      p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
       p.q = data[t + 1]; // qfox.nl
       p.num = data[t + 2]; // number
     }
@@ -296,8 +296,8 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < hunned || atomy > M-hunned) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
-      targetx = p.tx;
-      targety = p.ty;
+      targetx = p.X;
+      targety = p.Y;
       p.u ? (
         b = p.u % atomloop,
           k = p.u%3,
@@ -313,14 +313,14 @@ var a, b, c, d;
 
       // force speed if too slow (causes jitter). update speed with delta
       rr = RANDOM() * .5
-      vx = p.vx + rr - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * (acc=2+ RANDOM()/2);
-      vy = p.vy + rr - SIN(dtan) * acc;
+      vx = p.A + rr - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * (acc=2+ RANDOM()/2);
+      vy = p.B + rr - SIN(dtan) * acc;
 
       // size of pixel
       size = p.q ? 4 : FLOOR(1+(vx+vy)*.2);
 
       c[fillStyle] = p.c;
-      c.fillRect(OX + FLOOR(p.x+=p.vx=vx*F) + .5, OY + FLOOR(p.y+=p.vy=vy*F) + .5, size, size);
+      c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + .5, OY + FLOOR(p.y+=p.B=vy*F) + .5, size, size);
     }
 
     requestAnimationFrame(R);
