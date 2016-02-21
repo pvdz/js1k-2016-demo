@@ -310,16 +310,16 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
-      (u = p.u) ? (
+      targety = (u = p.u) ? (
         k = u % 3,
         targetx = atomx + COS(b=u%atomloop) * fitty * (k==1?2:k*tp||tp),
-        targety = atomy + SIN(b) * fitty * (k*tp||2)
+        atomy + SIN(b) * fitty * (k*tp||2)
       ): p.q ? (
         targetx = p.X + stw,
-        targety = p.Y + sth
+        p.Y + sth
       ):(
         targetx = p.X,
-        targety = p.Y
+        p.Y
       );
 
       //acc = 1.8 + .2 * RANDOM();
