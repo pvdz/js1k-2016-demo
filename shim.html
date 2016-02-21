@@ -265,7 +265,7 @@ var a, b, c, d;
       i=0;
       p=pixels[i++];
       // pixel color
-      p.c = cc[p.u ? p.u % 3 : p.num ? 3 : p.q ? 4 : 5]
+
     ) {
       // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
       p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
@@ -324,7 +324,7 @@ var a, b, c, d;
       // size of pixel
       size = p.q ? 4 : FLOOR(1+(vx+vy)*.2);
 
-      c[fillStyle] = p.c;
+      c[fillStyle] = cc[p.u ? p.u % 3 : p.num ? 3 : p.q ? 4 : 5];
       c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + .5, OY + FLOOR(p.y+=p.B=vy*F) + .5, size, size);
     }
 
