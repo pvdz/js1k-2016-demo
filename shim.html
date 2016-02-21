@@ -178,6 +178,10 @@ var a, b, c, d;
     u, // p.u (index of pixels in atom
     excessClear, // extra margin to clear beyond viewport
     qfoxnlHeightWobbleViewportPart, // height max delta of qfox text
+    qfoxSlightlyMoreThanHalfWidth, // relative viewport width of half the qfox text (measured)
+    qfoxRelativeOffset, // vertical offset of qfox text, relative to viewport
+    qfoxTextRelativeHeight, // height of qfox text, relative to viewport
+    HALF, // 0.5 what else
 
     // math constants
     pi,
@@ -234,6 +238,7 @@ var a, b, c, d;
   OX = FLOOR(W/2 - M2);
   OY = FLOOR(H/2 - M2);
 
+  HALF = 0.5;
   F = 0.85; // friction. lower means faster pixels.
   atomvx = 5; // atom movement delta.
   atomvy = 3; // atom movement delta.
@@ -242,7 +247,10 @@ var a, b, c, d;
   fitty = M2/8; // circle of atom
   atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
   excessClear = 25;
-  qfoxnlHeightWobbleViewportPart=0.07
+  qfoxnlHeightWobbleViewportPart = 0.07
+  qfoxSlightlyMoreThanHalfWidth = 0.6;
+  qfoxRelativeOffset = 0.9;
+  qfoxTextRelativeHeight = 0.1;
 
   // this loop updates the pixels
   Z = 0;
@@ -283,10 +291,10 @@ var a, b, c, d;
       c[fillStyle] = colors[0];
       // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
       c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
-      c.font = 0.1 * M + pxserif;
+      c.font = qfoxTextRelativeHeight * M + pxserif;
       c[fillStyle] = colors[1];
-      c[fillText](qfoxnl, OX + M2, OY + M *.9);
-      qw = c.measureText(qfoxnl).width*0.6;
+      c[fillText](qfoxnl, OX + M2, OY + M * qfoxRelativeOffset);
+      qw = c.measureText(qfoxnl).width*qfoxSlightlyMoreThanHalfWidth;
 
       data = c.getImageData(OX, OY, M, M).data;
 
@@ -322,12 +330,12 @@ var a, b, c, d;
       //acc = 2+ RANDOM()/2;
 
       // update speed, add a little random to keep it jittery
-      rr = 2 + RANDOM() * .5
+      rr = 2 + RANDOM() * HALF
       vx = p.A + rr - 2 - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * rr;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : q || 5];
-      c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + .5, OY + FLOOR(p.y+=p.B=vy*F) + .5, size = q || FLOOR(1+(vx+vy)*.2), size);
+      c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + HALF, OY + FLOOR(p.y+=p.B=vy*F) + HALF, size = q || FLOOR(1+(vx+vy)*.2), size);
     }
 
     requestAnimationFrame(R);
