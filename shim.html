@@ -245,15 +245,12 @@ var a, b, c, d;
   mt = 32; // time factor, cycle progress (0..1) every this many loops. keep 32
   swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
   fitty = M2/8; // circle of atom
-  atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
+  Z=atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
   excessClear = 25;
   qfoxnlHeightWobbleViewportPart = 0.07
   qfoxSlightlyMoreThanHalfWidth = 0.6;
   qfoxRelativeOffset = 0.9;
   qfoxTextRelativeHeight = 0.1;
-
-  // this loop updates the pixels
-  Z = 0;
 
   pixels = [];
   for (i = K*K; --i;) pixels.push({
