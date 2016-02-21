@@ -262,7 +262,7 @@ var a, b, c, d;
       i=0;
       p=pixels[i++];
       // pixel color
-      p.c = (!p.u) ? p.num ? '#ff0' : (p.q ? '#f0f' : '#000') : (p.u % 3 === 0) ? '#00f' : (p.u % 3 === 1) ? '#f00' : '#0f0'
+      p.c = p.u ? p.u % 3 ? p.u % 3 === 1 ? '#f00' : '#0f0' : '#00f' : p.num ? '#ff0' : p.q ? '#f0f' : '#000'
     ) {
       // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
       p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
