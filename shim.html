@@ -178,10 +178,9 @@ var a, b, c, d;
     u, // p.u (index of pixels in atom
     excessClear, // extra margin to clear beyond viewport
     qfoxnlHeightWobbleViewportPart, // height max delta of qfox text
-    qfoxSlightlyMoreThanHalfWidth, // relative viewport width of half the qfox text (measured)
+    HALF, // relative viewport width of half the qfox text (measured)
     qfoxRelativeOffset, // vertical offset of qfox text, relative to viewport
     qfoxTextRelativeHeight, // height of qfox text, relative to viewport
-    HALF, // 0.5 what else
 
     // math constants
     pi,
@@ -248,7 +247,6 @@ var a, b, c, d;
   Z=atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
   excessClear = 25;
   qfoxnlHeightWobbleViewportPart = 0.07
-  qfoxSlightlyMoreThanHalfWidth = 0.6;
   qfoxRelativeOffset = 0.9;
   qfoxTextRelativeHeight = 0.1;
 
@@ -288,7 +286,7 @@ var a, b, c, d;
       c.font = qfoxTextRelativeHeight * M + pxserif;
       c[fillStyle] = colors[1];
       c[fillText](qfoxnl, OX + M2, OY + M * qfoxRelativeOffset);
-      qw = c.measureText(qfoxnl).width*qfoxSlightlyMoreThanHalfWidth;
+      qw = c.measureText(qfoxnl).width*HALF;
 
       data = c.getImageData(OX, OY, M, M).data;
 
