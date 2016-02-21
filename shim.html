@@ -176,6 +176,8 @@ var a, b, c, d;
     rr, // force speed if too slow (causes jitter). update speed with delta
     size, // size of pixel to paint (depends on speed in most cases)
     u, // p.u (index of pixels in atom
+    excessClear, // extra margin to clear beyond viewport
+    qfoxnlHeightWobbleViewportPart, // height max delta of qfox text
 
     // math constants
     pi,
@@ -239,6 +241,8 @@ var a, b, c, d;
   swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
   fitty = M2/8; // circle of atom
   atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
+  excessClear = 25;
+  qfoxnlHeightWobbleViewportPart=0.07
 
   // this loop updates the pixels
   Z = 0;
@@ -298,11 +302,11 @@ var a, b, c, d;
       }
     }
 
-    c[clearRect](OX - 25, OY - 25, M + 50, M + 50);
+    c[clearRect](OX - excessClear/2, OY - excessClear/2, M + excessClear, M + excessClear);
 
     time = Z % mt / mt;
     tp = SIN(time * pi);
-    sth = COS(pi * time) * M*0.07;
+    sth = COS(pi * time) * M*qfoxnlHeightWobbleViewportPart;
     stw = SIN(((Z*3)%M * pi)/M2)*(M2-qw);
 
     atomx += atomvx *= (atomx < fitty || atomx > M-fitty) ? -1 : 1;
