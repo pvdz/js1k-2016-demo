@@ -174,11 +174,6 @@ var a, b, c, d;
     vy, // velocity of pixel
     rr, // force speed if too slow (causes jitter). update speed with delta
     size, // size of pixel to paint (depends on speed in most cases)
-    cc, // rgb colors
-
-    clearRect = 'clearRect',
-    fillStyle = 'fillStyle',
-    fillText = 'fillText',
 
     // math constants
     pi,
@@ -192,11 +187,30 @@ var a, b, c, d;
     ABS,
     ATAN2,
 
+    // string constants
+    clearRect,
+    fillStyle,
+    fillText,
+    colors,
+    pxserif,
+    qfoxnl,
+
     _
 
 
+  clearRect = 'clearRect';
+  fillStyle = 'fillStyle';
+  fillText = 'fillText';
+
+  colors = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
+  pxserif = 'px serif';
+  qfoxnl = 'qfox.nl';
+
   elements = 'H HeLiBeB C N O F NeNaMgAlSiP S ClArK CaScTiV CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY ZrNbMoTcRuRhPdAgCdInSnSbTeI XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn_tFl_pLv_s_o'
     .match(/../g);
+
+  c.textAlign = 'center';
+  c.textBaseline = 'middle';
 
   with(Math)
     pi = PI,
@@ -216,10 +230,6 @@ var a, b, c, d;
   M2 = FLOOR(M/2);
   OX = FLOOR(W/2 - M2);
   OY = FLOOR(H/2 - M2);
-
-  cc = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
-  pxserif = 'px serif';
-  qfoxnl = 'qfox.nl';
 
   pixels = [];
   for (i = K*K; --i;) {
@@ -241,8 +251,6 @@ var a, b, c, d;
     });
   }
 
-  c.textAlign = 'center';
-  c.textBaseline = 'middle';
   // this loop changes the current symbol
   function swap() {
     sn = FLOOR(RANDOM() * elements.length);
@@ -251,13 +259,13 @@ var a, b, c, d;
     c[clearRect](OX, OY, M, M);
 
     c.font = M + pxserif;
-    c[fillStyle] = cc[2];
+    c[fillStyle] = colors[2];
     c[fillText](sn, OX+M2, OY+M2, M);
-    c[fillStyle] = cc[0];
+    c[fillStyle] = colors[0];
     // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
     c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
     c.font = 0.1 * M + pxserif;
-    c[fillStyle] = cc[1];
+    c[fillStyle] = colors[1];
     c[fillText](qfoxnl, OX + M2, OY + M *.9);
     qw = c.measureText(qfoxnl).width/2*1.2;
 
@@ -326,7 +334,7 @@ var a, b, c, d;
       // size of pixel
       size = p.q ? 4 : FLOOR(1+(vx+vy)*.2);
 
-      c[fillStyle] = cc[p.u ? p.u % 3 : p.num ? 3 : p.q ? 4 : 5];
+      c[fillStyle] = colors[p.u ? p.u % 3 : p.num ? 3 : p.q ? 4 : 5];
       c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + .5, OY + FLOOR(p.y+=p.B=vy*F) + .5, size, size);
     }
 
