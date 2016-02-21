@@ -265,7 +265,7 @@ var a, b, c, d;
       i=0;
       p=pixels[i++];
       // pixel color
-      p.c = p.u ? cc[p.u % 3] : p.num ? cc[3] : p.q ? cc[4] : cc[5]
+      p.c = cc[p.u ? p.u % 3 : p.num ? 3 : p.q ? 4 : 5]
     ) {
       // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
       p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
