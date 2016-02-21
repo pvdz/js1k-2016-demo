@@ -138,7 +138,7 @@ var a, b, c, d;
     W, // a.width
     H, // a.height
     M, // MIN(W,H) (viewport size, square)
-    M2, // M/2
+    M2, // M/2, middle of the painted viewport
     OX, // offset viewport
     OY, // offset viewport
     i, // loop counter
@@ -210,7 +210,7 @@ var a, b, c, d;
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
   M = MIN(W= a.width, H= a.height); // get smallest dimension, serves as view dimensions (a square)
-  M2 = FLOOR(M/2); // mid of view
+  M2 = FLOOR(M/2);
   OX = FLOOR(W/2 - M2);
   OY = FLOOR(H/2 - M2);
 
