@@ -285,7 +285,7 @@ var a, b, c, d;
       c.font = 0.1 * M + pxserif;
       c[fillStyle] = colors[1];
       c[fillText](qfoxnl, OX + M2, OY + M *.9);
-      qw = c.measureText(qfoxnl).width/2*1.2;
+      qw = c.measureText(qfoxnl).width*0.6;
 
       data = c.getImageData(OX, OY, M, M).data;
 
