@@ -324,11 +324,8 @@ var a, b, c, d;
       vx = p.A + rr - 2 - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * rr;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
-      // size of pixel
-      size = q || FLOOR(1+(vx+vy)*.2);
-
       c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : q || 5];
-      c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + .5, OY + FLOOR(p.y+=p.B=vy*F) + .5, size, size);
+      c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + .5, OY + FLOOR(p.y+=p.B=vy*F) + .5, size = q || FLOOR(1+(vx+vy)*.2), size);
     }
 
     requestAnimationFrame(R);
