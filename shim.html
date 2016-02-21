@@ -246,9 +246,9 @@ var a, b, c, d;
   fitty = M2/8; // circle of atom
   Z=atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
   excessClear = 25;
-  qfoxnlHeightWobbleViewportPart = 0.07
+  qfoxnlHeightWobbleViewportPart = 20
   qfoxRelativeOffset = 0.9;
-  qfoxTextRelativeHeight = 0.1;
+  qfoxTextRelativeHeight = 10;
 
   pixels = [];
   for (i = K*K; --i;) pixels.push({
@@ -283,7 +283,7 @@ var a, b, c, d;
       c[fillStyle] = colors[0];
       // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
       c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
-      c.font = qfoxTextRelativeHeight * M + pxserif;
+      c.font = M/qfoxTextRelativeHeight + pxserif;
       c[fillStyle] = colors[1];
       c[fillText](qfoxnl, OX + M2, OY + M * qfoxRelativeOffset);
       qw = c.measureText(qfoxnl).width*HALF;
@@ -306,8 +306,8 @@ var a, b, c, d;
 
     time = Z % mt / mt;
     tp = SIN(time * pi);
-    sth = COS(pi * time) * M*qfoxnlHeightWobbleViewportPart;
-    stw = SIN(((Z*3)%M * pi)/M2)*(M2-qw);
+    sth = COS(time * pi) * M/qfoxnlHeightWobbleViewportPart;
+    stw = SIN(Z%M/M2 * pi) * (M2-qw);
 
     atomx += atomvx *= (atomx < fitty || atomx > M-fitty) ? -1 : 1;
     atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
