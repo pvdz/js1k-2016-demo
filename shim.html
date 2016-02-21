@@ -310,8 +310,7 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
-      u = p.u;
-      u ? (
+      (u = p.u) ? (
         k = u % 3,
         targetx = atomx + COS(b=u%atomloop) * fitty * (k==1?2:k*tp||tp),
         targety = atomy + SIN(b) * fitty * (k*tp||2)
