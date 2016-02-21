@@ -180,7 +180,7 @@ var a, b, c, d;
 
   c.textAlign = 'center';
   c.textBaseline = 'middle';
-
+  var qw;
   // this loop changes the current symbol
   function swap() {
     var
@@ -200,7 +200,8 @@ var a, b, c, d;
     c.fillText(s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
     c.font = 0.1 * M + 'px serif';
     c.fillStyle = '#0f0';
-    c.fillText('qfox.nl', OX + M - 100, OY + M - 60);
+    c.fillText('qfox.nl', OX + M2, OY + M *.9);
+    qw = c.measureText('qfox.nl').width/2*1.2;
 
     var data = c.getImageData(OX, OY, M, M).data;
 
@@ -226,8 +227,8 @@ var a, b, c, d;
   var atomvy = 3; // atom movement delta.
   var mt = 32; // keep 32
   var swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
-  var hunned = 100;
-  var fitty = 50;
+  var hunned = M2/4;
+  var fitty = hunned/2;
   var atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
 
   // this loop updates the pixels
@@ -244,7 +245,8 @@ var a, b, c, d;
 
     var time = (Z % mt) + Z % mt/2;
     var tp = SIN(time / mt);
-    var st200 = SIN(time) * 200;
+    var st200 = COS(Math.PI * ((Z%mt)/mt)) * M*0.07;
+    var stw = SIN(((Z*3)%M * Math.PI)/M2)*(M2-qw);
 
     if (atomx < hunned || atomx > M - hunned) atomvx *= -1;
     atomx += atomvx;
@@ -262,7 +264,7 @@ var a, b, c, d;
         targetx = atomx + COS(b) * (k==1?hunned:k==0?tp * fitty:tp * hunned),
         targety = atomy + SIN(b) * (k==0?hunned:k==1?tp * fitty:tp * hunned)
       ): p.q ? (
-        targetx -= (Z * 15) % M,
+        targetx += stw,
         targety += st200
       ): '';
 
