@@ -243,9 +243,9 @@ var a, b, c, d;
 
     Z++ % swapRate ? c.clearRect(OX - 25, OY - 25, M + 50, M + 50) : swap();
 
-    var time = (Z % mt) + Z % mt/2;
-    var tp = SIN(time / mt);
-    var st200 = COS(Math.PI * ((Z%mt)/mt)) * M*0.07;
+    var time = Z % mt / mt;
+    var tp = SIN(time);
+    var st200 = COS(Math.PI * time) * M*0.07;
     var stw = SIN(((Z*3)%M * Math.PI)/M2)*(M2-qw);
 
     if (atomx < hunned || atomx > M - hunned) atomvx *= -1;
