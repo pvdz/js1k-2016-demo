@@ -252,8 +252,6 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < hunned || atomy > M-hunned) ? -1 : 1;
 
     for (var i = 0; p = pixels[i++];) {
-
-
       targetx = p.tx,
       targety = p.ty
       p.u ? (
@@ -267,23 +265,24 @@ var a, b, c, d;
       ): '';
 
       // angle of delta vector
-      var dtan = ATAN2(p.y - targety, p.x - targetx);
+      var dtan
 
       // update-speed
-      var acc = 1.8 + .2 * RANDOM();
+      var acc
+      //var acc = 1.8 + .2 * RANDOM();
+      //var acc = 2+ RANDOM()/2;
 
       // velocity vector
       var vx;
       var vy;
 
-      // force speed (causes jitter)
-      if (ABS(vx= p.vx) < .1) vx *= RANDOM() * 3;
-      if (ABS(vy= p.vy) < .1) vy *= RANDOM() * 3;
-      vx -= COS(dtan) * acc;
-      vy -= SIN(dtan) * acc;
+      // force speed if too slow (causes jitter). update speed with delta
+      var rr = RANDOM() * .5
+      vx = p.vx + rr - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * (acc=2+ RANDOM()/2);
+      vy = p.vy + rr - SIN(dtan) * acc;
 
       // size of pixel
-      var size = p.q ? 4 : FLOOR(1+(vx+vy)*F*.2);
+      var size = p.q ? 4 : FLOOR(1+(vx+vy)*.2);
 
       c.fillStyle = p.c;
       c.fillRect(OX + FLOOR(p.x+=p.vx=vx*F) + .5, OY + FLOOR(p.y+=p.vy=vy*F) + .5, size, size);
