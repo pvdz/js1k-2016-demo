@@ -142,7 +142,6 @@ var a, b, c, d;
     OX, // offset viewport
     OY, // offset viewport
     i, // loop counter
-    v, // temporary var for initial velocity
     qw, // measured width of "qfox.nl"
     t, // index in image data
     pixels, // all K*K pixel objects
@@ -222,9 +221,8 @@ var a, b, c, d;
       x: M2,
       y: M2,
 
-      // give a random speed, otherwise awkward patterns emerge
-      vx: v=RANDOM(),
-      vy: v,
+      vx: 0,
+      vy: 0,
 
       // default position unless special
       tx: FLOOR(i%K * M/K),
