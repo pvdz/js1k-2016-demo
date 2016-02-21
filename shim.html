@@ -197,15 +197,15 @@ var a, b, c, d;
     .match(/../g);
 
   with(Math)
-      FLOOR = floor,
-      MIN = min,
-      MAX = max,
-      RANDOM = random,
-      SIN = sin,
-      COS = cos,
-      SQRT = sqrt,
-      ABS = abs,
-      ATAN2 = atan2;
+    FLOOR = floor,
+    MIN = min,
+    MAX = max,
+    RANDOM = random,
+    SIN = sin,
+    COS = cos,
+    SQRT = sqrt,
+    ABS = abs,
+    ATAN2 = atan2;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
@@ -296,8 +296,8 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < hunned || atomy > M-hunned) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
-      targetx = p.tx,
-        targety = p.ty
+      targetx = p.tx;
+      targety = p.ty;
       p.u ? (
         b = p.u % atomloop,
           k = p.u%3,
