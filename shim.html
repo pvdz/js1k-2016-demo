@@ -146,6 +146,7 @@ var a, b, c, d;
     t, // index in image data
     pixels, // all K*K pixel objects
     p, // pixel
+    q, // is qfox pixel?
     sn, // current random element index
     s, // current random element string
     data, // image data for canvas
@@ -294,7 +295,7 @@ var a, b, c, d;
       ) {
         // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
         p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
-        p.q = data[t + 1]; // qfox.nl
+        p.q = data[t + 1] && 4; // qfox.nl
         p.num = data[t + 2]; // number
       }
     }
@@ -310,9 +311,10 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
+      q = p.q;
       k = (u = p.u) % 3;
-      targetx = u ? atomx + COS(b=u%atomloop) * fitty * (k==1?2:k*tp||tp) : p.q ? p.X + stw : p.X ;
-      targety = u ? atomy + SIN(b) * fitty * (k*tp||2) : p.q ? p.Y + sth : p.Y;
+      targetx = u ? atomx + COS(b=u%atomloop) * fitty * (k==1?2:k*tp||tp) : q ? p.X + stw : p.X ;
+      targety = u ? atomy + SIN(b) * fitty * (k*tp||2) : q ? p.Y + sth : p.Y;
 
       //acc = 1.8 + .2 * RANDOM();
       //acc = 2+ RANDOM()/2;
@@ -323,9 +325,9 @@ var a, b, c, d;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       // size of pixel
-      size = p.q ? 4 : FLOOR(1+(vx+vy)*.2);
+      size = q || FLOOR(1+(vx+vy)*.2);
 
-      c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : p.q ? 4 : 5];
+      c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : q || 5];
       c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + .5, OY + FLOOR(p.y+=p.B=vy*F) + .5, size, size);
     }
 
