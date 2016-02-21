@@ -180,6 +180,7 @@ var a, b, c, d;
     fillText = 'fillText',
 
     // math constants
+    pi,
     FLOOR,
     MIN,
     MAX,
@@ -197,6 +198,7 @@ var a, b, c, d;
     .match(/../g);
 
   with(Math)
+    pi = PI,
     FLOOR = floor,
     MIN = min,
     MAX = max,
@@ -288,9 +290,9 @@ var a, b, c, d;
     Z++ % swapRate ? c[clearRect](OX - 25, OY - 25, M + 50, M + 50) : swap();
 
     time = Z % mt / mt;
-    tp = SIN(time);
-    sth = COS(Math.PI * time) * M*0.07;
-    stw = SIN(((Z*3)%M * Math.PI)/M2)*(M2-qw);
+    tp = SIN(time * pi);
+    sth = COS(pi * time) * M*0.07;
+    stw = SIN(((Z*3)%M * pi)/M2)*(M2-qw);
 
     atomx += atomvx *= (atomx < hunned || atomx > M-hunned) ? -1 : 1;
     atomy += atomvy *= (atomy < hunned || atomy > M-hunned) ? -1 : 1;
