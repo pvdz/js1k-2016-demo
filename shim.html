@@ -251,40 +251,6 @@ var a, b, c, d;
     });
   }
 
-  // this loop changes the current symbol
-  function swap() {
-    sn = FLOOR(RANDOM() * elements.length);
-    s = elements[sn];
-
-    c[clearRect](OX, OY, M, M);
-
-    c.font = M + pxserif;
-    c[fillStyle] = colors[2];
-    c[fillText](sn, OX+M2, OY+M2, M);
-    c[fillStyle] = colors[0];
-    // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
-    c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
-    c.font = 0.1 * M + pxserif;
-    c[fillStyle] = colors[1];
-    c[fillText](qfoxnl, OX + M2, OY + M *.9);
-    qw = c.measureText(qfoxnl).width/2*1.2;
-
-    data = c.getImageData(OX, OY, M, M).data;
-
-    for (
-      i=0;
-      p=pixels[i++];
-      // pixel color
-
-    ) {
-      // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
-      p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
-      p.q = data[t + 1]; // qfox.nl
-      p.num = data[t + 2]; // number
-    }
-
-    c[clearRect](OX, OY, M, M);
-  }
 
   F = 0.85; // friction. lower means faster pixels.
   atomx = M2;
@@ -299,7 +265,43 @@ var a, b, c, d;
   // this loop updates the pixels
   Z = 0;
   (function R() {
-    Z++ % swapRate ? c[clearRect](OX - 25, OY - 25, M + 50, M + 50) : swap();
+    if (!(Z++ % swapRate)) {
+      // this changes the current symbol
+
+      sn = FLOOR(RANDOM() * elements.length);
+      s = elements[sn];
+
+      c[clearRect](OX, OY, M, M);
+
+      c.font = M + pxserif;
+      c[fillStyle] = colors[2];
+      c[fillText](sn, OX+M2, OY+M2, M);
+      c[fillStyle] = colors[0];
+      // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
+      c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
+      c.font = 0.1 * M + pxserif;
+      c[fillStyle] = colors[1];
+      c[fillText](qfoxnl, OX + M2, OY + M *.9);
+      qw = c.measureText(qfoxnl).width/2*1.2;
+
+      data = c.getImageData(OX, OY, M, M).data;
+
+      for (
+        i=0;
+        p=pixels[i++];
+        // pixel color
+
+      ) {
+        // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
+        p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
+        p.q = data[t + 1]; // qfox.nl
+        p.num = data[t + 2]; // number
+      }
+
+      c[clearRect](OX, OY, M, M);
+    }
+
+    c[clearRect](OX - 25, OY - 25, M + 50, M + 50);
 
     time = Z % mt / mt;
     tp = SIN(time * pi);
@@ -341,7 +343,6 @@ var a, b, c, d;
     requestAnimationFrame(R);
   })();
 })();
-
 
 
 
