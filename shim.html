@@ -225,10 +225,10 @@ var a, b, c, d;
   var atomy = M2;
   var atomvx = 5; // atom movement delta.
   var atomvy = 3; // atom movement delta.
-  var mt = 32; // keep 32
+  var mt = 32; // time factor, cycle progress (0..1) every this many loops. keep 32
   var swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
-  var hunned = M2/4;
-  var fitty = hunned/2;
+  var hunned = M2/4; // outer size of atom
+  var fitty = hunned/2; // inner circle of atom
   var atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
 
   // this loop updates the pixels
@@ -248,10 +248,8 @@ var a, b, c, d;
     var st200 = COS(Math.PI * time) * M*0.07;
     var stw = SIN(((Z*3)%M * Math.PI)/M2)*(M2-qw);
 
-    if (atomx < hunned || atomx > M - hunned) atomvx *= -1;
-    atomx += atomvx;
-    if (atomy < hunned || atomy > M - hunned) atomvy *= -1;
-    atomy += atomvy;
+    atomx += atomvx *= (atomx < hunned || atomx > M-hunned) ? -1 : 1;
+    atomy += atomvy *= (atomy < hunned || atomy > M-hunned) ? -1 : 1;
 
     for (var i = 0; p = pixels[i++];) {
 
