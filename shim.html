@@ -174,6 +174,7 @@ var a, b, c, d;
     vy, // velocity of pixel
     rr, // force speed if too slow (causes jitter). update speed with delta
     size, // size of pixel to paint (depends on speed in most cases)
+    u, // p.u (index of pixels in atom
 
     // math constants
     pi,
@@ -309,9 +310,10 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
-      p.u ? (
-        k = p.u % 3,
-        targetx = atomx + COS(b=p.u%atomloop) * fitty * (k==1?2:k*tp||tp),
+      u = p.u;
+      u ? (
+        k = u % 3,
+        targetx = atomx + COS(b=u%atomloop) * fitty * (k==1?2:k*tp||tp),
         targety = atomy + SIN(b) * fitty * (k*tp||2)
       ): p.q ? (
         targetx = p.X + stw,
@@ -332,7 +334,7 @@ var a, b, c, d;
       // size of pixel
       size = p.q ? 4 : FLOOR(1+(vx+vy)*.2);
 
-      c[fillStyle] = colors[p.u ? p.u % 3 : p.num ? 3 : p.q ? 4 : 5];
+      c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : p.q ? 4 : 5];
       c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + .5, OY + FLOOR(p.y+=p.B=vy*F) + .5, size, size);
     }
 
