@@ -230,23 +230,6 @@ var a, b, c, d;
   fitty = M2/9;
   pixels = [];
   Z=0;
-  for (i = K*K; i--;) pixels.push({
-    // pixel values are initialized to a number, the actual number isnt super relevant so we use that to save one byte per other var initializers
-
-    x: 0, // atomvx = speed of atom
-    y: 0, // atomvy = speed of atom
-
-    A: 0,
-    B: 0, // F= friction. lower means faster pixels.,
-
-    // default position unless special
-    X: FLOOR(i%K * M/K),
-    Y: FLOOR(i/K * M/K), // i*M/(K*K)
-
-    // n
-    // q
-    // u
-  });
 
   (function R() {
     // pretty sure this can be reduced to `data=x&&y`, TBD
@@ -283,7 +266,24 @@ var a, b, c, d;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
     for (i=K*K; i--;) {
-      p = pixels[i];
+      p = pixels[i] = pixels[i] || {
+        // pixel values are initialized to a number, the actual number isnt super relevant so we use that to save one byte per other var initializers
+
+        x: 0,
+        y: 0,
+
+        A: 0,
+        B: 0,
+
+        // default position unless special
+        X: FLOOR(i%K * M/K),
+        Y: FLOOR(i/K * M/K), // i*M/(K*K)
+
+        // N
+        // Q
+        // U
+      };
+
       if (data) {
         // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
         p.U = data[t=(p.X + p.Y * M) * 4] ? i : 0;
