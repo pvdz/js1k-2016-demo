@@ -227,10 +227,8 @@ var a, b, c, d;
   c.textAlign = 'center';
   c.textBaseline = 'middle';
 
-  fitty = M2/9; // circle of atom
-
   pixels = [];
-  for (i = K*K; Z=--i;) pixels.push({
+  for (i = K*K; Z=--i;fitty = M2/9) pixels.push({
     // pixel values are initialized to a number, the actual number isnt super relevant so we use that to save one byte per other var initializers
 
     x: atomvx = 5, // atomvx = speed of atom
