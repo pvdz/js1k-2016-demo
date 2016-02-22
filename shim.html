@@ -257,7 +257,7 @@ var a, b, c, d;
   });
 
   (function R() {
-    if (!(Z++ % swapRate)) {
+    if (Z++ % swapRate < 1) {
       // this changes the current symbol
 
       sn = FLOOR(RANDOM() * elements.length);
