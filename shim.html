@@ -227,14 +227,12 @@ var a, b, c, d;
   c.textAlign = 'center';
   c.textBaseline = 'middle';
 
-  swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
-  Z=atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
-  qfoxTextRelativeHeight = 10;
-  fitty = M2/qfoxTextRelativeHeight; // circle of atom
+  fitty = M2/9; // circle of atom
 
   pixels = [];
-  for (i = K*K; --i;) pixels.push({
-    // init in centre
+  for (i = K*K; Z=--i;) pixels.push({
+    // pixel values are initialized to a number, the actual number isnt super relevant so we use that to save one byte per other var initializers
+
     x: atomvx = 5, // atomvx = speed of atom
     y: atomvy = 3, // atomvy = speed of atom
 
@@ -251,7 +249,7 @@ var a, b, c, d;
   });
 
   (function R() {
-    if (Z++ % swapRate < 1) {
+    if (Z++ % 150 < 1) {
       // this changes the current symbol
 
       sn = FLOOR(RANDOM() * elements.length);
@@ -265,7 +263,7 @@ var a, b, c, d;
       c[fillStyle] = colors[0];
       // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
       c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, M2, M2, M);
-      c.font = M/qfoxTextRelativeHeight + pxserif;
+      c.font = M/9 + pxserif;
       c[fillStyle] = colors[1];
       c[fillText](qfoxnl, M2, M * F);
       qw = c.measureText(qfoxnl)[width]/2;
@@ -297,7 +295,7 @@ var a, b, c, d;
     for (i = 0; p = pixels[i++];) {
       q = p.q;
       k = (u = p.u) % 3;
-      targetx = u ? atomx + COS(b=u%atomloop) * fitty * (k==1?2:k*tp||tp) : q ? p.X + stw : p.X ;
+      targetx = u ? atomx + COS(b=u%600) * fitty * (k==1?2:k*tp||tp) : q ? p.X + stw : p.X ;
       targety = u ? atomy + SIN(b) * fitty * (k*tp||2) : q ? p.Y + sth : p.Y;
 
       // update speed, add a little random to keep it jittery
