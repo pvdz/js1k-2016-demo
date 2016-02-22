@@ -233,7 +233,7 @@ var a, b, c, d;
     y: atomvy = 3, // atomvy = speed of atom
 
     A: 0,
-    B: F = 0.88, // F= friction. lower means faster pixels.,
+    B: 0, // F= friction. lower means faster pixels.,
 
     // default position unless special
     X: FLOOR(i%K * M/K),
@@ -262,7 +262,7 @@ var a, b, c, d;
       c[fillText](s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M),
       c.font = M/9 + pxserif,
       c[fillStyle] = colors[1],
-      c[fillText](qfoxnl, M2, M * F),
+      c[fillText](qfoxnl, M2, M *.8),
       qw = c.measureText(qfoxnl)[width]/2,
 
       c.getImageData(0, 0, M, M).data
@@ -296,7 +296,7 @@ var a, b, c, d;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       c[fillStyle] = colors[u ? u % 3 : p.N ? 3 : q || 5];
-      c.fillRect(FLOOR(p.x+=p.A=vx*F), FLOOR(p.y+=p.B=vy*F), size = FLOOR(q || 1+vx/5+vy/5), size);
+      c.fillRect(FLOOR(p.x+=p.A=vx*.9), FLOOR(p.y+=p.B=vy*.85), size = FLOOR(q || 1+vx/5+vy/5), size);
     }
 
     requestAnimationFrame(R);
