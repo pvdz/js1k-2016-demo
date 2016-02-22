@@ -189,7 +189,6 @@ var a, b, c, d;
     fillText,
     colors,
     pxserif,
-    qfoxnl,
     width,
     height,
     _
@@ -198,12 +197,9 @@ var a, b, c, d;
   clearRect = 'clearRect';
   fillStyle = 'fillStyle';
   fillText = 'fillText';
-  width = 'width';
-  height = 'height';
 
   colors = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   pxserif = 'px serif';
-  qfoxnl = 'qfox.nl';
 
   elements = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'
     .match(/../g);
@@ -219,7 +215,7 @@ var a, b, c, d;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  (canvasStyle=a.style)[width] = canvasStyle[height] = (a[width] = a[height] = M = MIN(a[width], a[height]))+'px';
+  (canvasStyle=a.style)[width = 'width'] = canvasStyle[height = 'height'] = (a[width] = a[height] = M = MIN(a[width], a[height]))+'px';
   atomy = atomx = M2 = FLOOR(M/2);
 
   c.textAlign = 'center';
@@ -249,7 +245,7 @@ var a, b, c, d;
       c[fillText](s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M),
       c.font = M/9 + pxserif,
       c[fillStyle] = colors[1],
-      c[fillText](qfoxnl, M2, M *.8),
+      c[fillText]('qfox.nl', M2, M *.8),
 
       c.getImageData(0, 0, M, M).data
     );
