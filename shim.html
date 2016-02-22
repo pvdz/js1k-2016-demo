@@ -227,7 +227,6 @@ var a, b, c, d;
   c.textAlign = 'center';
   c.textBaseline = 'middle';
 
-  HALF = 0.5;
   F = 0.85; // friction. lower means faster pixels.
   atomvx = 5; // atom movement delta.
   atomvy = 3; // atom movement delta.
@@ -275,7 +274,7 @@ var a, b, c, d;
       c.font = M/qfoxTextRelativeHeight + pxserif;
       c[fillStyle] = colors[1];
       c[fillText](qfoxnl, M2, M * qfoxRelativeOffset);
-      qw = c.measureText(qfoxnl)[width]*HALF;
+      qw = c.measureText(qfoxnl)[width]/2;
 
       data = c.getImageData(0, 0, M, M).data;
 
@@ -308,12 +307,12 @@ var a, b, c, d;
       targety = u ? atomy + SIN(b) * fitty * (k*tp||2) : q ? p.Y + sth : p.Y;
 
       // update speed, add a little random to keep it jittery
-      rr = 2 + RANDOM() * HALF
+      rr = 2 + RANDOM() /2
       vx = p.A + rr - 2 - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * rr;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : q || 5];
-      c.fillRect(FLOOR(p.x+=p.A=vx*F) + HALF, FLOOR(p.y+=p.B=vy*F) + HALF, size = q || FLOOR(1+vx/5+vy/5), size);
+      c.fillRect(FLOOR(p.x+=p.A=vx*F) +.5, FLOOR(p.y+=p.B=vy*F) +.5, size = q || FLOOR(1+vx/5+vy/5), size);
     }
 
     requestAnimationFrame(R);
