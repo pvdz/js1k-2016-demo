@@ -312,7 +312,7 @@ var a, b, c, d;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : q || 5];
-      c.fillRect(FLOOR(p.x+=p.A=vx*F) +.5, FLOOR(p.y+=p.B=vy*F) +.5, size = q || FLOOR(1+vx/5+vy/5), size);
+      c.fillRect(FLOOR(p.x+=p.A=vx*F), FLOOR(p.y+=p.B=vy*F), size = FLOOR(q || 1+vx/5+vy/5), size);
     }
 
     requestAnimationFrame(R);
