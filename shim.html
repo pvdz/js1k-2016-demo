@@ -275,8 +275,8 @@ var a, b, c, d;
     sth = COS(time * pi) * fitty;
     stw = SIN(Z%M/M2 * pi) * (M2-qw);
 
-    atomx += atomvx *= (atomx < fitty || atomx > M-fitty) ? -1 : 1;
-    atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
+    atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
+    atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
     for (; p = pixels[i++];) {
       if (data) {
