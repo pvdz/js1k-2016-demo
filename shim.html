@@ -256,9 +256,8 @@ var a, b, c, d;
 
     c[clearRect](0, 0, M, M);
 
-    time = Z % 32 / 32;
-    tp = SIN(time * pi);
-    sth = COS(time * pi) * fitty;
+    tp = SIN(time = Z % 32 / 32 * pi);
+    sth = COS(time) * fitty;
     stw = SIN(Z%M/M2 * pi) * M2*0.6;
 
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
