@@ -233,7 +233,7 @@ var a, b, c, d;
 
   (function R() {
     // pretty sure this can be reduced to `data=x&&y`, TBD
-    data = (Z++ % 150 > 0) ? 0 : (
+    data = Z++ % 150 ? 0 : (
       // this changes the current symbol
 
       sn = FLOOR(RANDOM() * elements.length),
