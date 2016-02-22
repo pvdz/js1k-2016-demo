@@ -250,7 +250,6 @@ var a, b, c, d;
       c.font = M/9 + pxserif,
       c[fillStyle] = colors[1],
       c[fillText](qfoxnl, M2, M *.8),
-      qw = c.measureText(qfoxnl)[width]/2,
 
       c.getImageData(0, 0, M, M).data
     );
@@ -260,7 +259,7 @@ var a, b, c, d;
     time = Z % 32 / 32;
     tp = SIN(time * pi);
     sth = COS(time * pi) * fitty;
-    stw = SIN(Z%M/M2 * pi) * (M2-qw);
+    stw = SIN(Z%M/M2 * pi) * M2*0.6;
 
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
@@ -307,7 +306,6 @@ var a, b, c, d;
     requestAnimationFrame(R);
   })();
 })();
-
 
 
       // END
