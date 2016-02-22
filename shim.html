@@ -181,6 +181,7 @@ var a, b, c, d;
     HALF, // relative viewport width of half the qfox text (measured)
     qfoxRelativeOffset, // vertical offset of qfox text, relative to viewport
     qfoxTextRelativeHeight, // height of qfox text, relative to viewport
+    canvasStyle,// cache of a.style
 
     // math constants
     pi,
@@ -201,13 +202,16 @@ var a, b, c, d;
     colors,
     pxserif,
     qfoxnl,
-
+    width,
+    height,
     _
 
 
   clearRect = 'clearRect';
   fillStyle = 'fillStyle';
   fillText = 'fillText';
+  width = 'width';
+  height = 'height';
 
   colors = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   pxserif = 'px serif';
@@ -230,8 +234,8 @@ var a, b, c, d;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  atomy = atomx = M2 = FLOOR(M=MIN(a.width, a.height))/2;
-  a.style.width = a.style.height = (a.width = a.height = M)+'px';
+  atomy = atomx = M2 = FLOOR(M=MIN(a[width], a[height]))/2;
+  (canvasStyle=a.style)[width] = canvasStyle[height] = (a[width] = a[height] = M)+'px';
 
   c.textAlign = 'center';
   c.textBaseline = 'middle';
@@ -285,7 +289,7 @@ var a, b, c, d;
       c.font = M/qfoxTextRelativeHeight + pxserif;
       c[fillStyle] = colors[1];
       c[fillText](qfoxnl, M2, M * qfoxRelativeOffset);
-      qw = c.measureText(qfoxnl).width*HALF;
+      qw = c.measureText(qfoxnl)[width]*HALF;
 
       data = c.getImageData(0, 0, M, M).data;
 
