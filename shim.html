@@ -241,7 +241,7 @@ var a, b, c, d;
     X: FLOOR(i%K * M/K),
     Y: FLOOR(i/K * M/K), // i*M/(K*K)
 
-    // num
+    // n
     // q
     // u
   });
@@ -276,7 +276,7 @@ var a, b, c, d;
         // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
         p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
         p.q = data[t + 1] && 4; // qfox.nl
-        p.num = data[t + 2]; // number
+        p.n = data[t + 2]; // number
       }
     }
 
@@ -301,7 +301,7 @@ var a, b, c, d;
       vx = p.A + rr - 2 - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * rr;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
-      c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : q || 5];
+      c[fillStyle] = colors[u ? u % 3 : p.n ? 3 : q || 5];
       c.fillRect(FLOOR(p.x+=p.A=vx*F), FLOOR(p.y+=p.B=vy*F), size = FLOOR(q || 1+vx/5+vy/5), size);
     }
 
