@@ -227,16 +227,16 @@ var a, b, c, d;
   c.textAlign = 'center';
   c.textBaseline = 'middle';
 
-  F = 0.85; // friction. lower means faster pixels.
+  F = 0.88; // friction. lower means faster pixels.
   atomvx = 5; // atom movement delta.
   atomvy = 3; // atom movement delta.
   mt = 32; // time factor, cycle progress (0..1) every this many loops. keep 32
   swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
-  fitty = M2/8; // circle of atom
   Z=atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
   qfoxnlHeightWobbleViewportPart = 20
-  qfoxRelativeOffset = 0.9;
+  qfoxRelativeOffset = F;
   qfoxTextRelativeHeight = 10;
+  fitty = M2/qfoxTextRelativeHeight; // circle of atom
 
   pixels = [];
   for (i = K*K; --i;) pixels.push({
