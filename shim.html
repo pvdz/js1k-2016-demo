@@ -351,18 +351,18 @@ var a, b, c, d;
       =iwin.AudioContext||iwin.webkitAudioContext;iwin.requestAnimationFrame=iwin.requestAnimationFrame||iwin.mozRequestAnimationFrame||iwin.
       webkitRequestAnimationFrame||iwin.msRequestAnimationFrame||function(f){iwin.setTimeout(f,1E3/30)};if(TOKEN_CANVAS_SHIM)canvas.requestPointerLock=canvas.
       requestPointerLock||canvas.mozRequestPointerLock||canvas.webkitRequestPointerLock;idoc.body.requestPointerLock=idoc.body.requestPointerLock||idoc.body.
-      mozRequestPointerLock||idoc.body.webkitRequestPointerLock;navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.
-      mozGetUserMedia||navigator.msGetUserMedia;var iwo=iwin.OscillatorNode&&iwin.OscillatorNode.prototype;iwo&&(iwo.start=iwo.start||iwo.noteOn)&&(iwo.stop=iwo
-      .stop||iwo.noteOff);if(TOKEN_CANVAS_SHIM)iwin.a=canvas;iwin.b=idoc.body;d=idoc;if(TOKEN_CANVAS_SHIM){if(!TOKEN_WEBGL)iwin.c=canvas.getContext("2d");if(
-      TOKEN_WEBGL)iwin.g=function(){iwin.onorientationchange=iwin.onresize=null;try{var o={antialias:true,stencil:true};var gl=canvas.getContext("webgl",o)||
-      canvas.getContext("experimental-webgl",o);iwin.__glExts=["OES_texture_float","OES_texture_float_linear","OES_standard_derivatives","EXT_texture_filter_"+
-      "anisotropic","MOZ_EXT_texture_filter_anisotropic","WEBKIT_EXT_texture_filter_anisotropic","WEBGL_compressed_texture_s3tc","MOZ_WEBGL_compressed_textur"+
-      "e_s3tc","WEBKIT_WEBGL_compressed_texture_s3tc"].map(function(ext){return gl.getExtension(ext)})}catch(e){idoc.body.innerHTML="WebGL not supported.";iwin
-      .a=iwin.b=iwin.c=iwin.d=null;throw e;}return gl}()}var demo=idoc.createElement("script");demo.textContent=doc.querySelector('script[type="demo"]').
-      textContent;idoc.body.appendChild(demo);idoc.close();iframe.contentWindow.focus();var firstLine=doc.getElementsByTagName("div")[0];function reloadClick(b)
-      {doc.body.removeChild(iframe);r.parentElement.removeChild(r);iframe=null;r=null;idoc=null;header=null;reload(b)}window.reload=reloadClick;var r=doc.
-      createElement("div");r.innerHTML="&#8635;";r.className="button r";r.title="restart just the demo (local, without remote fetch)";r.onclick=reloadClick;
-      header.insertBefore(r,firstLine)})();
+      mozRequestPointerLock||idoc.body.webkitRequestPointerLock;iwin.navigator.getUserMedia=iwin.navigator.getUserMedia||iwin.navigator.webkitGetUserMedia||
+      iwin.navigator.mozGetUserMedia||iwin.navigator.msGetUserMedia;var iwo=iwin.OscillatorNode&&iwin.OscillatorNode.prototype;iwo&&(iwo.start=iwo.start||iwo.
+      noteOn)&&(iwo.stop=iwo.stop||iwo.noteOff);if(TOKEN_CANVAS_SHIM)iwin.a=canvas;iwin.b=idoc.body;d=idoc;if(TOKEN_CANVAS_SHIM){if(!TOKEN_WEBGL)iwin.c=canvas.
+      getContext("2d");if(TOKEN_WEBGL)iwin.g=function(){iwin.onorientationchange=iwin.onresize=null;try{var o={antialias:true,stencil:true};var gl=canvas.
+      getContext("webgl",o)||canvas.getContext("experimental-webgl",o);iwin.__glExts=["OES_texture_float","OES_texture_float_linear","OES_standard_derivatives",
+      "EXT_texture_filter_anisotropic","MOZ_EXT_texture_filter_anisotropic","WEBKIT_EXT_texture_filter_anisotropic","WEBGL_compressed_texture_s3tc","MOZ_WEBG"+
+      "L_compressed_texture_s3tc","WEBKIT_WEBGL_compressed_texture_s3tc"].map(function(ext){return gl.getExtension(ext)})}catch(e){idoc.body.innerHTML="WebGL"+
+      " not supported.";iwin.a=iwin.b=iwin.c=iwin.d=null;throw e;}return gl}()}var demo=idoc.createElement("script");demo.textContent=doc.querySelector('scri'+
+      'pt[type="demo"]').textContent;idoc.body.appendChild(demo);idoc.close();iframe.contentWindow.focus();var firstLine=doc.getElementsByTagName("div")[0];
+      function reloadClick(b){doc.body.removeChild(iframe);r.parentElement.removeChild(r);iframe=null;r=null;idoc=null;header=null;reload(b)}window.reload=
+      reloadClick;var r=doc.createElement("div");r.innerHTML="&#8635;";r.className="button r";r.title="restart just the demo (local, without remote fetch)";r.
+      onclick=reloadClick;header.insertBefore(r,firstLine)})();
     </script>
   </body>
 </html>
