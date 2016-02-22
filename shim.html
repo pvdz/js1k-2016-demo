@@ -225,12 +225,16 @@ var a, b, c, d;
   c.textAlign = 'center';
   c.textBaseline = 'middle';
 
+  atomvx = 5;
+  atomvy = 3;
+  fitty = M2/9;
   pixels = [];
-  for (i = K*K; Z=i--;fitty = M2/9) pixels.push({
+  Z=0;
+  for (i = K*K; i--;) pixels.push({
     // pixel values are initialized to a number, the actual number isnt super relevant so we use that to save one byte per other var initializers
 
-    x: atomvx = 5, // atomvx = speed of atom
-    y: atomvy = 3, // atomvy = speed of atom
+    x: 0, // atomvx = speed of atom
+    y: 0, // atomvy = speed of atom
 
     A: 0,
     B: 0, // F= friction. lower means faster pixels.,
