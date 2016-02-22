@@ -279,7 +279,7 @@ var a, b, c, d;
       }
     }
 
-    c[clearRect](0, 0, M, M);
+    c[clearRect](i=0, 0, M, M);
 
     time = Z % mt / mt;
     tp = SIN(time * pi);
@@ -289,7 +289,7 @@ var a, b, c, d;
     atomx += atomvx *= (atomx < fitty || atomx > M-fitty) ? -1 : 1;
     atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
 
-    for (i = 0; p = pixels[i++];) {
+    for (; p = pixels[i++];) {
       q = p.Q;
       k = (u = p.U) % 3;
       targetx = u ? atomx + COS(b=u%600) * fitty * (k==1?2:k*tp||tp) : q ? p.X + stw : p.X ;
