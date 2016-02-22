@@ -207,7 +207,7 @@ var a, b, c, d;
   pxserif = 'px serif';
   qfoxnl = 'qfox.nl';
 
-  elements = 'H HeLiBeB C N O F NeNaMgAlSiP S ClArK CaScTiV CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY ZrNbMoTcRuRhPdAgCdInSnSbTeI XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn_tFl_pLv_s_o'
+  elements = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'
     .match(/../g);
 
   with(Math)
@@ -259,8 +259,8 @@ var a, b, c, d;
       c[fillStyle] = colors[2];
       c[fillText](sn+1, M2, M2, M);
       c[fillStyle] = colors[0];
-      // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
-      c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, M2, M2, M);
+      // note: using `'='` and `'('` here to use as explicit minifier hack later
+      c[fillText](s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M);
       c.font = M/9 + pxserif;
       c[fillStyle] = colors[1];
       c[fillText](qfoxnl, M2, M * F);
