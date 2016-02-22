@@ -151,7 +151,6 @@ var a, b, c, d;
     atomy, // atom position x
     atomvx, // atom speed x
     atomvy, // atom speed y
-    mt, // time factor, cycle progress (0..1) every this many loops. keep 32
     swapRate, // 150*fps at rAF (so usually about 150*30=4500ms)
     fitty, // inner circle of atom
     atomloop, // turn rate of atom arches. 600 seems sweet spot.
@@ -170,7 +169,6 @@ var a, b, c, d;
     rr, // force speed if too slow (causes jitter). update speed with delta
     size, // size of pixel to paint (depends on speed in most cases)
     u, // p.u (index of pixels in atom
-    mt, // height max delta of qfox text
     HALF, // relative viewport width of half the qfox text (measured)
     F, // vertical offset of qfox text, relative to viewport
     qfoxTextRelativeHeight, // height of qfox text, relative to viewport
@@ -234,7 +232,7 @@ var a, b, c, d;
     x: atomvx = 5, // atomvx = speed of atom
     y: atomvy = 3, // atomvy = speed of atom
 
-    A: mt = 32, // mt= time factor, cycle progress (0..1) every this many loops. keep 32,
+    A: 0,
     B: F = 0.88, // F= friction. lower means faster pixels.,
 
     // default position unless special
@@ -272,9 +270,9 @@ var a, b, c, d;
 
     c[clearRect](i=0, 0, M, M);
 
-    time = Z % mt / mt;
+    time = Z % 32 / 32;
     tp = SIN(time * pi);
-    sth = COS(time * pi) * M/mt;
+    sth = COS(time * pi) * fitty;
     stw = SIN(Z%M/M2 * pi) * (M2-qw);
 
     atomx += atomvx *= (atomx < fitty || atomx > M-fitty) ? -1 : 1;
