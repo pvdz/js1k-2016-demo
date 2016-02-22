@@ -257,7 +257,7 @@ var a, b, c, d;
 
       c.font = M + pxserif;
       c[fillStyle] = colors[2];
-      c[fillText](sn, M2, M2, M);
+      c[fillText](sn+1, M2, M2, M);
       c[fillStyle] = colors[0];
       // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
       c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, M2, M2, M);
@@ -271,12 +271,11 @@ var a, b, c, d;
       for (
         i=0;
         p=pixels[i++];
-        // free space here :)
+        p.n = data[t + 2]
       ) {
         // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
         p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
         p.q = data[t + 1] && 4; // qfox.nl
-        p.n = data[t + 2]; // number
       }
     }
 
