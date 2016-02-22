@@ -271,11 +271,11 @@ var a, b, c, d;
       for (
         i=0;
         p=pixels[i++];
-        p.n = data[t + 2]
+        p.N = data[t + 2]
       ) {
-        // if data[x+0], the space is occupied by a letter. set p.u so the pixel joins the moving "atom".
-        p.u = data[t=(p.X + p.Y * M) * 4] ? i : 0;
-        p.q = data[t + 1] && 4; // qfox.nl
+        // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
+        p.U = data[t=(p.X + p.Y * M) * 4] ? i : 0;
+        p.Q = data[t + 1] && 4; // qfox.nl
       }
     }
 
@@ -290,8 +290,8 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
 
     for (i = 0; p = pixels[i++];) {
-      q = p.q;
-      k = (u = p.u) % 3;
+      q = p.Q;
+      k = (u = p.U) % 3;
       targetx = u ? atomx + COS(b=u%600) * fitty * (k==1?2:k*tp||tp) : q ? p.X + stw : p.X ;
       targety = u ? atomy + SIN(b) * fitty * (k*tp||2) : q ? p.Y + sth : p.Y;
 
@@ -300,7 +300,7 @@ var a, b, c, d;
       vx = p.A + rr - 2 - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * rr;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
-      c[fillStyle] = colors[u ? u % 3 : p.n ? 3 : q || 5];
+      c[fillStyle] = colors[u ? u % 3 : p.N ? 3 : q || 5];
       c.fillRect(FLOOR(p.x+=p.A=vx*F), FLOOR(p.y+=p.B=vy*F), size = FLOOR(q || 1+vx/5+vy/5), size);
     }
 
