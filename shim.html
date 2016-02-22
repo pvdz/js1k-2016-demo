@@ -247,37 +247,28 @@ var a, b, c, d;
   });
 
   (function R() {
-    if (Z++ % 150 < 1) {
+    // pretty sure this can be reduced to `data=x&&y`, TBD
+    data = (Z++ % 150 > 0) ? 0 : (
       // this changes the current symbol
 
-      sn = FLOOR(RANDOM() * elements.length);
-      s = elements[sn];
+      sn = FLOOR(RANDOM() * elements.length),
+      s = elements[sn],
 
-      c[clearRect](0, 0, M, M);
+      c[clearRect](0, 0, M, M),
 
-      c.font = M + pxserif;
-      c[fillStyle] = colors[2];
-      c[fillText](sn+1, M2, M2, M);
-      c[fillStyle] = colors[0];
+      c.font = M + pxserif,
+      c[fillStyle] = colors[2],
+      c[fillText](sn+1, M2, M2, M),
+      c[fillStyle] = colors[0],
       // note: using `'='` and `'('` here to use as explicit minifier hack later
-      c[fillText](s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M);
-      c.font = M/9 + pxserif;
-      c[fillStyle] = colors[1];
-      c[fillText](qfoxnl, M2, M * F);
-      qw = c.measureText(qfoxnl)[width]/2;
+      c[fillText](s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M),
+      c.font = M/9 + pxserif,
+      c[fillStyle] = colors[1],
+      c[fillText](qfoxnl, M2, M * F),
+      qw = c.measureText(qfoxnl)[width]/2,
 
-      data = c.getImageData(0, 0, M, M).data;
-
-      for (
-        i=0;
-        p=pixels[i++];
-        p.N = data[t + 2]
-      ) {
-        // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
-        p.U = data[t=(p.X + p.Y * M) * 4] ? i : 0;
-        p.Q = data[t + 1] && 4; // qfox.nl
-      }
-    }
+      c.getImageData(0, 0, M, M).data
+    );
 
     c[clearRect](i=0, 0, M, M);
 
@@ -290,6 +281,12 @@ var a, b, c, d;
     atomy += atomvy *= (atomy < fitty || atomy > M-fitty) ? -1 : 1;
 
     for (; p = pixels[i++];) {
+      if (data) {
+        // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
+        p.U = data[t=(p.X + p.Y * M) * 4] ? i : 0;
+        p.Q = data[t + 1] && 4; // qfox.nl
+        p.N = data[t + 2]
+      }
       q = p.Q;
       k = (u = p.U) % 3;
       targetx = u ? atomx + COS(b=u%600) * fitty * (k==1?2:k*tp||tp) : q ? p.X + stw : p.X ;
