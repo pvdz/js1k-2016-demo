@@ -118,7 +118,7 @@
       // should the size be smaller than specified if viewport is smaller?
       var TOKEN_MAX_100P = true;
       // only if width<100%
-      var TOKEN_CENTER_CANVAS = false;
+      var TOKEN_CENTER_CANVAS = true;
       // "press" reload button on orientation change?
       var TOKEN_RELOAD_ONORIENTATIONCHANGE = true;
     </script>
@@ -216,9 +216,6 @@ var a, b, c, d;
   elements = 'H HeLiBeB C N O F NeNaMgAlSiP S ClArK CaScTiV CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY ZrNbMoTcRuRhPdAgCdInSnSbTeI XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn_tFl_pLv_s_o'
     .match(/../g);
 
-  c.textAlign = 'center';
-  c.textBaseline = 'middle';
-
   with(Math)
     pi = PI,
     FLOOR = floor,
@@ -233,9 +230,11 @@ var a, b, c, d;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  atomy = atomx = M2 = FLOOR(M=MIN(W= a.width, H= a.height))/2;
-  OX = FLOOR(W/2 - M2);
-  OY = FLOOR(H/2 - M2);
+  atomy = atomx = M2 = FLOOR(M=MIN(a.width, a.height))/2;
+  a.style.width = a.style.height = (a.width = a.height = M)+'px';
+
+  c.textAlign = 'center';
+  c.textBaseline = 'middle';
 
   HALF = 0.5;
   F = 0.85; // friction. lower means faster pixels.
@@ -275,20 +274,20 @@ var a, b, c, d;
       sn = FLOOR(RANDOM() * elements.length);
       s = elements[sn];
 
-      c[clearRect](OX, OY, M, M);
+      c[clearRect](0, 0, M, M);
 
       c.font = M + pxserif;
       c[fillStyle] = colors[2];
-      c[fillText](sn, OX+M2, OY+M2, M);
+      c[fillText](sn, M2, M2, M);
       c[fillStyle] = colors[0];
       // could init `i` to 1 instead of 0 here (we wouldnt notice the diff)
-      c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, OX+M2, OY+M2, M);
+      c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, M2, M2, M);
       c.font = M/qfoxTextRelativeHeight + pxserif;
       c[fillStyle] = colors[1];
-      c[fillText](qfoxnl, OX + M2, OY + M * qfoxRelativeOffset);
+      c[fillText](qfoxnl, M2, M * qfoxRelativeOffset);
       qw = c.measureText(qfoxnl).width*HALF;
 
-      data = c.getImageData(OX, OY, M, M).data;
+      data = c.getImageData(0, 0, M, M).data;
 
       for (
         i=0;
@@ -302,7 +301,7 @@ var a, b, c, d;
       }
     }
 
-    c[clearRect](OX - excessClear/2, OY - excessClear/2, M + excessClear, M + excessClear);
+    c[clearRect](0, 0, M, M);
 
     time = Z % mt / mt;
     tp = SIN(time * pi);
@@ -324,7 +323,7 @@ var a, b, c, d;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       c[fillStyle] = colors[u ? u % 3 : p.num ? 3 : q || 5];
-      c.fillRect(OX + FLOOR(p.x+=p.A=vx*F) + HALF, OY + FLOOR(p.y+=p.B=vy*F) + HALF, size = q || FLOOR(1+vx/5+vy/5), size);
+      c.fillRect(FLOOR(p.x+=p.A=vx*F) + HALF, FLOOR(p.y+=p.B=vy*F) + HALF, size = q || FLOOR(1+vx/5+vy/5), size);
     }
 
     requestAnimationFrame(R);
