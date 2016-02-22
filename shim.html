@@ -221,8 +221,8 @@ var a, b, c, d;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  atomy = atomx = M2 = FLOOR(M=MIN(a[width], a[height]))/2;
-  (canvasStyle=a.style)[width] = canvasStyle[height] = (a[width] = a[height] = M)+'px';
+  (canvasStyle=a.style)[width] = canvasStyle[height] = (a[width] = a[height] = M = MIN(a[width], a[height]))+'px';
+  atomy = atomx = M2 = FLOOR(M/2);
 
   c.textAlign = 'center';
   c.textBaseline = 'middle';
