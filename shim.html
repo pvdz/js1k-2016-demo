@@ -170,9 +170,9 @@ var a, b, c, d;
     rr, // force speed if too slow (causes jitter). update speed with delta
     size, // size of pixel to paint (depends on speed in most cases)
     u, // p.u (index of pixels in atom
-    qfoxnlHeightWobbleViewportPart, // height max delta of qfox text
+    mt, // height max delta of qfox text
     HALF, // relative viewport width of half the qfox text (measured)
-    qfoxRelativeOffset, // vertical offset of qfox text, relative to viewport
+    F, // vertical offset of qfox text, relative to viewport
     qfoxTextRelativeHeight, // height of qfox text, relative to viewport
     canvasStyle,// cache of a.style
 
@@ -227,25 +227,19 @@ var a, b, c, d;
   c.textAlign = 'center';
   c.textBaseline = 'middle';
 
-  F = 0.88; // friction. lower means faster pixels.
-  atomvx = 5; // atom movement delta.
-  atomvy = 3; // atom movement delta.
-  mt = 32; // time factor, cycle progress (0..1) every this many loops. keep 32
   swapRate = 150; // 150*fps at rAF (so usually about 150*30=4500ms)
   Z=atomloop = 600; // turn rate of atom arches. 600 seems sweet spot.
-  qfoxnlHeightWobbleViewportPart = 20
-  qfoxRelativeOffset = F;
   qfoxTextRelativeHeight = 10;
   fitty = M2/qfoxTextRelativeHeight; // circle of atom
 
   pixels = [];
   for (i = K*K; --i;) pixels.push({
     // init in centre
-    x: 0,
-    y: 0,
+    x: atomvx = 5, // atomvx = speed of atom
+    y: atomvy = 3, // atomvy = speed of atom
 
-    A: 0,
-    B: 0,
+    A: mt = 32, // mt= time factor, cycle progress (0..1) every this many loops. keep 32,
+    B: F = 0.88, // F= friction. lower means faster pixels.,
 
     // default position unless special
     X: FLOOR(i%K * M/K),
@@ -273,7 +267,7 @@ var a, b, c, d;
       c[fillText](s[1] == ' ' ? s[0] : s[0] == '_' ? 'Uu' + s[1] : s, M2, M2, M);
       c.font = M/qfoxTextRelativeHeight + pxserif;
       c[fillStyle] = colors[1];
-      c[fillText](qfoxnl, M2, M * qfoxRelativeOffset);
+      c[fillText](qfoxnl, M2, M * F);
       qw = c.measureText(qfoxnl)[width]/2;
 
       data = c.getImageData(0, 0, M, M).data;
@@ -294,7 +288,7 @@ var a, b, c, d;
 
     time = Z % mt / mt;
     tp = SIN(time * pi);
-    sth = COS(time * pi) * M/qfoxnlHeightWobbleViewportPart;
+    sth = COS(time * pi) * M/mt;
     stw = SIN(Z%M/M2 * pi) * (M2-qw);
 
     atomx += atomvx *= (atomx < fitty || atomx > M-fitty) ? -1 : 1;
