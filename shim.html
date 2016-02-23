@@ -188,10 +188,6 @@ var a, b, c, d;
     _
 
 
-  clearRect = 'clearRect';
-  fillStyle = 'fillStyle';
-  fillText = 'fillText';
-
   colors = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   pxserif = 'px serif';
 
@@ -229,11 +225,11 @@ var a, b, c, d;
       sn = FLOOR(RANDOM() * elements.length),
       s = elements[sn],
 
-      c[clearRect](0, 0, M, M),
+      c[clearRect = 'clearRect'](0, 0, M, M),
 
       c.font = M + pxserif,
-      c[fillStyle] = colors[2],
-      c[fillText](sn+1, M2, M2, M),
+      c[fillStyle = 'fillStyle'] = colors[2],
+      c[fillText = 'fillText'](sn+1, M2, M2, M),
       c[fillStyle] = colors[0],
       // note: using `'='` and `'('` here to use as explicit minifier hack later
       c[fillText](s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M),
