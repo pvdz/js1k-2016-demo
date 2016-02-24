@@ -270,7 +270,7 @@ var a, b, c, d;
 
       // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
 
-      k = (u = data[t=(p.X + p.Y * M) * 4] ? i : 0) % 3; // tbd: if p.U then p.U==i. we can use this, right?
+      k = (u = data[t=4*p.X + 4*p.Y * M] ? i : 0) % 3;
       q = data[t + 1]; // qfox.nl
       targetx = u ? atomx + COS(b=u%600) * fitty * (k==1?2:k*tp||tp) : q ? p.X + stw : p.X ;
       targety = u ? atomy + SIN(b) * fitty * (k*tp||2) : q ? p.Y + sth : p.Y;
