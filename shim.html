@@ -223,8 +223,13 @@ var a, b, c, d;
   //c.clearRectc.ClearRect
   //c.R=c.clearRect;c.Rc.R
   //R='clearRect';c[R]c[R]
-  c.T = c.fillText;
   c.R = c.clearRect;
+
+  function drawText(f, m, C, t) {
+    c.font = M/f + pxserif;
+    c[fillStyle = 'fillStyle'] = C;
+    c.fillText(t, M2, M2*m, M);
+  }
 
   (function R() {
     // pretty sure this can be reduced to `data=x&&y`, TBD
@@ -235,16 +240,10 @@ var a, b, c, d;
       s = elements[sn],
 
       c.R(0, 0, M, M),
-
-      c.font = M + pxserif,
-      c[fillStyle = 'fillStyle'] = colors[2],
-      c.T(sn+1, M2, M2, M),
-      c[fillStyle] = colors[0],
+      drawText(1, 1, colors[2], sn+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
-      c.T(s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M),
-      c.font = M/9 + pxserif,
-      c[fillStyle] = colors[1],
-      c.T('qfox.nl', M2, M *.8),
+      drawText(1, 1, colors[0], '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
+      drawText(9, 1.8, colors[1], 'qfox.nl'),
 
       c.getImageData(0, 0, M, M).data
     );
