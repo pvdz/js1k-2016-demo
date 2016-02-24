@@ -205,7 +205,8 @@ var a, b, c, d;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  (canvasStyle=a.style)[width = 'width'] = canvasStyle[height = 'height'] = (a[width] = a[height] = M = MIN(a[width], a[height]))+'px';
+  a.width=a.height=M=MIN(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
+  //(canvasStyle=a.style)[width = 'width'] = canvasStyle[height = 'height'] = (a[width] = a[height] = M = MIN(a[width], a[height]))+'px';
   atomy = atomx = M2 = FLOOR(M/2);
 
   c.textAlign = 'center';
