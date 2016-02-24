@@ -226,9 +226,7 @@ var a, b, c, d;
   c.R = c.clearRect;
 
   function drawText(f, m, C, t) {
-    c.font = M/f + pxserif;
-    c[fillStyle = 'fillStyle'] = C;
-    c.fillText(t, M2, M2*m, M);
+    f?c.fillText(t, M2, M2*m, M,c.font = M/f + pxserif,c[fillStyle = 'fillStyle'] = C):c.R(0, 0, M, M)
   }
 
   (function R() {
@@ -239,7 +237,7 @@ var a, b, c, d;
       sn = FLOOR(RANDOM() * elements.length),
       s = elements[sn],
 
-      c.R(0, 0, M, M),
+      drawText(),
       drawText(1, 1, colors[2], sn+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
       drawText(1, 1, colors[0], '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
@@ -248,7 +246,7 @@ var a, b, c, d;
       c.getImageData(0, 0, M, M).data
     );
 
-    c.R(0, 0, M, M);
+    drawText();
 
     tp = SIN(time = Z % 32 / 32 * pi);
     sth = COS(time) * fitty;
