@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1291/1187 (regpacked, with / without wrappers and vars decls)
+// 1310/1205 (regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
@@ -178,13 +178,9 @@ var a, b, c, d;
     ATAN2,
 
     // string constants
-    clearRect,
     fillStyle,
-    fillText,
     colors,
     pxserif,
-    width,
-    height,
     _
 
 
@@ -218,6 +214,18 @@ var a, b, c, d;
   pixels = [];
   Z=0;
 
+  // caching methods as shortcuts rather than strings...
+  //c.fillTextc.fillTextc.fillText
+  //c.T=c.fillText;c.Tc.Tc.T
+  //T='textFill';c[T]c[T]c[T]
+  //
+  // clearRect used twice is only a win if you can eliminate the semi (possible!)
+  //c.clearRectc.ClearRect
+  //c.R=c.clearRect;c.Rc.R
+  //R='clearRect';c[R]c[R]
+  c.T = c.fillText;
+  c.R = c.clearRect;
+
   (function R() {
     // pretty sure this can be reduced to `data=x&&y`, TBD
     data = Z++ % 150 ? 0 : (
@@ -226,22 +234,22 @@ var a, b, c, d;
       sn = FLOOR(RANDOM() * elements.length),
       s = elements[sn],
 
-      c[clearRect = 'clearRect'](0, 0, M, M),
+      c.R(0, 0, M, M),
 
       c.font = M + pxserif,
       c[fillStyle = 'fillStyle'] = colors[2],
-      c[fillText = 'fillText'](sn+1, M2, M2, M),
+      c.T(sn+1, M2, M2, M),
       c[fillStyle] = colors[0],
       // note: using `'='` and `'('` here to use as explicit minifier hack later
-      c[fillText](s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M),
+      c.T(s[1] == '(' ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s, M2, M2, M),
       c.font = M/9 + pxserif,
       c[fillStyle] = colors[1],
-      c[fillText]('qfox.nl', M2, M *.8),
+      c.T('qfox.nl', M2, M *.8),
 
       c.getImageData(0, 0, M, M).data
     );
 
-    c[clearRect](0, 0, M, M);
+    c.R(0, 0, M, M);
 
     tp = SIN(time = Z % 32 / 32 * pi);
     sth = COS(time) * fitty;
