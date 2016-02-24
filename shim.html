@@ -231,22 +231,21 @@ var a, b, c, d;
 
   (function R() {
     // pretty sure this can be reduced to `data=x&&y`, TBD
-    data = Z++ % 150 ? 0 : (
+    drawText(data = Z++ % 150 ? 0 : (
       // this changes the current symbol
 
       sn = FLOOR(RANDOM() * elements.length),
-      s = elements[sn],
 
-      drawText(),
+      drawText(s = elements[sn]),
       drawText(1, 1, colors[2], sn+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
       drawText(1, 1, colors[0], '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
       drawText(9, 1.8, colors[1], 'qfox.nl'),
 
       c.getImageData(0, 0, M, M).data
-    );
+    )
 
-    drawText();
+    );
 
     tp = SIN(time = Z % 32 / 32 * pi);
     sth = COS(time) * fitty;
