@@ -267,12 +267,12 @@ var a, b, c, d;
 
       // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
 
-      u = data[imageDataIndex=4*X + 4*Y * M] ? i : 0;
+      u = data[imageDataIndex=4*X + 4*Y * M] ? i %600: 0;
       k = u % 3 * tp;
       isqfoxnl = data[imageDataIndex + 1]; // qfox.nl
 
-      targetx = u ? atomx + COS(b=u%600) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X ;
-      targety = u ? atomy + SIN(b) * fitty * (k||2) : isqfoxnl ? Y + sth : Y;
+      targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X ;
+      targety = u ? atomy + SIN(u) * fitty * (k||2) : isqfoxnl ? Y + sth : Y;
 
       // update speed, add a little random to keep it jittery
       rr = 2 + RANDOM() /2
