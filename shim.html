@@ -167,6 +167,8 @@ var a, b, c, d;
     size, // size of pixel to paint (depends on speed in most cases)
     u, // p.u (index of pixels in atom
     canvasStyle,// cache of a.style
+    X, // default target x for pixel
+    Y, // default target y for pixel
 
     // math constants
     pi,
@@ -250,6 +252,9 @@ var a, b, c, d;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
     for (i=K*K; i--;) {
+      // default position unless special
+      X = FLOOR(i%K * M/K);
+      Y = FLOOR(i/K * M/K); // i*M/(K*K)
       p = pixels[i] = pixels[i] || {
         // pixel values are initialized to a number, the actual number isnt super relevant so we use that to save one byte per other var initializers
 
@@ -258,18 +263,14 @@ var a, b, c, d;
 
         A: 0,
         B: 0,
-
-        // default position unless special
-        X: FLOOR(i%K * M/K),
-        Y: FLOOR(i/K * M/K), // i*M/(K*K)
       };
 
       // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
 
-      k = (u = data[imageDataIndex=4*p.X + 4*p.Y * M] ? i : 0) % 3;
+      k = (u = data[imageDataIndex=4*X + 4*Y * M] ? i : 0) % 3;
       isqfoxnl = data[imageDataIndex + 1]; // qfox.nl
-      targetx = u ? atomx + COS(b=u%600) * fitty * (k==1?2:k*tp||tp) : isqfoxnl ? p.X + stw : p.X ;
-      targety = u ? atomy + SIN(b) * fitty * (k*tp||2) : isqfoxnl ? p.Y + sth : p.Y;
+      targetx = u ? atomx + COS(b=u%600) * fitty * (k==1?2:k*tp||tp) : isqfoxnl ? X + stw : X ;
+      targety = u ? atomy + SIN(b) * fitty * (k*tp||2) : isqfoxnl ? Y + sth : Y;
 
       // update speed, add a little random to keep it jittery
       rr = 2 + RANDOM() /2
