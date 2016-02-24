@@ -230,7 +230,7 @@ var a, b, c, d;
 
   (function R() {
     // pretty sure this can be reduced to `data=x&&y`, TBD
-    drawTextOrClear(data = Z++ % 150 ? 0 : (
+    drawTextOrClear(data = Z++ % 150 ? 0 : c.getImageData(0, 0, M, M,
       // this changes the current symbol
 
       sn = FLOOR(RANDOM() * elements.length),
@@ -239,10 +239,10 @@ var a, b, c, d;
       drawTextOrClear(1, 1, colors[2], sn+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
       drawTextOrClear(1, 1, colors[0], '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
-      drawTextOrClear(9, 1.8, colors[1], 'qfox.nl'),
+      drawTextOrClear(9, 1.8, colors[1], 'qfox.nl')
 
-      c.getImageData(0, 0, M, M).data
-    )
+
+    ).data
 
     );
 
