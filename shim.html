@@ -234,12 +234,8 @@ var a, b, c, d;
       Y = i/K * M/K; // i*M/(K*K)
 
       p = pixels[i] = pixels[i] || {
-        // position of pixel
         x: M2,
         y: M2,
-        // velocity of pixel
-        A: 0,
-        B: 0,
       };
 
       rr = 2 + RANDOM(imageDataIndex=4*~~X + 4*~~Y * M) /2; // random speed addition (jittery)
@@ -252,8 +248,8 @@ var a, b, c, d;
       targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X ;
       targety = u ? atomy + SIN(u) * fitty * k|2 : isqfoxnl ? Y + sth : Y;
 
-      vx = p.A + rr - 2 - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rr;
-      vy = p.B + rr - 2 - SIN(dtan) * rr;
+      vx = ~~p.A + rr - 2 - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rr;
+      vy = ~~p.B + rr - 2 - SIN(dtan) * rr;
 
       c[fillStyle] = colors[u ? u % 3 : data[imageDataIndex++] ? 3 : isqfoxnl ? 4 : 5];
       c.fillRect(~~(p.x+=p.A=vx*.9), ~~(p.y+=p.B=vy*.9), size = u?1:isqfoxnl ? 5 :-~vx-~vy, size);
