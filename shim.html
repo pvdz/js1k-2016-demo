@@ -241,8 +241,8 @@ var a, b, c, d;
 
     for (i=K*K; i--;) {
       // default position of pixel i
-      X = ~~(i%K * M/K);
-      Y = ~~(i/K * M/K); // i*M/(K*K)
+      X = i%K * M/K;
+      Y = i/K * M/K; // i*M/(K*K)
 
       p = pixels[i] = pixels[i] || {
         // position of pixel
@@ -255,7 +255,7 @@ var a, b, c, d;
 
       // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
 
-      u = data[imageDataIndex=4*X + 4*Y * M] ? i %600: 0;
+      u = data[imageDataIndex=4*~~X + 4*~~Y * M] ? i %600: 0;
       k = u % 3 * tp;
       isqfoxnl = data[imageDataIndex + 1]; // qfox.nl
 
