@@ -254,11 +254,11 @@ var a, b, c, d;
       targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X ;
       targety = u ? atomy + SIN(u) * fitty * k|2 : isqfoxnl ? Y + sth : Y;
 
-      vx = ~~p.A*.9 + rr - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rs;
-      vy = ~~p.B*.9 + rr - SIN(dtan) * rs;
+      p.x+=p.A= ~~p.A*.9 + rr - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rs;
+      p.y+=p.B= ~~p.B*.9 + rr - SIN(dtan) * rs;
 
       c[fillStyle] = colors[u ? u % 3 : data[imageDataIndex++] ? 3 : isqfoxnl ? 4 : 5];
-      c.fillRect(~~(p.x+=p.A=vx), ~~(p.y+=p.B=vy), size = u?1:isqfoxnl ? 5 :-~vx-~vy, size);
+      c.fillRect(~~p.x, ~~p.y, size = u?1:isqfoxnl ? 5 :~~p.A+~~p.B, size);
     }
 
     requestAnimationFrame(R);
