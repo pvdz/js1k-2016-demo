@@ -168,7 +168,6 @@ var a, b, c, d;
 
     // math constants
     O,
-    pi,
     RANDOM,
     SIN,
     COS,
@@ -187,7 +186,6 @@ var a, b, c, d;
     .match(/../g);
 
   with(O=Math)
-    pi = PI,
     RANDOM = random,
     SIN = sin,
     COS = cos;
@@ -232,9 +230,9 @@ var a, b, c, d;
       drawTextOrClear(9, 1.8, colors[1], 'qfox.nl')
     ).data);
 
-    tp = SIN(time = Z % 32 / 32 * pi);
+    tp = SIN(time = Z % 32 / 9);
     sth = COS(time) * fitty;
-    stw = SIN(Z%M/M2 * pi) * M2*.6;
+    stw = SIN(Z%M/M2 * 3) * M2*.6;
 
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
