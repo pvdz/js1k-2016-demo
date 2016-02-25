@@ -185,10 +185,10 @@ var a, b, c, d;
   elements = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'
     .match(/../g);
 
-  with(O=Math)
-    RANDOM = random,
-    SIN = sin,
-    COS = cos;
+  O=Math;
+  RANDOM = O.random;
+  SIN = O.sin;
+  COS = O.cos;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
