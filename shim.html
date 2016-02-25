@@ -181,23 +181,16 @@ var a, b, c, d;
 
   colors = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   pxserif = 'px serif';
-
-  elements = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'
-    .match(/../g);
-
+  elements = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'.match(/../g);
   O=Math;
   RANDOM = O.random;
   SIN = O.sin;
   COS = O.cos;
-
   K = 200; // particle count wide and high (so total num of particles is K*K)
-
   a.width=a.height=M=O.min(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
   atomy = atomx = M2 = M/2;
-
   c.textAlign = 'center';
   c.textBaseline = 'middle';
-
   atomvx = 5;
   atomvy = 3;
   fitty = M2/9;
@@ -222,7 +215,6 @@ var a, b, c, d;
     // pretty sure this can be reduced to `data=x&&y`, TBD
     drawTextOrClear(Z++ % 150 ? data : data = c.getImageData(0, 0, M, M,
       // this changes the current symbol
-
       drawTextOrClear(s = elements[sn= ~~(RANDOM() * elements.length)]),
       drawTextOrClear(1, 1, colors[2], sn+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
@@ -233,7 +225,6 @@ var a, b, c, d;
     tp = SIN(time = Z%32/9);
     sth = COS(time) * fitty;
     stw = SIN(Z%M/M2 * 3) * M2*.6;
-
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
@@ -259,7 +250,7 @@ var a, b, c, d;
       k = u % 3 * tp;
 
       targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X ;
-      targety = u ? atomy + SIN(u) * fitty * (k||2) : isqfoxnl ? Y + sth : Y;
+      targety = u ? atomy + SIN(u) * fitty * k|2 : isqfoxnl ? Y + sth : Y;
 
       vx = p.A + rr - 2 - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rr;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
