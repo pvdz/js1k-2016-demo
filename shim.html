@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.31 / 1259 / 1156 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.31 / 1258 / 1155 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
@@ -188,7 +188,6 @@ var a, b, c, d;
   SIN = O.sin;
   COS = O.cos;
   a.width=a.height=M=O.min(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
-  mk=-~(M/200); // mk = pixel distance between pix, 200 = number of particles. will be less: M/ceil(M/K)
 
   atomy = atomx = M2 = M/2;
   c.textAlign = 'center';
@@ -237,11 +236,9 @@ var a, b, c, d;
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
+    // mk = pixel distance between pix, 200 = max number of particles. will be less: M/ceil(M/K) (-~x is close enough to ceil for this to work)
     // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
-    //for (;(X>M?X=0:X+=mk)||(Z+=mk)<M;++i) {
-    //for (;Y<M;++i,X+=X<M?mk:(Y+=mk,-X)) {
-    //for (;X=X<M?mk:-X,(Y+=X&&mk)<M;++i) {
-    for (;X<M?X+=mk:(X=0,Y+=mk)<M;++i) {
+    for (;X<M?X+=mk=-~(M/200):(X=0,Y+=mk)<M;++i) {
 
 
       // default position of pixel i
