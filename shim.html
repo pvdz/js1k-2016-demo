@@ -198,26 +198,12 @@ var a, b, c, d;
   pixels = [];
   Z=0;
 
-  // caching methods as shortcuts rather than strings...
-  //c.fillTextc.fillTextc.fillText
-  //c.T=c.fillText;c.Tc.Tc.T
-  //T='textFill';c[T]c[T]c[T]
-  //
-  // clearRect used twice is only a win if you can eliminate the semi (possible!)
-  //c.clearRectc.ClearRect
-  //c.R=c.clearRect;c.Rc.R
-  //R='clearRect';c[R]c[R]
-
   function drawTextOrClear(f, m, C, t) {
     t?c.fillText(t, M2, M2*m, M,c.font = M/f + pxserif,c[fillStyle = 'fillStyle'] = C):
       // this part is executed if the function is called without last argument
       // it also guarantees to initialize the XY and i before the loop
       c.clearRect(X=Y=i=0, 0, M, M)
   }
-
-  //(function R(){})()
-  //R=Function('')()
-  //function r(){}
 
   (function R(){
     // pretty sure this can be reduced to `data=x&&y`, TBD
@@ -239,10 +225,6 @@ var a, b, c, d;
     // mk = pixel distance between pix, 200 = max number of particles. will be less: M/ceil(M/K) (-~x is close enough to ceil for this to work)
     // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
     for (;X<M?X+=mk=-~(M/200):(X=0,Y+=mk)<M;++i) {
-
-
-      // default position of pixel i
-
       p = pixels[i] = pixels[i] || {
         x: M2,
         y: M2,
