@@ -167,13 +167,12 @@ var a, b, c, d;
     Y, // default target y for pixel
 
     // math constants
+    O,
     pi,
     FLOOR,
-    MIN,
     RANDOM,
     SIN,
     COS,
-    ATAN2,
 
     // string constants
     fillStyle,
@@ -188,18 +187,16 @@ var a, b, c, d;
   elements = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'
     .match(/../g);
 
-  with(Math)
+  with(O=Math)
     pi = PI,
     FLOOR = floor,
-    MIN = min,
     RANDOM = random,
     SIN = sin,
-    COS = cos,
-    ATAN2 = atan2;
+    COS = cos;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  a.width=a.height=M=MIN(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
+  a.width=a.height=M=O.MIN(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
   atomy = atomx = M2 = M/2;
 
   c.textAlign = 'center';
@@ -239,7 +236,7 @@ var a, b, c, d;
 
     tp = SIN(time = Z % 32 / 32 * pi);
     sth = COS(time) * fitty;
-    stw = SIN(Z%M/M2 * pi) * M2*0.6;
+    stw = SIN(Z%M/M2 * pi) * M2*.6;
 
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
@@ -269,7 +266,7 @@ var a, b, c, d;
 
       // update speed, add a little random to keep it jittery
       rr = 2 + RANDOM() /2
-      vx = p.A + rr - 2 - COS(dtan= ATAN2(p.y - targety, p.x - targetx)) * rr;
+      vx = p.A + rr - 2 - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rr;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       c[fillStyle] = colors[u ? u % 3 : data[imageDataIndex + 2] ? 3 : isqfoxnl ? 4 : 5];
