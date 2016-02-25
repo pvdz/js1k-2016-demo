@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.32 / 1260 / 1159 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.31 / 1259 / 1156 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
@@ -237,7 +237,13 @@ var a, b, c, d;
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
-    for (;Y<M;++i, X += X < M ? mk : (Y+=mk, -X)) {
+    // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
+    //for (;(X>M?X=0:X+=mk)||(Z+=mk)<M;++i) {
+    //for (;Y<M;++i,X+=X<M?mk:(Y+=mk,-X)) {
+    //for (;X=X<M?mk:-X,(Y+=X&&mk)<M;++i) {
+    for (;X<M?X+=mk:(X=0,Y+=mk)<M;++i) {
+
+
       // default position of pixel i
 
       p = pixels[i] = pixels[i] || {
