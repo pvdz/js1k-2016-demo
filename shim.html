@@ -258,7 +258,7 @@ var a, b, c, d;
       p.y+=p.B= ~~p.B*.9 + rr - SIN(dtan) * rs;
 
       c[fillStyle] = colors[u ? u % 3 : data[imageDataIndex++] ? 3 : isqfoxnl ? 4 : 5];
-      c.fillRect(~~p.x, ~~p.y, size = u?1:isqfoxnl ? 5 :~~p.A+~~p.B, size);
+      c.fillRect(~~p.x, ~~p.y, size = u?1:isqfoxnl ? 5 :~p.A+~p.B, size);
     }
 
     requestAnimationFrame(R);
