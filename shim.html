@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1268/1168 (regpacked, with / without wrappers and vars decls)
+// 1265/1165 (regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
@@ -251,21 +251,20 @@ var a, b, c, d;
         B: 0,
       };
 
-      // if data[x+0], the space is occupied by a letter. set p.U so the pixel joins the moving "atom".
+      rr = 2 + RANDOM(imageDataIndex=4*~~X + 4*~~Y * M) /2; // random speed addition (jittery)
 
-      u = data[imageDataIndex=4*~~X + 4*~~Y * M] ? i %600: 0;
+      // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
+      u = data[imageDataIndex++] ? i %600: 0;
+      isqfoxnl = data[imageDataIndex++]; // qfox.nl
       k = u % 3 * tp;
-      isqfoxnl = data[imageDataIndex + 1]; // qfox.nl
 
       targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X ;
       targety = u ? atomy + SIN(u) * fitty * (k||2) : isqfoxnl ? Y + sth : Y;
 
-      // update speed, add a little random to keep it jittery
-      rr = 2 + RANDOM() /2
       vx = p.A + rr - 2 - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rr;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
-      c[fillStyle] = colors[u ? u % 3 : data[imageDataIndex + 2] ? 3 : isqfoxnl ? 4 : 5];
+      c[fillStyle] = colors[u ? u % 3 : data[imageDataIndex++] ? 3 : isqfoxnl ? 4 : 5];
       c.fillRect(~~(p.x+=p.A=vx*.9), ~~(p.y+=p.B=vy*.9), size = u?1:isqfoxnl ? 5 :-~vx-~vy, size);
     }
 
