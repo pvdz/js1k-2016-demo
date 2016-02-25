@@ -252,7 +252,7 @@ var a, b, c, d;
       k = u % 3 * tp;
 
       targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X ;
-      targety = u ? atomy + SIN(u) * fitty * k|2 : isqfoxnl ? Y + sth : Y;
+      targety = u ? atomy + SIN(u) * fitty * (k||2) : isqfoxnl ? Y + sth : Y;
 
       p.x+=p.A= ~~p.A*.9 + rr - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rs;
       p.y+=p.B= ~~p.B*.9 + rr - SIN(dtan) * rs;
