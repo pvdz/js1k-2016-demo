@@ -222,12 +222,12 @@ var a, b, c, d;
   //R='clearRect';c[R]c[R]
 
   function drawTextOrClear(f, m, C, t) {
-    m?c.fillText(t, M2, M2*m, M,c.font = M/f + pxserif,c[fillStyle = 'fillStyle'] = C):c.clearRect(0, 0, M, M)
+    t?c.fillText(t, M2, M2*m, M,c.font = M/f + pxserif,c[fillStyle = 'fillStyle'] = C):c.clearRect(0, 0, M, M)
   }
 
   (function R() {
     // pretty sure this can be reduced to `data=x&&y`, TBD
-    drawTextOrClear(data = Z++ % 150 ? data : c.getImageData(0, 0, M, M,
+    drawTextOrClear(Z++ % 150 ? data : data = c.getImageData(0, 0, M, M,
       // this changes the current symbol
 
       drawTextOrClear(s = elements[sn= FLOOR(RANDOM() * elements.length)]),
