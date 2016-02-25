@@ -161,6 +161,7 @@ var a, b, c, d;
     vx, // velocity of pixel
     vy, // velocity of pixel
     rr, // force speed if too slow (causes jitter). update speed with delta
+    rs,
     size, // size of pixel to paint (depends on speed in most cases)
     u, // p.u (index of pixels in atom
     X, // default target x for pixel
@@ -211,7 +212,11 @@ var a, b, c, d;
     t?c.fillText(t, M2, M2*m, M,c.font = M/f + pxserif,c[fillStyle = 'fillStyle'] = C):c.clearRect(0, 0, M, M)
   }
 
-  (function R() {
+  //(function R(){})()
+  //R=Function('')()
+  //function r(){}
+
+  (function R(){
     // pretty sure this can be reduced to `data=x&&y`, TBD
     drawTextOrClear(Z++ % 150 ? data : data = c.getImageData(0, 0, M, M,
       // this changes the current symbol
@@ -238,7 +243,8 @@ var a, b, c, d;
         y: M2,
       };
 
-      rr = 2 + RANDOM(imageDataIndex=4*~~X + 4*~~Y * M) /2; // random speed addition (jittery)
+      rr = RANDOM(imageDataIndex=4*~~X + 4*~~Y * M) /2; // random speed addition (jittery)
+      rs=rr+2;
 
       // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
       u = data[imageDataIndex++] ? i %600: 0;
@@ -248,8 +254,8 @@ var a, b, c, d;
       targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X ;
       targety = u ? atomy + SIN(u) * fitty * k|2 : isqfoxnl ? Y + sth : Y;
 
-      vx = ~~p.A + rr - 2 - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rr;
-      vy = ~~p.B + rr - 2 - SIN(dtan) * rr;
+      vx = ~~p.A + rr - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * rs;
+      vy = ~~p.B + rr - SIN(dtan) * rs;
 
       c[fillStyle] = colors[u ? u % 3 : data[imageDataIndex++] ? 3 : isqfoxnl ? 4 : 5];
       c.fillRect(~~(p.x+=p.A=vx*.9), ~~(p.y+=p.B=vy*.9), size = u?1:isqfoxnl ? 5 :-~vx-~vy, size);
