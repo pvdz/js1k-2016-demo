@@ -169,7 +169,6 @@ var a, b, c, d;
     // math constants
     O,
     pi,
-    FLOOR,
     RANDOM,
     SIN,
     COS,
@@ -189,14 +188,13 @@ var a, b, c, d;
 
   with(O=Math)
     pi = PI,
-    FLOOR = floor,
     RANDOM = random,
     SIN = sin,
     COS = cos;
 
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
-  a.width=a.height=M=O.MIN(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
+  a.width=a.height=M=O.min(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
   atomy = atomx = M2 = M/2;
 
   c.textAlign = 'center';
@@ -227,7 +225,7 @@ var a, b, c, d;
     drawTextOrClear(Z++ % 150 ? data : data = c.getImageData(0, 0, M, M,
       // this changes the current symbol
 
-      drawTextOrClear(s = elements[sn= FLOOR(RANDOM() * elements.length)]),
+      drawTextOrClear(s = elements[sn= ~~(RANDOM() * elements.length)]),
       drawTextOrClear(1, 1, colors[2], sn+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
       drawTextOrClear(1, 1, colors[0], '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
@@ -243,8 +241,8 @@ var a, b, c, d;
 
     for (i=K*K; i--;) {
       // default position of pixel i
-      X = FLOOR(i%K * M/K);
-      Y = FLOOR(i/K * M/K); // i*M/(K*K)
+      X = ~~(i%K * M/K);
+      Y = ~~(i/K * M/K); // i*M/(K*K)
 
       p = pixels[i] = pixels[i] || {
         // position of pixel
@@ -270,7 +268,7 @@ var a, b, c, d;
       vy = p.B + rr - 2 - SIN(dtan) * rr;
 
       c[fillStyle] = colors[u ? u % 3 : data[imageDataIndex + 2] ? 3 : isqfoxnl ? 4 : 5];
-      c.fillRect(FLOOR(p.x+=p.A=vx*.9), FLOOR(p.y+=p.B=vy*.85), size = FLOOR(isqfoxnl ? 4 : 1+vx/5+vy/5), size);
+      c.fillRect(~~(p.x+=p.A=vx*.9), ~~(p.y+=p.B=vy*.85), size = ~~(isqfoxnl ? 4 : 1+vx/5+vy/5), size);
     }
 
     requestAnimationFrame(R);
