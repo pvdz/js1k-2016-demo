@@ -230,9 +230,7 @@ var a, b, c, d;
     drawTextOrClear(data = Z++ % 150 ? data : c.getImageData(0, 0, M, M,
       // this changes the current symbol
 
-      sn = FLOOR(RANDOM() * elements.length),
-
-      drawTextOrClear(s = elements[sn]),
+      drawTextOrClear(s = elements[sn= FLOOR(RANDOM() * elements.length)]),
       drawTextOrClear(1, 1, colors[2], sn+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
       drawTextOrClear(1, 1, colors[0], '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
