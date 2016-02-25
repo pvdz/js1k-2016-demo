@@ -127,12 +127,11 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1311/1204 (regpacked, with / without wrappers and vars decls)
+// 1299/1190 (regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
-(function () {
-  var
+(function (
     elements, // string of elements, 2 bytes each, padded
     K, // number of particles
     M, // MIN(W,H) (viewport size, square)
@@ -145,14 +144,12 @@ var a, b, c, d;
     sn, // current random element index
     s, // current random element string
     data, // image data for canvas
-    F, // friction. lower means faster pixels.
     atomx, // atom position x
     atomy, // atom position x
     atomvx, // atom speed x
     atomvy, // atom speed y
     fitty, // inner circle of atom
     Z, // main loop counter, serves as time var
-    b, // for atom turning sine
     k, // which circle of the atom
     targetx, // where does the pixel want to be
     targety, // where does the pixel want to be
@@ -166,7 +163,6 @@ var a, b, c, d;
     rr, // force speed if too slow (causes jitter). update speed with delta
     size, // size of pixel to paint (depends on speed in most cases)
     u, // p.u (index of pixels in atom
-    canvasStyle,// cache of a.style
     X, // default target x for pixel
     Y, // default target y for pixel
 
@@ -184,7 +180,7 @@ var a, b, c, d;
     colors,
     pxserif,
     _
-
+) {
 
   colors = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   pxserif = 'px serif';
@@ -204,7 +200,6 @@ var a, b, c, d;
   K = 200; // particle count wide and high (so total num of particles is K*K)
 
   a.width=a.height=M=MIN(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
-  //(canvasStyle=a.style)[width = 'width'] = canvasStyle[height = 'height'] = (a[width] = a[height] = M = MIN(a[width], a[height]))+'px';
   atomy = atomx = M2 = FLOOR(M/2);
 
   c.textAlign = 'center';
