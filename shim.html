@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1299/1190 (regpacked, with / without wrappers and vars decls)
+// 1268/1168 (regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
@@ -230,7 +230,7 @@ var a, b, c, d;
       drawTextOrClear(9, 1.8, colors[1], 'qfox.nl')
     ).data);
 
-    tp = SIN(time = Z % 32 / 9);
+    tp = SIN(time = Z%32/9);
     sth = COS(time) * fitty;
     stw = SIN(Z%M/M2 * 3) * M2*.6;
 
