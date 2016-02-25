@@ -224,7 +224,7 @@ var a, b, c, d;
 
     // mk = pixel distance between pix, 200 = max number of particles. will be less: M/ceil(M/K) (-~x is close enough to ceil for this to work)
     // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
-    for (;X<M?X+=mk=-~(M/200):(X=0,Y+=mk)<M;++i) {
+    for (;X<M?X+=mk=-~(M/200):X=(Y+=mk)<M;++i) {
       p = pixels[i] = pixels[i] || {
         x: M2,
         y: M2,
