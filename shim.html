@@ -210,7 +210,10 @@ var a, b, c, d;
   //R='clearRect';c[R]c[R]
 
   function drawTextOrClear(f, m, C, t) {
-    t?c.fillText(t, M2, M2*m, M,c.font = M/f + pxserif,c[fillStyle = 'fillStyle'] = C):c.clearRect(0, 0, M, M)
+    t?c.fillText(t, M2, M2*m, M,c.font = M/f + pxserif,c[fillStyle = 'fillStyle'] = C):
+      // this part is executed if the function is called without last argument
+      // it also guarantees to initialize the XY and i before the loop
+      c.clearRect(X=Y=i=0, 0, M, M)
   }
 
   //(function R(){})()
@@ -234,7 +237,7 @@ var a, b, c, d;
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
-    for (X=Y=i=0;Y<M;++i, X += X < M ? mk : (Y+=mk, -X)) {
+    for (;Y<M;++i, X += X < M ? mk : (Y+=mk, -X)) {
       // default position of pixel i
 
       p = pixels[i] = pixels[i] || {
