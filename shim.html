@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.26 / 1213 / 1126 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.26 / 1210 / 1123 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -203,8 +203,7 @@ var c; // canvas 2d context (passed on)
   !function _R(){
     drawTextOrClear(Z++%150 ? I : I = c.getImageData(0, 0, M, M,
       // this changes the current symbol
-      // TODO: replace E.length with 118 (doh)
-      drawTextOrClear(s = E[S= ~~(r() * E.length)]),
+      drawTextOrClear(s = E[S= ~~(r() * 118)]),
       // TODO: can pass on an index rather than C[index] to save 2x3 bytes
       drawTextOrClear(1, 1, C[2], S+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
