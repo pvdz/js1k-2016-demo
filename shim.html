@@ -221,17 +221,23 @@ var a, b, c, d;
     // mk = pixel distance between pix, 200 = max number of particles. will be less: M/ceil(M/K) (-~x is close enough to ceil for this to work)
     // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
     for (;X<M?X+=mk=-~(M/200):X=(Y+=mk)<M;++i) {
-      p = pixels[i] = pixels[i] || {
-        x: M2,
-        y: M2,
-      };
+      p = pixels[i] = pixels[i] || {x: M2, y: M2};
 
       // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
-      u = data[imageDataIndex=4*X + 4*Y * M] ? i %600: 0;
+      u = data[imageDataIndex=4*X + 4*Y * M] ? i % 600: 0;
       isqfoxnl = data[imageDataIndex+1]; // qfox.nl
 
       c[fillStyle] = colors[u ? k = u % 3 : data[imageDataIndex+2] ? 3 : isqfoxnl ? 4 : 5];
       // k will 0 1 or 2...
+
+      //k^1?k*tp||tp:2       // original
+      //k==0?tp:k==1?2:2*tp
+      //k?k==1?2:2*tp:tp
+      //k?k^1?2*tp:2:tp
+      //k^1?tp+k&&tp:2       // bad
+      //k^1?tp+k*tp:2        // big blue ring (because 2*tp not 1*tp)
+      //(k^1)*tp||2          // big blue ring (because 3*tp not 2*tp)
+
       targetx = u ? atomx + COS(u) * fitty * (k^1?k*tp||tp:2) : isqfoxnl ? X + SIN(Z%M/M2 * 3) * M2*.6 : X;
       targety = u ? atomy + SIN(u) * fitty * (k*tp||2) : isqfoxnl ? Y + tp * fitty : Y;
 
