@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.25 / 1207 / 1118 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.25 / 1205 / 1118 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -152,7 +152,6 @@ var c; // canvas 2d context (passed on)
   k, // which circle of the atom
   T, // where does the pixel want to be
   U, // where does the pixel want to be
-  t, // progress of time in a loop 0 ... 1
   w, // sin(time)
   d, // angle of delta vector
   z, // size of pixel to paint (depends on speed in most cases)
@@ -208,7 +207,7 @@ var c; // canvas 2d context (passed on)
       v(9, 1.8, 1, 'qfox.nl')
     ).data);
 
-    w = j(t = Z%32/9) * N/9;
+    w = j(Z%32/9) * N/9;
     A += V *= A<0|A>M ? -1 : 1;
     B += W *= B<0|B>M ? -1 : 1;
 
