@@ -133,52 +133,47 @@
 var a; // canvas element (passed on)
 var c; // canvas 2d context (passed on)
 (function (
-  E, // string of elements, 2 bytes each, padded
-  M, // MIN(W,H) (viewport size, square)
-  N, // M/2, middle of the painted viewport
-  i, // loop counter
-  D, // index in image data
-  P, // all K*K pixel objects
-  p, // pixel
-  Q, // is qfox pixel?
-  S, // current random element index
-  s, // current random element string
-  I, // image data for canvas
-  A, // atom position x
-  B, // atom position x
-  V, // atom speed x
-  W, // atom speed y
-  Z, // main loop counter, serves as time var
-  k, // which circle of the atom
-  T, // where does the pixel want to be
-  U, // where does the pixel want to be
-  w, // sin(time)
-  d, // angle of delta vector
-  z, // size of pixel to paint (depends on speed in most cases)
-  u, // p.u (index of pixels in atom
-  X, // default target x for pixel
-  Y, // default target y for pixel
-  K, // pixel distance between pixels
-  R, // anonymous function name
-
-  // math constants
-  O,
-  r,
-  j,
-  J,
-
-  // string constants
-  f,
+  _a, // global
+  A,
+  b,
+  B,
+  _c,
   C,
-  F,
-
-  H, // draw text or clear screen (depends on whether fourth param is present)
-  // to cover local function arg names
+  d,
+  D,
   e,
+  E,
+  f,
+  F,
   g,
   h,
-  b,
-
+  H,
+  i,
+  I,
+  j,
+  J,
+  k,
+  K,
+  M,
+  N,
+  O,
+  p,
+  P,
+  Q,
+  r,
+  R,
+  s,
+  S,
+  T,
+  u,
+  U,
+  V,
+  w,
+  W,
+  X,
+  Y,
+  z,
+  Z,
   _
 ){
 
@@ -190,23 +185,18 @@ var c; // canvas 2d context (passed on)
   j = O.sin;
   J = O.cos;
   a.width=a.height=M=O.min(a.width,a.width=a.height);a=a.style;a.width=a.height=M+'px';
-
   B = A = N = M/2;
   c.textAlign = 'center';
   c.textBaseline = 'middle';
   V = 5;
   W = 3;
-
-  function H(e,g,h,b){b?c.fillText(b,N,N*g,M,c.font=M/e+F,c[f='fillStyle']=C[h]):c.clearRect(X=Y=i=0,0,M,M)}
-
+  function v(e,g,h,b){b?c.fillText(b,N,N*g,M,c.font=M/e+F,c[f='fillStyle']=C[h]):c.clearRect(X=Y=i=0,0,M,M)}
   !function R(){
-    H(Z++%150 ? I : I = c.getImageData(0, 0, M, M,
-      // this changes the current symbol
-      H(s = E[S= ~~(r() * 118)]),
-      H(1, 1, 2, S+1),
-      // note: using `'='` and `'('` here to use as explicit minifier hack later
-      H(1, 1, 0, '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
-      H(9, 1.8, 1, 'qfox.nl')
+    v(Z++%150 ? I : I = c.getImageData(0, 0, M, M,
+      v(s = E[S= ~~(r() * 118)]),
+      v(1, 1, 2, S+1),
+      v(1, 1, 0, '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
+      v(9, 1.8, 1, 'qfox.nl')
     ).data);
 
     // TODO: this should be shorter but ends, at the moment, with +3 bytes after regpack
@@ -215,26 +205,16 @@ var c; // canvas 2d context (passed on)
     A += V *= A<0|A>M ? -1 : 1;
     B += W *= B<0|B>M ? -1 : 1;
 
-    // mk = pixel distance between pix, 200 = max number of particles. will be less: M/ceil(M/K) (-~x is close enough to ceil for this to work)
-    // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
     for (w = j(Z%32/9) * N/9;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i)
       p = P[i] = P[i] || {x: N, y: N},
-
-      // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
       u = I[D=4*X + 4*Y * M] ? i % 600: 0,
       Q = I[D+1], // qfox.nl
-
       c[f] = C[u ? k = u % 3 : I[D+2] ? 3 : Q ? 4 : 5],
-      // k will 0 1 or 2...
-
       T = u ? A + J(u) * (k^1?k*w||w:N/5) : Q ? X + j(Z%M/N * 3) * N/5 : X,
       U = u ? B + j(u) * (k*w||N/5) : Q ? Y + w : Y,
-
       p.x+=p.A=.9*~~p.A - J(O.atan2(p.y - U, p.x - T)) * K+ r(),
       p.y+=p.B=.9*~~p.B - j(O.atan2(p.y - U, p.x - T)) * K+ r(),
-
       c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z)
-
     requestAnimationFrame(R);
   }(P = [Z=0]);
 })();
