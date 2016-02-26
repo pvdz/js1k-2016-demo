@@ -217,7 +217,7 @@ var a, b, c, d;
     ).data);
 
     tp = SIN(time = Z%32/9);
-    sth = COS(time) * fitty;
+    sth = tp * fitty;
     stw = SIN(Z%M/M2 * 3) * M2*.6;
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
