@@ -185,7 +185,7 @@ var c; // canvas 2d context (passed on)
   C = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   F = 'px serif';
   E = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'.match(/../g);
-  O=Math;
+  O = Math;
   r = O.random;
   j = O.sin;
   J = O.cos;
@@ -209,8 +209,6 @@ var c; // canvas 2d context (passed on)
       v(9, 1.8, 1, 'qfox.nl')
     ).data);
 
-    w = j(Z%32/9) * N/9;
-
     // TODO: this should be shorter but ends, at the moment, with +3 bytes after regpack
     //A += V = A<0|A>M ? -V : V;
     //B += W = B<0|B>M ? -W : W;
@@ -219,7 +217,7 @@ var c; // canvas 2d context (passed on)
 
     // mk = pixel distance between pix, 200 = max number of particles. will be less: M/ceil(M/K) (-~x is close enough to ceil for this to work)
     // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
-    for (;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i)
+    for (w = j(Z%32/9) * N/9;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i)
       p = P[i] = P[i] || {x: N, y: N},
 
       // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
