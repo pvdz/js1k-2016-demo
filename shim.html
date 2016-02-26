@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.26 / 1210 / 1123 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.25 / 1207 / 1120 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -193,7 +193,7 @@ var c; // canvas 2d context (passed on)
   Z=0;
 
   function drawTextOrClear(_f, _m, _c, t) {
-    t?c.fillText(t, N, N*_m, M,c.font = M/_f + F,c[f = 'fillStyle'] = _c):
+    t?c.fillText(t, N, N*_m, M,c.font = M/_f + F,c[f = 'fillStyle'] = C[_c]):
       // this part is executed if the function is called without last argument
       // it also guarantees to initialize the XY and i before the loop
       c.clearRect(X=Y=i=0, 0, M, M)
@@ -204,11 +204,10 @@ var c; // canvas 2d context (passed on)
     drawTextOrClear(Z++%150 ? I : I = c.getImageData(0, 0, M, M,
       // this changes the current symbol
       drawTextOrClear(s = E[S= ~~(r() * 118)]),
-      // TODO: can pass on an index rather than C[index] to save 2x3 bytes
-      drawTextOrClear(1, 1, C[2], S+1),
+      drawTextOrClear(1, 1, 2, S+1),
       // note: using `'='` and `'('` here to use as explicit minifier hack later
-      drawTextOrClear(1, 1, C[0], '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
-      drawTextOrClear(9, 1.8, C[1], 'qfox.nl')
+      drawTextOrClear(1, 1, 0, '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
+      drawTextOrClear(9, 1.8, 1, 'qfox.nl')
     ).data);
 
     w = j(t = Z%32/9) * N/9;
