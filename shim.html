@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.25 / 1209 / 1120 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.25 / 1207 / 1118 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -190,8 +190,6 @@ var c; // canvas 2d context (passed on)
   c.textBaseline = 'middle';
   V = 5;
   W = 3;
-  P = [];
-  Z=0;
 
   function v(_f, _m, _c, t) {
     t?c.fillText(t, N, N*_m, M,c.font = M/_f + F,c[f = 'fillStyle'] = C[_c]):
@@ -235,7 +233,7 @@ var c; // canvas 2d context (passed on)
       c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z)
 
     requestAnimationFrame(R);
-  }();
+  }(P = [Z=0]);
 })();
 
       // END
