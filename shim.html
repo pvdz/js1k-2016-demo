@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.29 / 1231 / 1132 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.28 / 1230 / 1131 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
@@ -229,17 +229,16 @@ var a, b, c, d;
       imageDataIndex=4*X + 4*Y * M;
 
       // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
-      u = data[imageDataIndex++] ? i %600: 0;
-      isqfoxnl = data[imageDataIndex++]; // qfox.nl
-      k = u % 3;
+      u = data[imageDataIndex] ? i %600: 0;
+      isqfoxnl = data[imageDataIndex+1]; // qfox.nl
 
+      c[fillStyle] = colors[u ? k = u % 3 : data[imageDataIndex+2] ? 3 : isqfoxnl ? 4 : 5];
       targetx = u ? atomx + COS(u) * fitty * (k*tp==tp?2:k*tp||tp) : isqfoxnl ? X + SIN(Z%M/M2 * 3) * M2*.6 : X;
       targety = u ? atomy + SIN(u) * fitty * (k*tp||2) : isqfoxnl ? Y + tp * fitty : Y;
 
       p.x+=p.A= ~~p.A*.9 + RANDOM() - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * mk;
       p.y+=p.B= ~~p.B*.9 + RANDOM() - SIN(dtan) * mk;
 
-      c[fillStyle] = colors[u ? k : data[imageDataIndex++] ? 3 : isqfoxnl ? 4 : 5];
       c.fillRect(~~p.x, ~~p.y, size = u?mk:isqfoxnl ? mk*2 :~p.A+~p.B, size);
     }
 
