@@ -208,6 +208,10 @@ var c; // canvas 2d context (passed on)
     ).data);
 
     w = j(Z%32/9) * N/9;
+
+    // TODO: this should be shorter but ends, at the moment, with +3 bytes after regpack
+    //A += V = A<0|A>M ? -V : V;
+    //B += W = B<0|B>M ? -W : W;
     A += V *= A<0|A>M ? -1 : 1;
     B += W *= B<0|B>M ? -1 : 1;
 
