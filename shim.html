@@ -228,7 +228,7 @@ var a, b, c, d;
       c[fillStyle] = colors[u ? k = u % 3 : data[imageDataIndex+2] ? 3 : isqfoxnl ? 4 : 5];
       // k will 0 1 or 2...
 
-      targetx = u ? atomx + COS(u) * (k^1?k*tp||tp:M2/5) : isqfoxnl ? X + SIN(Z%M/M2 * 3) * M2*.6 : X;
+      targetx = u ? atomx + COS(u) * (k^1?k*tp||tp:M2/5) : isqfoxnl ? X + SIN(Z%M/M2 * 3) * M2/5 : X;
       targety = u ? atomy + SIN(u) * (k*tp||M2/5) : isqfoxnl ? Y + tp : Y;
 
       p.x+=p.A= ~~p.A*.9 + RANDOM() - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * mk;
