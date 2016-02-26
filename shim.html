@@ -226,10 +226,8 @@ var a, b, c, d;
         y: M2,
       };
 
-      imageDataIndex=4*X + 4*Y * M;
-
       // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
-      u = data[imageDataIndex] ? i %600: 0;
+      u = data[imageDataIndex=4*X + 4*Y * M] ? i %600: 0;
       isqfoxnl = data[imageDataIndex+1]; // qfox.nl
 
       c[fillStyle] = colors[u ? k = u % 3 : data[imageDataIndex+2] ? 3 : isqfoxnl ? 4 : 5];
