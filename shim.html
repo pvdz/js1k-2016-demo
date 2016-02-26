@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.26 / 1214 / 1127 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.26 / 1213 / 1126 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -200,7 +200,7 @@ var c; // canvas 2d context (passed on)
   }
 
   // TODO: replace `()` wrapper with `!` prefix
-  (function _R(){
+  !function _R(){
     drawTextOrClear(Z++%150 ? I : I = c.getImageData(0, 0, M, M,
       // this changes the current symbol
       // TODO: replace E.length with 118 (doh)
@@ -238,7 +238,7 @@ var c; // canvas 2d context (passed on)
     }
 
     requestAnimationFrame(_R);
-  })();
+  }();
 })();
 
       // END
