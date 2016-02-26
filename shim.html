@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.28 / 1229 / 1130 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.27 / 1189 / 1100 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
@@ -147,7 +147,6 @@ var a, b, c, d;
     atomy, // atom position x
     atomvx, // atom speed x
     atomvy, // atom speed y
-    fitty, // inner circle of atom
     Z, // main loop counter, serves as time var
     k, // which circle of the atom
     targetx, // where does the pixel want to be
@@ -192,7 +191,6 @@ var a, b, c, d;
   c.textBaseline = 'middle';
   atomvx = 5;
   atomvy = 3;
-  fitty = M2/9;
   pixels = [];
   Z=0;
 
@@ -214,7 +212,7 @@ var a, b, c, d;
       drawTextOrClear(9, 1.8, colors[1], 'qfox.nl')
     ).data);
 
-    tp = SIN(time = Z%32/9);
+    tp = SIN(time = Z%32/9) * M2/9;
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
@@ -230,16 +228,8 @@ var a, b, c, d;
       c[fillStyle] = colors[u ? k = u % 3 : data[imageDataIndex+2] ? 3 : isqfoxnl ? 4 : 5];
       // k will 0 1 or 2...
 
-      //k^1?k*tp||tp:2       // original
-      //k==0?tp:k==1?2:2*tp
-      //k?k==1?2:2*tp:tp
-      //k?k^1?2*tp:2:tp
-      //k^1?tp+k&&tp:2       // bad
-      //k^1?tp+k*tp:2        // big blue ring (because 2*tp not 1*tp)
-      //(k^1)*tp||2          // big blue ring (because 3*tp not 2*tp)
-
-      targetx = u ? atomx + COS(u) * fitty * (k^1?k*tp||tp:2) : isqfoxnl ? X + SIN(Z%M/M2 * 3) * M2*.6 : X;
-      targety = u ? atomy + SIN(u) * fitty * (k*tp||2) : isqfoxnl ? Y + tp * fitty : Y;
+      targetx = u ? atomx + COS(u) * (k^1?k*tp||tp:M2/5) : isqfoxnl ? X + SIN(Z%M/M2 * 3) * M2*.6 : X;
+      targety = u ? atomy + SIN(u) * (k*tp||M2/5) : isqfoxnl ? Y + tp : Y;
 
       p.x+=p.A= ~~p.A*.9 + RANDOM() - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * mk;
       p.y+=p.B= ~~p.B*.9 + RANDOM() - SIN(dtan) * mk;
