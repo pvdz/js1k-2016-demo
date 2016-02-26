@@ -216,7 +216,7 @@ var c; // canvas 2d context (passed on)
 
     // mk = pixel distance between pix, 200 = max number of particles. will be less: M/ceil(M/K) (-~x is close enough to ceil for this to work)
     // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
-    for (;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i) {
+    for (;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i)
       p = P[i] = P[i] || {x: N, y: N},
 
       // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
@@ -233,7 +233,6 @@ var c; // canvas 2d context (passed on)
       p.y+=p.B= ~~p.B*.9 + r() - j(d) * K,
 
       c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z)
-    }
 
     requestAnimationFrame(R);
   }();
