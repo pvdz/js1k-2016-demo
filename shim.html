@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.25 / 1205 / 1118 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.28 / 1209 / 1111 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -230,8 +230,8 @@ var c; // canvas 2d context (passed on)
       T = u ? A + J(u) * (k^1?k*w||w:N/5) : Q ? X + j(Z%M/N * 3) * N/5 : X,
       U = u ? B + j(u) * (k*w||N/5) : Q ? Y + w : Y,
 
-      p.x+=p.A= ~~p.A*.9 + r() - J(d= O.atan2(p.y - U, p.x - T)) * K,
-      p.y+=p.B= ~~p.B*.9 + r() - j(d) * K,
+      p.x+=p.A=.9*~~p.A - J(O.atan2(p.y - U, p.x - T)) * K+ r(),
+      p.y+=p.B=.9*~~p.B - j(O.atan2(p.y - U, p.x - T)) * K+ r(),
 
       c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z)
 
