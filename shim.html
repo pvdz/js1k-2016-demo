@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.3 / 1245 / 1142 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.29 / 1228 / 1129 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a, b, c, d;
@@ -154,8 +154,6 @@ var a, b, c, d;
     targety, // where does the pixel want to be
     time, // progress of time in a loop 0 ... 1
     tp, // sin(time)
-    stw, // width delta for qfox.nl
-    sth, // height delta for qfox.nl
     dtan, // angle of delta vector
     vx, // velocity of pixel
     vy, // velocity of pixel
@@ -217,8 +215,6 @@ var a, b, c, d;
     ).data);
 
     tp = SIN(time = Z%32/9);
-    sth = tp * fitty;
-    stw = SIN(Z%M/M2 * 3) * M2*.6;
     atomx += atomvx *= atomx<0|atomx>M ? -1 : 1;
     atomy += atomvy *= atomy<0|atomy>M ? -1 : 1;
 
@@ -237,8 +233,8 @@ var a, b, c, d;
       isqfoxnl = data[imageDataIndex++]; // qfox.nl
       k = u % 3 * tp;
 
-      targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + stw : X;
-      targety = u ? atomy + SIN(u) * fitty * (k||2) : isqfoxnl ? Y + sth : Y;
+      targetx = u ? atomx + COS(u) * fitty * (k==tp?2:k||tp) : isqfoxnl ? X + SIN(Z%M/M2 * 3) * M2*.6 : X;
+      targety = u ? atomy + SIN(u) * fitty * (k||2) : isqfoxnl ? Y + tp * fitty : Y;
 
       p.x+=p.A= ~~p.A*.9 + RANDOM() - COS(dtan= O.atan2(p.y - targety, p.x - targetx)) * mk;
       p.y+=p.B= ~~p.B*.9 + RANDOM() - SIN(dtan) * mk;
