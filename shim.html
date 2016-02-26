@@ -217,22 +217,22 @@ var c; // canvas 2d context (passed on)
     // mk = pixel distance between pix, 200 = max number of particles. will be less: M/ceil(M/K) (-~x is close enough to ceil for this to work)
     // X += mk; if (X > M) X=0, Y+=mk; loop if Y<M. oh and also ++i
     for (;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i) {
-      p = P[i] = P[i] || {x: N, y: N};
+      p = P[i] = P[i] || {x: N, y: N},
 
       // if data[x+0], the space is occupied by a letter. set u so the pixel joins the moving "atom".
-      u = I[D=4*X + 4*Y * M] ? i % 600: 0;
-      Q = I[D+1]; // qfox.nl
+      u = I[D=4*X + 4*Y * M] ? i % 600: 0,
+      Q = I[D+1], // qfox.nl
 
-      c[f] = C[u ? k = u % 3 : I[D+2] ? 3 : Q ? 4 : 5];
+      c[f] = C[u ? k = u % 3 : I[D+2] ? 3 : Q ? 4 : 5],
       // k will 0 1 or 2...
 
-      T = u ? A + J(u) * (k^1?k*w||w:N/5) : Q ? X + j(Z%M/N * 3) * N/5 : X;
-      U = u ? B + j(u) * (k*w||N/5) : Q ? Y + w : Y;
+      T = u ? A + J(u) * (k^1?k*w||w:N/5) : Q ? X + j(Z%M/N * 3) * N/5 : X,
+      U = u ? B + j(u) * (k*w||N/5) : Q ? Y + w : Y,
 
-      p.x+=p.A= ~~p.A*.9 + r() - J(d= O.atan2(p.y - U, p.x - T)) * K;
-      p.y+=p.B= ~~p.B*.9 + r() - j(d) * K;
+      p.x+=p.A= ~~p.A*.9 + r() - J(d= O.atan2(p.y - U, p.x - T)) * K,
+      p.y+=p.B= ~~p.B*.9 + r() - j(d) * K,
 
-      c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z);
+      c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z)
     }
 
     requestAnimationFrame(R);
