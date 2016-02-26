@@ -172,6 +172,13 @@ var c; // canvas 2d context (passed on)
   f,
   C,
   F,
+
+  // to cover local function arg names
+  e,
+  g,
+  h,
+  b,
+
   _
 ){
 
@@ -190,12 +197,7 @@ var c; // canvas 2d context (passed on)
   V = 5;
   W = 3;
 
-  function v(_f, _m, _c, t) {
-    t?c.fillText(t, N, N*_m, M,c.font = M/_f + F,c[f = 'fillStyle'] = C[_c]):
-      // this part is executed if the function is called without last argument
-      // it also guarantees to initialize the XY and i before the loop
-      c.clearRect(X=Y=i=0, 0, M, M)
-  }
+  function v(e,g,h,b){b?c.fillText(b,N,N*g,M,c.font=M/e+F,c[f='fillStyle']=C[h]):c.clearRect(X=Y=i=0,0,M,M)}
 
   !function R(){
     v(Z++%150 ? I : I = c.getImageData(0, 0, M, M,
