@@ -140,12 +140,9 @@ var c; // canvas 2d context (passed on)
   d,
   D,
   E,
-  f,
   H,
   i,
   I,
-  dsadsadadssa,
-  dsadsadsa,
   k,
   K,
   l,
@@ -176,7 +173,7 @@ var c; // canvas 2d context (passed on)
   a.style[l]=a.style[L]=M+'px';
   b = A = V=5;
   W=3;
-  function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+'px serif',c[f='fillStyle']=d[h])}
+  function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])}
   !function R(){
     Z++%118 ? I :(
       a[l]|=0,
@@ -216,7 +213,7 @@ var c; // canvas 2d context (passed on)
       p = P[i] = P[i] || {x: 0, y: 0},
       u = I[D=4*X + 4*Y * M] ? i % 600: 0,
       Q = I[D+1], // qfox.nl
-      c[f] = d[u ? u%3 : I[D+2] ? 3 : Q ? 4 : 5],
+      c.fillStyle = d[u ? u%3 : I[D+2] ? 3 : Q ? 4 : 5],
       T = u ? A + Math.cos(u) * (u%3^1?u%3*w||w:M/2/5) : Q ? X + Math.sin(Z%M/M/2 * 3) * M/2/5 : X,
       U = u ? b + Math.sin(u) * (u%3*w||M/2/5) : Q ? Y + w : Y,
       p.x+=p.A=Math.cos(Math.atan2(p.y - U, p.x - T)) * -K + Math.random()+.9*~~p.A,
