@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.32 / 1206 / 1100 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.32 / 1225 / 1116 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -154,6 +154,9 @@ var c; // canvas 2d context (passed on)
   J,
   k,
   K,
+  l,
+  L,
+  m,
   M,
   N,
   O,
@@ -184,18 +187,15 @@ var c; // canvas 2d context (passed on)
   r = O.random;
   j = O.sin;
   J = O.cos;
-  t=a;
-  t.width=t.height=M=O.min(t.width,t.width=t.height);
-  t=a.style;
-  t.width=t.height=M+'px';
-  t=a;
+  a[l]=a[L]=M=O.min(a[l='width'],a[l]=a[L='height']);
+  m=a.style;
+  m[l]=m[L]=M+'px';
   B = A = V=5;
   W=3;
   function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+F,c[f='fillStyle']=C[h])}
   !function R(){
-    X=Y=i=0;
     Z++%99 ? I :(
-      t.width=t.height=M,
+      a[l]|=0,
       c.textAlign = 'center',
       c.textBaseline = 'middle',
       v(s = E[S= ~~(r() * 118)]),
@@ -204,7 +204,7 @@ var c; // canvas 2d context (passed on)
       v(9, 1.8, 1, 'qfox.nl'),
       I = c.getImageData(0, 0, M, M).data
     );
-    t.width=t.height=M;
+    a[l]|=X=Y=i=0;
 
 
     //V=5;W=3;
