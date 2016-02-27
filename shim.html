@@ -183,30 +183,10 @@ var c; // canvas 2d context (passed on)
     );
     a.width=M;
 
-    //V=5;W=3;
-
     q=A;
     A+=V*=X=Y=i=q>0&q<M||-1;
     q=b;
     b+=W*=X=Y=i=q>0&q<M||-1;
-
-
-
-    //V=5;W=3;
-    //A+=V=A<0|A>M?-V:V;
-    //B+=W=B<0|B>M?-W:W;
-
-    //V=5;W=3;
-    //if(A<0|A>M)V=-V;A+=V*5;
-    //if(B<0|B>M)W=-W;B+=W*3;
-
-    //V=5;W=3;
-    //A+=A<0|A>M?V=-V:V;
-    //b+=b<0|b>M?W=-W:W;
-
-    //V=W=1;
-    //A+=5*(A<0|A>M?V=-V:V);
-    //B+=3*(B<0|B>M?W=-W:W);
 
     for (w = Math.sin(Z%32/9) * M/2/9;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i)
       p = P[i] = P[i] || {x: 0, y: 0},
