@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.25 / 1200 / 1107 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.25 / 1196 / 1105 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -156,7 +156,6 @@ var c; // canvas 2d context (passed on)
   p,
   P,
   Q,
-  r,
   s,
   T,
   u,
@@ -174,7 +173,6 @@ var c; // canvas 2d context (passed on)
   d = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   E = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'.match(/../g);
   o = Math;
-  r = o.random;
   j = o.sin;
   J = o.cos;
   a[l]=a[L]=M=o.min(a[l='width'],a[l]=a[L='height']);
@@ -225,8 +223,8 @@ var c; // canvas 2d context (passed on)
       c[f] = d[u ? u%3 : I[D+2] ? 3 : Q ? 4 : 5],
       T = u ? A + J(u) * (u%3^1?u%3*w||w:M/2/5) : Q ? X + j(Z%M/M/2 * 3) * M/2/5 : X,
       U = u ? b + j(u) * (u%3*w||M/2/5) : Q ? Y + w : Y,
-      p.x+=p.A=J(o.atan2(p.y - U, p.x - T)) * -K + r()+.9*~~p.A,
-      p.y+=p.B=j(o.atan2(p.y - U, p.x - T)) * -K + r()+.9*~~p.B,
+      p.x+=p.A=J(o.atan2(p.y - U, p.x - T)) * -K + o.random()+.9*~~p.A,
+      p.y+=p.B=j(o.atan2(p.y - U, p.x - T)) * -K + o.random()+.9*~~p.B,
       c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z)
     requestAnimationFrame(R);
   }(k=Z=P=[]);
