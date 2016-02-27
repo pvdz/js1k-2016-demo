@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.32 / 1225 / 1116 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.27 / 1211 / 1116 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -135,25 +135,24 @@ var c; // canvas 2d context (passed on)
 (function (
   _a, // global
   A,
-  B,
+  b,
   _c,
-  C,
+  d,
   D,
   E,
   f,
-  F,
   H,
   i,
   I,
   j,
   J,
+  k,
   K,
   l,
   L,
   m,
   M,
-  N,
-  O,
+  o,
   p,
   P,
   Q,
@@ -173,19 +172,19 @@ var c; // canvas 2d context (passed on)
   _
 ){
 
-  C = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
-  F = 'px serif';
+  d = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
+  k = 'px serif'; // TODO no longer need to cache this, duh
   E = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'.match(/../g);
-  O = Math;
-  r = O.random;
-  j = O.sin;
-  J = O.cos;
-  a[l]=a[L]=M=O.min(a[l='width'],a[l]=a[L='height']);
+  o = Math;
+  r = o.random;
+  j = o.sin;
+  J = o.cos;
+  a[l]=a[L]=M=o.min(a[l='width'],a[l]=a[L='height']);
   m=a.style;
   m[l]=m[L]=M+'px';
-  B = A = V=5;
+  b = A = V=5;
   W=3;
-  function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+F,c[f='fillStyle']=C[h])}
+  function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+k,c[f='fillStyle']=d[h])}
   !function R(){
     Z++%99 ? I :(
       a[l]|=0,
@@ -214,7 +213,7 @@ var c; // canvas 2d context (passed on)
 
     //V=5;W=3;
     A+=A<0|A>M?V=-V:V;
-    B+=B<0|B>M?W=-W:W;
+    b+=b<0|b>M?W=-W:W;
 
     //V=W=1;
     //A+=5*(A<0|A>M?V=-V:V);
@@ -225,11 +224,11 @@ var c; // canvas 2d context (passed on)
       p = P[i] = P[i] || {x: 0, y: 0},
       u = I[D=4*X + 4*Y * M] ? i % 600: 0,
       Q = I[D+1], // qfox.nl
-      c[f] = C[u ? u%3 : I[D+2] ? 3 : Q ? 4 : 5],
+      c[f] = d[u ? u%3 : I[D+2] ? 3 : Q ? 4 : 5],
       T = u ? A + J(u) * (u%3^1?u%3*w||w:M/2/5) : Q ? X + j(Z%M/M/2 * 3) * M/2/5 : X,
-      U = u ? B + j(u) * (u%3*w||M/2/5) : Q ? Y + w : Y,
-      p.x+=p.A=J(O.atan2(p.y - U, p.x - T)) * -K + r()+.9*~~p.A,
-      p.y+=p.B=j(O.atan2(p.y - U, p.x - T)) * -K + r()+.9*~~p.B,
+      U = u ? b + j(u) * (u%3*w||M/2/5) : Q ? Y + w : Y,
+      p.x+=p.A=J(o.atan2(p.y - U, p.x - T)) * -K + r()+.9*~~p.A,
+      p.y+=p.B=j(o.atan2(p.y - U, p.x - T)) * -K + r()+.9*~~p.B,
       c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z)
     requestAnimationFrame(R);
   }(Z=P=[]);
