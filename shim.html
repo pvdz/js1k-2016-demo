@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.27 / 1216 / 1113 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.25 / 1202 / 1109 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -146,7 +146,7 @@ var c; // canvas 2d context (passed on)
   I,
   j,
   J,
-  dsadsadadsa,
+  k,
   K,
   l,
   L,
@@ -158,7 +158,6 @@ var c; // canvas 2d context (passed on)
   Q,
   r,
   s,
-  S,
   T,
   u,
   U,
@@ -189,8 +188,8 @@ var c; // canvas 2d context (passed on)
       a[l]|=0,
       c.textAlign = 'center',
       c.textBaseline = 'middle',
-      v(s = E[S= ~~(r() * 118)]),
-      v(1, 1, 2, S+1),
+      s = E[k++%118],
+      v(1, 1, 2, k),
       v(1, 1, 0, '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
       v(9, 1.8, 1, 'qfox.nl'),
       I = c.getImageData(0, 0, M, M).data
@@ -230,7 +229,7 @@ var c; // canvas 2d context (passed on)
       p.y+=p.B=j(o.atan2(p.y - U, p.x - T)) * -K + r()+.9*~~p.B,
       c.fillRect(~~p.x, ~~p.y, z = u?K:Q ? K*2 :~p.A+~p.B, z)
     requestAnimationFrame(R);
-  }(Z=P=[]);
+  }(k=Z=P=[]);
 })();
 
       // END
