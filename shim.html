@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.29 / 1148 / 1066 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.29 / 1147 / 1065 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -188,9 +188,11 @@ var c; // canvas 2d context (passed on)
     //V=5;W=3;
 
     q=A;
-    A+=V*=X=Y=i=q<0|q>M?-1:1;
+    A+=V*=X=Y=i=q>0&q<M||-1;
     q=b;
-    b+=W*=X=Y=i=q<0|q>M?-1:1;
+    b+=W*=X=Y=i=q>0&q<M||-1;
+
+
 
     //V=5;W=3;
     //A+=V=A<0|A>M?-V:V;
