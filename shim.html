@@ -170,16 +170,16 @@ var c; // canvas 2d context (passed on)
   W=5;
   function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])}
   !function R(){
-    Z++%118 ? I :(
-      a.width=M,
-      c.textAlign = 'center',
-      c.textBaseline = 'middle',
-      s = E[k++%118],
-      v(1, 1, 2, k),
-      v(1, 1, 0, '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
-      v(9, 1.8, 1, 'qfox.nl'),
-      I = c.getImageData(0, 0, M, M).data
-    );
+    Z++%118 ? 0 :
+      I = c.getImageData(0, 0, M, M,
+        a.width=M,
+        c.textAlign = 'center',
+        c.textBaseline = 'middle',
+        s = E[k++%118],
+        v(1, 1, 2, k),
+        v(1, 1, 0, '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
+        v(9, 1.8, 1, 'qfox.nl')
+    ).data
     a.width=M;
 
     A+=V*=X=Y=i=q>0&q<M||-1;q=b;
