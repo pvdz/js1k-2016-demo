@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.33 / 1137 / 1061 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.33 / 1135 / 1059 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -162,7 +162,6 @@ var c; // canvas 2d context (passed on)
   Z,
   _
 ){
-
   d = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   E = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'.match(/../g);
   a.height=M=Math.min(a.width,a.height);
@@ -183,10 +182,8 @@ var c; // canvas 2d context (passed on)
     );
     a.width=M;
 
-    q=A;
-    A+=V*=X=Y=i=q>0&q<M||-1;
-    q=b;
-    b+=W*=X=Y=i=q>0&q<M||-1;
+    A+=V*=X=Y=i=q>0&q<M||-1;q=b;
+    b+=W*=X=Y=i=q>0&q<M||-1;q=A;
 
     for (w = Math.sin(Z%32/9) * M/2/9;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i)
       p = P[i] = P[i] || {x: 0, y: 0},
