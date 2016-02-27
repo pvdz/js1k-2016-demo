@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.31 / 1199 / 1095 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.29 / 1159 / 1074 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -169,14 +169,14 @@ var c; // canvas 2d context (passed on)
 
   d = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
   E = 'H(HeLiBeB(C(N(O(F(NeNaMgAlSiP(S(ClArK(CaScTiV(CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY(ZrNbMoTcRuRhPdAgCdInSnSbTeI(XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW(ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU(NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn=tFl=pLv=s=o'.match(/../g);
-  a[l]=a[L]=M=Math.min(a[l='width'],a[l]=a[L='height']);
-  a.style[l]=a.style[L]=M+'px';
+  a.width=a.height=M=Math.min(a.width,a.height);
+  a.style.width=a.style.height=M+'px';
   b = A = V=5;
   W=3;
   function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])}
   !function R(){
     Z++%118 ? I :(
-      a[l]|=0,
+      a.width|=0,
       c.textAlign = 'center',
       c.textBaseline = 'middle',
       s = E[k++%118],
@@ -185,7 +185,7 @@ var c; // canvas 2d context (passed on)
       v(9, 1.8, 1, 'qfox.nl'),
       I = c.getImageData(0, 0, M, M).data
     );
-    a[l]|=X=Y=i=0;
+    a.width|=X=Y=i=0;
 
 
     //V=5;W=3;
