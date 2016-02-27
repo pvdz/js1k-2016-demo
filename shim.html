@@ -192,12 +192,13 @@ var c; // canvas 2d context (passed on)
   W=3;
   function v(e,g,h,b){b?c.fillText(b,N,N*g,M,c.font=M/e+F,c[f='fillStyle']=C[h]):c.clearRect(X=Y=i=0,0,M,M)}
   !function R(){
-    v(Z++%150 ? I : I = c.getImageData(0, 0, M, M,
+    v(Z++%150 ? I :
       v(s = E[S= ~~(r() * 118)]),
       v(1, 1, 2, S+1),
       v(1, 1, 0, '(' == s[1] ? s[0] : s[0] == '=' ? 'Uu' + s[1] : s),
-      v(9, 1.8, 1, 'qfox.nl')
-    ).data);
+      v(9, 1.8, 1, 'qfox.nl'),
+      I = c.getImageData(0, 0, M, M).data
+    );
 
     //V=5;W=3;
     //A+=V*=A<0|A>M?-1:1;
