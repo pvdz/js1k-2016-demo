@@ -127,9 +127,9 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.45 / 1120 / 1028 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.45 / 1116 / 1024 (closure compiler / regpacked, with / without wrappers and vars decls)
 
-var b64 = 'Zm9yKF89J00vMh8fLzUePXU/HXUlMxwsYy4bQ2xbT10aGi4ZfhkYPU0XYXQWdHlsZRUbZmlsbBQUUxU9ZFsTKyslMTE4ElA9Uz1DbBEwMBArPQ9zaW4OPSIMKHUpKigcCyIubRZjaCgvLi4JLmhlaWdodAhCPUM9Tj1PPUY9TgcqPQc+MCZOPE18fC0xO049BklbNCpCKzQqQypNBToFKzFdPwQud2lkdGgDKBZhbjIoGXktVSwZeC1UKSkqLUsrcmFuZG9tKCkrLjkqfhgCFFRleHQoRCwfLE0qLjkqZyxNG2ZvbnQXL2UrInB4IHNlcmlmIhNoXSksaD0BZAwjZhAjMGYwIxBmI2ZmMCNmMGYjEDAJLi4vZyk7RQxIPUhlTGlCZQdlTmFNZ0FsU2kRQXJLPUNhU2NUaVY9Q3JNbkZlQ29OaUN1Wm5HYUdlQXNTZUJyS3JSYlNyWT1ack5iTW9UY1J1UmhQZEFnQ2RJblNuU2JUZUk9WGVDc0JhTGFDZVByTmRQbVNtRXVHZFRiRHlIb0VyVG1ZYkx1SGZUYVc9UmVPc0lyUHRBdUhnVGxQYkJpUG9BdFJuRnJSYUFjVGhQYVU9TnBQdUFtQ21Ca0NmRXNGbU1kTm9MclJmRGJTZ0JoSHNNdERzUmdDbnV0Rmx1cEx2dXN1bwkvZyk7YQgXPW1pbihhAyxhCCk7YS5zFQM9YS5zFQgXKyJweCI7Bz1iPUE9MTtWPTQ7Vz01OyFmdW5jdGlvbiBSKCl7ST1TEj9JOmMuZ2V0SW1hZ2VEFmEoZT1nPTEsaD0yLE0sYQMXG3RleHRBbGlnbgxjZW50ZXIiLHM9RVtQEl0sRD1QATAsRAwMPT1zWzFdP3NbMF06c1swXT0MdSI/IlUiK3M6cwExLGU9OSxnPS4xLEQMcWZveC5ubCIBMikuZBZhO2EDFztBD1YGYjtiD1cGQTtmb3Iodz0OKFMlMzIvOSkqHy85O0I8TT9CD0s9LX5tYXgoHxAsNSk6Qj0oQw9LKTxNOysrTykaPRp8fHt4OjAseTowfSx1PQVdP08lNhA6MBN1Pxw6BSsyXT8zBDQ6NV0sVB1BK2NvcwteMT8cKnd8fHc6HikEQisOKFMlTS8fKjMpKh46QixVHWIrDgsqd3x8HikEQyt3OkMsGXgPGUE9Y29zAkEsGXkPGUI9DgJCFFJlY3Qofhh4LH4YeSxHHUsESyoyOhhBKxhCLEcpO3JlcXVlc3RBbmltFmlvbkZyYW1lKFIpfSgRPVtdKSc7Rz0vWwEtH10vLmV4ZWMoXyk7KXdpdGgoXy5zcGxpdChHKSlfPWpvaW4oc2hpZnQoKSk7d2l0aChNYXRoKWV2YWwoXyk=';
+var b64 = 'Zm9yKF89Jz1DYGBsW09dX1A9U2BsH00vMh4eLzUdPXU/HHUlMxssYy4acC4ZfhkYPU0XdHlsZRYaZmlsbBUVUxY9ZFsUKyslMTE4EzAwEis9EWF0ED0iDyh1KSooGw5NEGguDAxzaW4LQmA9Tj1PPUY9TgkiLm0QY2goLy4uCC5oZWlnaHQHSVs0KkIrNCpDKk0GOgYrMl0/BS53aWR0aAQqPQk+MCZOPE18fC0xO049AygMEGFuMigZeS1VLBl4LVQpKSotSysMcmFuZG9tKCkrLjkqfhgCFVRleHQoRCweLE0qLjkqZyxNGmZvbnQXL2UrInB4IHNlcmlmIhRoKytdKSwBZA8jZhIjMGYwIxJmI2ZmMCNmMGYjEjAILi4vZyk7RQ9IPUhlTGlCZQllTmFNZ0FsU2kfQXJLYGFTY1RpVmByTW5GZUNvTmlDdVpuR2FHZUFzU2VCcktyUmJTclk9WnJOYk1vVGNSdVJoUGRBZ0NkSW5TblNiVGVJPVhlQ3NCYUxhQ2VQck5kUG1TbUV1R2RUYkR5SG9FclRtWWJMdUhmVGFXPVJlT3NJclB0QXVIZ1RsUGJCaVBvQXRSbkZyUmFBY1RoUGFVPU5wUHVBbUNtQmtDZkVzRm1NZE5vTHJSZkRiU2dCaEhzTXREc1JnQ251dEZsdXBMdnVzdW8IL2cpO2EHFz0MbWluKGEELGEHKTthLnMWBD1hLnMWBxcrInB4IjtOPWI9QT0xO1Y9NDtXPTU7IWZ1bmN0aW9uIFIoKXtJPVMTP0k6Yy5nZXRJbWFnZUQQYShlPWc9MSxoPTAsTSxhBBcadGV4dEFsaWduD2NlbnRlciIscz1FW1ATXSxEPVABRA8PPT1zWzFdP3NbMF06c1swXT0PdSI/IlUiK3M6cwFlPTksZz0uMSxED3Fmb3gubmwiATApLmQQYTthBBc7QRFWA2I7YhFXA0E7Zm9yKHc9CyhTJTMyLzkpKh4vOTtCPE0/QhFLPS1+DG1heCgeEiw1KTpCPShDEUspPE07KytPKXBfX3x8e3g6MCx5OjB9LHU9BisxXT9PJTYSOjAUdT8bOgZdPzMFNDo1XSxUHEErDGNvcw5eMT8bKnd8fHc6HSkFQisLKFMlTS8eKjMpKh06QixVHGIrCw4qd3x8HSkFQyt3OkMsGXgRGUE9DGNvcwJBLBl5ERlCPQsCQhVSZWN0KH4YeCx+GHksRxxLBUsqMjoYQSsYQixHKTtyZXF1ZXN0QW5pbRBpb25GcmFtZShSKX0oHz1bXSknO0c9L1sBLR9fYF0vLmV4ZWMoXyk7KXdpdGgoXy5zcGxpdChHKSlfPWpvaW4oc2hpZnQoKSk7ZXZhbChfKQ==';
 //eval(atob(b64));
 
 var a; // canvas element (passed on)
@@ -175,17 +175,18 @@ var c; // canvas 2d context (passed on)
   W=5;
   !function R(){
     I=S++%118?I:
-      c.getImageData(e=g=1,h=2,M,a.width=M,
+      c.getImageData(e=g=1,h=0,M,a.width=M,
       c.textAlign='center',
       s=E[P++%118],
       D=P,
-      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),h=0,
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h++]),
       D='='==s[1]?s[0]:s[0]=='u'?'U'+s:s,
-      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),h=1,
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h++]),
       e=9,
       g=.1,
       D='qfox.nl',
-      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),h=2
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h++]),
+      0
     ).data;
     a.width=M;
 
@@ -194,13 +195,13 @@ var c; // canvas 2d context (passed on)
 
     for(w=Math.sin(S%32/9)*M/2/9;B<M?B+=K=-~Math.max(M/200,5):B=(C+=K)<M;++O)
       p=Cl[O]=Cl[O]||{x:0,y:0},
-      u=I[4*B+4*C*M]?O%600:0,
-      c.fillStyle=d[u?u%3:I[4*B+4*C*M+2]?3:I[4*B+4*C*M+1]?4:5],
-      T=u?A+Math.cos(u)*(u%3^1?u%3*w||w:M/2/5):I[4*B+4*C*M+1]?B+Math.sin(S%M/M/2*3)*M/2/5:B,
-      U=u?b+Math.sin(u)*(u%3*w||M/2/5):I[4*B+4*C*M+1]?C+w:C,
+      u=I[4*B+4*C*M+1]?O%600:0,
+      c.fillStyle=d[u?u%3:I[4*B+4*C*M]?3:I[4*B+4*C*M+2]?4:5],
+      T=u?A+Math.cos(u)*(u%3^1?u%3*w||w:M/2/5):I[4*B+4*C*M+2]?B+Math.sin(S%M/M/2*3)*M/2/5:B,
+      U=u?b+Math.sin(u)*(u%3*w||M/2/5):I[4*B+4*C*M+2]?C+w:C,
       p.x+=p.A=Math.cos(Math.atan2(p.y-U,p.x-T))*-K+Math.random()+.9*~~p.A,
       p.y+=p.B=Math.sin(Math.atan2(p.y-U,p.x-T))*-K+Math.random()+.9*~~p.B,
-      c.fillRect(~~p.x,~~p.y,z=u?K:I[4*B+4*C*M+1]?K*2:~p.A+~p.B,z)
+      c.fillRect(~~p.x,~~p.y,z=u?K:I[4*B+4*C*M+2]?K*2:~p.A+~p.B,z)
     requestAnimationFrame(R);
   }(P=S=Cl=[]);
 })();
