@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.33 / 1127 / 1035 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.46 / 1126 / 1034 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -179,15 +179,13 @@ var c; // canvas 2d context (passed on)
       e=g=1,
       h=2,
       D=P,
-      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),
-      h=0,
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),h=0,
       D='='==s[1]?s[0]:s[0]=='.'?'Uu'+s[1]:s,
-      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),h=1,
       e=9,
       g=.1,
-      h=1,
       D='qfox.nl',
-      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),h=2
     ).data
     a.width=M;
 
