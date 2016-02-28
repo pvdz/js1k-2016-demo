@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.33 / 1123 / 1042 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.33 / 1127 / 1035 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -161,6 +161,7 @@ var c; // canvas 2d context (passed on)
   W,
   z,
   S,
+  e,g,h,D,
   _
 ){
   d='#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
@@ -170,15 +171,25 @@ var c; // canvas 2d context (passed on)
   b=A=1;
   V=4;
   W=5;
-  function v(e,g,h,b){c.fillText(b,M/2,M*0.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])}
   !function R(){
     I=S++%118?I:
       c.getImageData(0,0,M,a.width=M,
       c.textAlign='center',
       s=E[P++%118],
-      v(1,1,2,P),
-      v(1,1,0,'='==s[1]?s[0]:s[0]=='.'?'Uu'+s[1]:s),
-      v(9,0.1,1,'qfox.nl')
+
+
+      e=g=1,
+      h=2,
+      D=P,
+      c.fillText(D,M/2,M*0.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),
+      h=0,
+      D='='==s[1]?s[0]:s[0]=='.'?'Uu'+s[1]:s,
+      c.fillText(D,M/2,M*0.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),
+      e=9,
+      g=0.1,
+      h=1,
+      D='qfox.nl',
+      c.fillText(D,M/2,M*0.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])
     ).data
     a.width=M;
 
