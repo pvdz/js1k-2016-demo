@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.46 / 1126 / 1034 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.46 / 1124 / 1032 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -173,11 +173,9 @@ var c; // canvas 2d context (passed on)
   W=5;
   !function R(){
     I=S++%118?I:
-      c.getImageData(0,0,M,a.width=M,
+      c.getImageData(e=g=1,h=2,M,a.width=M,
       c.textAlign='center',
       s=E[P++%118],
-      e=g=1,
-      h=2,
       D=P,
       c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h]),h=0,
       D='='==s[1]?s[0]:s[0]=='.'?'Uu'+s[1]:s,
