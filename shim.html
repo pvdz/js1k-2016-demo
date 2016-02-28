@@ -171,8 +171,8 @@ var c; // canvas 2d context (passed on)
   W=5;
   function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])}
   !function R(){
-    S++%118?0:
-    I=c.getImageData(0,0,M,a.width=M,
+    I=S++%118?I:
+    c.getImageData(0,0,M,a.width=M,
     c.textAlign='center',
     c.textBaseline='middle',
     s=E[P++%118],
