@@ -127,7 +127,7 @@
 
 // https://closure-compiler.appspot.com/home
 // http://siorki.github.io/regPack.html
-// 1.33 / 1135 / 1059 (closure compiler / regpacked, with / without wrappers and vars decls)
+// 1.33 / 1132 / 1057 (closure compiler / regpacked, with / without wrappers and vars decls)
 
 
 var a; // canvas element (passed on)
@@ -171,8 +171,7 @@ var c; // canvas 2d context (passed on)
   function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])}
   !function R(){
     Z++%118 ? 0 :
-      I = c.getImageData(0, 0, M, M,
-        a.width=M,
+      I = c.getImageData(0, 0, M, a.width=M,
         c.textAlign = 'center',
         c.textBaseline = 'middle',
         s = E[k++%118],
@@ -185,6 +184,7 @@ var c; // canvas 2d context (passed on)
     A+=V*=X=Y=i=q>0&q<M||-1;q=b;
     b+=W*=X=Y=i=q>0&q<M||-1;q=A;
 
+    //for (w = Math.sin(Z%32/9) * M/2/9;X<M?X+=K=-~Math.max(M/200,7):X=(Y+=K)<M;++i)
     for (w = Math.sin(Z%32/9) * M/2/9;X<M?X+=K=-~(M/200):X=(Y+=K)<M;++i)
       p = P[i] = P[i] || {x: 0, y: 0},
       u = I[4*X + 4*Y * M] ? i % 600: 0,
