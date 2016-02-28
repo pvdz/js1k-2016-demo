@@ -163,38 +163,38 @@ var c; // canvas 2d context (passed on)
   S,
   _
 ){
-  d = '#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
-  E = 'H=HeLiBeB=C=N=O=F=NeNaMgAlSiP=S=ClArK=CaScTiV=CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY=ZrNbMoTcRuRhPdAgCdInSnSbTeI=XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW=ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU=NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn.tFl.pLv.s.o'.match(/../g);
+  d='#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
+  E='H=HeLiBeB=C=N=O=F=NeNaMgAlSiP=S=ClArK=CaScTiV=CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY=ZrNbMoTcRuRhPdAgCdInSnSbTeI=XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW=ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU=NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn.tFl.pLv.s.o'.match(/../g);
   a.height=M=Math.min(a.width,a.height);
   a.style.width=a.style.height=M+'px';
-  b = A = V=4;
+  b=A=V=4;
   W=5;
   function v(e,g,h,b){c.fillText(b,M/2,M/2*g,M,c.font=M/e+'px serif',c.fillStyle=d[h])}
   !function R(){
-    S++%118 ? 0 :
-      I = c.getImageData(0, 0, M, a.width=M,
-        c.textAlign = 'center',
-        c.textBaseline = 'middle',
-        s = E[P++%118],
-        v(1, 1, 2, P),
-        v(1, 1, 0, '=' == s[1] ? s[0] : s[0] == '.' ? 'Uu' + s[1] : s),
-        v(9, 1.8, 1, 'qfox.nl')
-    ).data
-    a.width=M;
+    S++%118?0:
+    I=c.getImageData(0,0,M,a.width=M,
+    c.textAlign='center',
+    c.textBaseline='middle',
+    s=E[P++%118],
+    v(1,1,2,P),
+    v(1,1,0,'='==s[1]?s[0]:s[0]=='.'?'Uu'+s[1]:s),
+    v(9,1.8,1,'qfox.nl')
+  ).data
+  a.width=M;
 
-    A+=V*=B=C=N=O=F=N>0&N<M||-1;N=b;
-    b+=W*=B=C=N=O=F=N>0&N<M||-1;N=A;
+  A+=V*=B=C=N=O=F=N>0&N<M||-1;N=b;
+  b+=W*=B=C=N=O=F=N>0&N<M||-1;N=A;
 
-    for (w = Math.sin(S%32/9) * M/2/9;B<M?B+=K=-~Math.max(M/200,7):B=(C+=K)<M;++O)
-      p = Cl[O] = Cl[O] || {x: 0, y: 0},
-      u = I[4*B + 4*C * M] ? O % 600: 0,
-      c.fillStyle = d[u ? u%3 : I[4*B + 4*C * M+2] ? 3 : I[4*B + 4*C * M+1] ? 4 : 5],
-      T = u ? A + Math.cos(u) * (u%3^1?u%3*w||w:M/2/5) : I[4*B + 4*C * M+1] ? B + Math.sin(S%M/M/2 * 3) * M/2/5 : B,
-      U = u ? b + Math.sin(u) * (u%3*w||M/2/5) : I[4*B + 4*C * M+1] ? C + w : C,
-      p.x+=p.A=Math.cos(Math.atan2(p.y - U, p.x - T)) * -K + Math.random()+.9*~~p.A,
-      p.y+=p.B=Math.sin(Math.atan2(p.y - U, p.x - T)) * -K + Math.random()+.9*~~p.B,
-      c.fillRect(~~p.x, ~~p.y, z = u?K:I[4*B + 4*C * M+1] ? K*2 :~p.A+~p.B, z)
-    requestAnimationFrame(R);
+  for(w=Math.sin(S%32/9)*M/2/9;B<M?B+=K=-~Math.max(M/200,7):B=(C+=K)<M;++O)
+    p=Cl[O]=Cl[O]||{x:0,y:0},
+    u=I[4*B+4*C*M]?O%600:0,
+    c.fillStyle=d[u?u%3:I[4*B+4*C*M+2]?3:I[4*B+4*C*M+1]?4:5],
+    T=u?A+Math.cos(u)*(u%3^1?u%3*w||w:M/2/5):I[4*B+4*C*M+1]?B+Math.sin(S%M/M/2*3)*M/2/5:B,
+    U=u?b+Math.sin(u)*(u%3*w||M/2/5):I[4*B+4*C*M+1]?C+w:C,
+    p.x+=p.A=Math.cos(Math.atan2(p.y-U,p.x-T))*-K+Math.random()+.9*~~p.A,
+    p.y+=p.B=Math.sin(Math.atan2(p.y-U,p.x-T))*-K+Math.random()+.9*~~p.B,
+    c.fillRect(~~p.x,~~p.y,z=u?K:I[4*B+4*C*M+1]?K*2:~p.A+~p.B,z)
+  requestAnimationFrame(R);
   }(P=S=Cl=[]);
 })();
 
