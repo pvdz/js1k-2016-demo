@@ -118,229 +118,100 @@
       // should the size be smaller than specified if viewport is smaller?
       var TOKEN_MAX_100P = true;
       // only if width<100%
-      var TOKEN_CENTER_CANVAS = false;
+      var TOKEN_CENTER_CANVAS = true;
       // "press" reload button on orientation change?
       var TOKEN_RELOAD_ONORIENTATIONCHANGE = true;
     </script>
     <script type="demo">
       // THIS IS WHERE YOUR DEMO GOES
-(function(){
-var elements = 'H HeLiBeB C N O F NeNaMgAlSiP S ClArK CaScTiV CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY ZrNbMoTcRuRhPdAgCdInSnSbTeI XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCn_tFl_pLv_s_o';
-elements = elements.match(/../g);
 
-var K = 200; // particle count wide and high (so total num of particles is K*K)
+// https://closure-compiler.appspot.com/home
+// http://siorki.github.io/regPack.html
+// 1.44 / 1111 / 1022 (closure compiler / regpacked, with / without wrappers and vars decls)
 
-var M = Math.min(a.width, a.height); // get smallest dimension
-var offsetx = Math.floor((a.width - M) / 2);
-var offsety = Math.floor((a.height - M) / 2);
-var N = M / K; // pixel step per particle
-
-var pixels = [];
-for (var i=0; i<K; ++i) {
-  for (var j=0; j<K; ++j) {
-    pixels.push({
-      r: 0,
-      g: 0,
-      b: 0,
-
-      x: Math.floor(i * N),
-      y: Math.floor(j * N),
-      vx: Math.random(),
-      vy: Math.random(),
-
-      tx: Math.floor(i * N),
-      ty: Math.floor(j * N),
-      i: i,
-      j: j,
-
-      on: true,
-    });
-  }
-}
-
-c.fillStyle = 'black';
-c.font = M+'px serif';
-c.textAlign = 'center';
-c.textBaseline = 'middle';
-
-var F = 0.85;
-
-// this loop changes the current symbol
-var E = 0;
-var T = setInterval((function R(){
-//  if (index == 2) clearInterval(T);
-
-  c.clearRect(offsetx, offsety, M, M);
-
-  var sn = Math.floor(Math.random() * elements.length);
-  var s = elements[sn];
-  c.fillStyle = 'red';
-  c.font = M+'px serif';
-  c.fillText(s[1]==' '?s[0]:s[0]=='_'?'Uu'+s[1]:s, Math.floor(a.width/2), Math.floor(a.height/2), M);
-  c.font = Math.floor(0.08*M)+'px serif';
-  c.fillText(String(sn), offsetx+100, offsety+M-60);
-  c.fillText('qfox.nl', offsetx+M-100, offsety+M-60);
-
-  var id = c.getImageData(offsetx, offsety, M, M);
-  var data = id.data;
-
-  var u = 0;
-  for (var i=0; i<pixels.length; ++i) {
-    var p = pixels[i];
-
-    if (data[(Math.floor(p.i * N) + Math.floor(p.j * N) * M) * 4+3]) {
-      p.on = false;
-      p.u = ++u;
-    } else {
-      p.on = true;
-
-      p.tx = Math.floor(p.i * N);
-      p.ty = Math.floor(p.j * N);
-    }
-  }
-
-  c.clearRect(offsetx, offsety, M, M);
-
-  return R;
-})(), 5000);
-
-var atomx = M/2;
-var atomy = M/2;
-var atomvx = 5;
-var atomvy = 3;
-// this loop updates the pixels
-var Z = 0;
-(function R(){
-  ++Z;
-
-  if (atomx < 100 || atomx > M-100) atomvx *= -1;
-  atomx += atomvx;
-  if (atomy < 100 || atomy > M-100) atomvy *= -1;
-  atomy += atomvy;
+var b64 = 'Zm9yKF89J00vMmBJWzQqTys0KkMqTV86XysyXT8fYC81KR8ePUMdHWxbQl0cUD1THWwbPXU/GnUlMxksYy4YcC4XfhcWPU0VdHlsZRQYZmlsbBMTUxQ9ZFsSKyslMTE4ETAwECs9D2F0Dj0iDCh1KSooGQsdPU49Tz1GPU4JTQ5oLggIc2luByIubQ5jaCgvLi4GLmhlaWdodAUud2lkdGgEKgk+MCZOPE18fC0xO049AygIDmFuMigXeS1VLBd4LVQpKSotSysIcmFuZG9tKCkrLjkqfhYCE1RleHQoRCxgLE0qLjkqZyxNGGZvbnQVL2UrInB4IHNlcmlmIhJoKytdKSwBZAwjZhAjMGYwIxBmI2ZmMCNmMGYjEDAGLi4vZyk7YQUVPQhtaW4oYQQsYQUpO2EucxQEPWEucxQFFSsicHgiO1Y9NDtOPWI9QT1XPTU7IWZ1bmN0aW9uIFIoKXtJPVMRP0k6Yy5nZXRJbWFnZUQOYShlPWc9MSxoPTAsTSxhBBUYdGV4dEFsaWduDGNlbnRlciIscwxIPUhlTGlCZUIJZU5hTWdBbFNpG0FySx1hU2NUaVYdck1uRmVDb05pQ3VabkdhR2VBc1NlQnJLclJiU3JZPVpyTmJNb1RjUnVSaFBkQWdDZEluU25TYlRlST1YZUNzQmFMYUNlUHJOZFBtU21FdUdkVGJEeUhvRXJUbVliTHVIZlRhVz1SZU9zSXJQdEF1SGdUbFBiQmlQb0F0Um5GclJhQWNUaFBhVT1OcFB1QW1DbUJrQ2ZFc0ZtTWROb0xyUmZEYlNnQmhIc010RHNSZ0NudXRGbHVwTHZ1c3VvBi9nKVtEPVARXSwrK0QBRAwMPT1zWzFdP3NbMF06c1swXT0MdSI/IlUiK3M6cwFlPTksZz0uMSxEDHFmb3gubmwiATApLmQOYTthBBU7QQ9WA2I7Yg9XA0E7Qj0wO2Zvcih3PQcoUyUzMi85KSpgLzk7TzxNP08PSz0tfghtYXgoYBAsNSk6Tz0oQw9LKTxNOysrQilwHBx8fHt4OjAseTowfSx1PV8rMV0/QiU2EDowEnU/GTpfXT8zHzQ6NV0sVBpBKwhjb3MLXjE/GSp3fHx3Oh5PKwcoUyVNLzMyKSpNLzM6TyxVGmIrBwsqd3x8HkMrdzpDLBd4DxdBPQhjb3MCQSwXeQ8XQj0HAkITUmVjdCh+FngsfhZ5LEUaSx9LKjI6FkEtFkIsRSk7cmVxdWVzdEFuaW0OaW9uRnJhbWUoUil9KBs9W10pJztHPS9bAS0fX2BdLy5leGVjKF8pOyl3aXRoKF8uc3BsaXQoRykpXz1qb2luKHNoaWZ0KCkpO2V2YWwoXyk=';
+eval(atob(b64)); /*
 
 
-//  if (Z == 200) clearInterval(z);
-  c.clearRect(offsetx-10, offsety-10, M+20, M+20);
-  for (var i=0; i<pixels.length; ++i) {
-    var p = pixels[i];
 
-    // position
-    var x = p.x;
-    var y = p.y;
 
-    // want to be at
-    var I = i % pixels.length;
-    var targetx = p.tx;
-    var targety = p.ty;
+var a; // canvas element (passed on)
+var c; // canvas 2d context (passed on)
+(function (
+  _a, // global
+  A,
+  b,
+  O,
+  _c,
+  C,
+  Cl,
+  d,
+  D,
+  e,
+  F,
+  g,
+  h,
+  H,
+  I,
+  K,
+  M,
+  B,
+  N,
+  p,
+  P,
+  s,
+  S,
+  T,
+  u,
+  U,
+  V,
+  w,
+  W,
+  z,
+  _
+){
+  d='#f00#0f0#00f#ff0#f0f#000'.match(/..../g);
+  a.height=M=Math.min(a.width,a.height);
+  a.style.width=a.style.height=M+'px';
+  V=4;
+  N=b=A=W=5;
+  !function R(){
+    I=S++%118?I:
+      c.getImageData(e=g=1,h=0,M,a.width=M,
+      c.textAlign='center',
+      s='H=HeLiBeB=C=N=O=F=NeNaMgAlSiP=S=ClArK=CaScTiV=CrMnFeCoNiCuZnGaGeAsSeBrKrRbSrY=ZrNbMoTcRuRhPdAgCdInSnSbTeI=XeCsBaLaCePrNdPmSmEuGdTbDyHoErTmYbLuHfTaW=ReOsIrPtAuHgTlPbBiPoAtRnFrRaAcThPaU=NpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnutFlupLvusuo'.match(/../g)[D=P++%118],
+      ++D,
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h++]),
+      D='='==s[1]?s[0]:s[0]=='u'?'U'+s:s,
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h++]),
+      e=9,
+      g=.1,
+      D='qfox.nl',
+      c.fillText(D,M/2,M*.9*g,M,c.font=M/e+'px serif',c.fillStyle=d[h++]),
+      0
+    ).data;
+    a.width=M;
 
-    if (!p.on) {
-      var waves = 200;
+    A+=V*=C=N=O=F=N>0&N<M||-1;N=b;
+    b+=W*=C=N=O=F=N>0&N<M||-1;N=A;
+    B=0;
 
-      var mt = 32;
-      var mt2 = mt/2;
-      var time = (Z % mt) + Z % mt2;
-
-      var b = p.u % 600;
-
-      var progress = b / (Math.PI * 2);
-
-      var tp = Math.sin(time/mt);
-
-      switch (p.u % 3) {
-        case 0:
-          var ax = atomx + Math.cos(b) * tp * 50;
-          var ay = atomy + Math.sin(b) * 100;
-          break;
-        case 1:
-          var ax = atomx + Math.cos(b) * 100;
-          var ay = atomy + Math.sin(b) * tp * 50;
-          break;
-        case 2:
-          var ax = atomx + Math.cos(b) * tp * 100;
-          var ay = atomy + Math.sin(b) * tp * 100;
-          break;
-      }
-
-      targetx = ax;
-      targety = ay;
-    }
-
-    // velocity vector
-    var vx = p.vx;
-    var vy = p.vy;
-
-    // distance
-    var dx = x-targetx;
-    var dy = y-targety;
-    var d = Math.sqrt(dx * dx + dy * dy);
-
-    // magic
-    var dtan = Math.atan2(dy, dx);
-    var dcos = Math.cos(dtan);
-    var dsin = Math.sin(dtan);
-
-    // update speed
-    var D = 1000; // try to stay at least this close to target
-    var tod = D / 1; 
-    var acc = (1 - (d / tod)) * D * .002;
-    vx -= dcos * acc;
-    vy -= dsin * acc;
-
-    vx *= F;
-    vy *= F;
-
-    // force speed (causes jitter)
-    if (Math.abs(vx) < .1) vx *= Math.random() * 3;
-    if (Math.abs(vy) < .1) vy *= Math.random() * 3;
-
-    // size of pixel
-    var size = Math.ceil((vx + vy) * .2);
-
-    // next target
-    var nx = x + vx;
-    var ny = y + vy;
-
-    // bounce on walls
-    if (nx < 0 || nx > M) {
-      if (nx < 0) nx = 0;
-      else nx = M;
-      vx *= -1;
-    }
-    if (ny < 0 || ny > M) {
-      if (ny < 0) ny = 0;
-      else ny = M;
-      vy *= -1;
-    }
-
-    p.x = nx;
-    p.y = ny;
-    p.vx = vx;
-    p.vy = vy;
-
-    // paint pixel
-    if (p.on) c.fillStyle = 'black';
-    else if (p.u % 3 === 0) c.fillStyle = 'blue';
-    else if (p.u % 3 === 1) c.fillStyle = 'red';
-    else c.fillStyle = 'green';
-    //else c.fillStyle = '#'+(i*500%0xffffff).toString(16);
-    //else c.fillStyle = 'hsl('+(i%360)+', 100%, 50%)';
-
-    c.fillRect(offsetx + Math.floor(nx) + .5, offsety + Math.floor(ny) + .5, size, size);
-
-//    if (i == (pixels.length / 2)) console.log(JSON.stringify(p), d, dx, dy, acc);
-  }
-
-  requestAnimationFrame(R);
-})();
+    for(w=Math.sin(S%32/9)*M/2/9;O<M?O+=K=-~Math.max(M/200,5):O=(C+=K)<M;++B)
+      p=Cl[B]=Cl[B]||{x:0,y:0},
+      u=I[4*O+4*C*M+1]?B%600:0,
+      c.fillStyle=d[u?u%3:I[4*O+4*C*M]?3:I[4*O+4*C*M+2]?4:5],
+      T=u?A+Math.cos(u)*(u%3^1?u%3*w||w:M/2/5):I[4*O+4*C*M+2]?O+Math.sin(S%M/32)*M/3:O,
+      U=u?b+Math.sin(u)*(u%3*w||M/2/5):I[4*O+4*C*M+2]?C+w:C,
+      p.x+=p.A=Math.cos(Math.atan2(p.y-U,p.x-T))*-K+Math.random()+.9*~~p.A,
+      p.y+=p.B=Math.sin(Math.atan2(p.y-U,p.x-T))*-K+Math.random()+.9*~~p.B,
+      c.fillRect(~~p.x,~~p.y,z=u?K:I[4*O+4*C*M+2]?K*2:~p.A-~p.B,z)
+    requestAnimationFrame(R);
+  }(P=S=Cl=[]);
 })();
 
 
 
-
-
-
-
-
+/**/
       // END
     </script>
     <script>
@@ -356,18 +227,18 @@ var Z = 0;
       =iwin.AudioContext||iwin.webkitAudioContext;iwin.requestAnimationFrame=iwin.requestAnimationFrame||iwin.mozRequestAnimationFrame||iwin.
       webkitRequestAnimationFrame||iwin.msRequestAnimationFrame||function(f){iwin.setTimeout(f,1E3/30)};if(TOKEN_CANVAS_SHIM)canvas.requestPointerLock=canvas.
       requestPointerLock||canvas.mozRequestPointerLock||canvas.webkitRequestPointerLock;idoc.body.requestPointerLock=idoc.body.requestPointerLock||idoc.body.
-      mozRequestPointerLock||idoc.body.webkitRequestPointerLock;navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.
-      mozGetUserMedia||navigator.msGetUserMedia;var iwo=iwin.OscillatorNode&&iwin.OscillatorNode.prototype;iwo&&(iwo.start=iwo.start||iwo.noteOn)&&(iwo.stop=iwo
-      .stop||iwo.noteOff);if(TOKEN_CANVAS_SHIM)iwin.a=canvas;iwin.b=idoc.body;d=idoc;if(TOKEN_CANVAS_SHIM){if(!TOKEN_WEBGL)iwin.c=canvas.getContext("2d");if(
-      TOKEN_WEBGL)iwin.g=function(){iwin.onorientationchange=iwin.onresize=null;try{var o={antialias:true,stencil:true};var gl=canvas.getContext("webgl",o)||
-      canvas.getContext("experimental-webgl",o);iwin.__glExts=["OES_texture_float","OES_texture_float_linear","OES_standard_derivatives","EXT_texture_filter_"+
-      "anisotropic","MOZ_EXT_texture_filter_anisotropic","WEBKIT_EXT_texture_filter_anisotropic","WEBGL_compressed_texture_s3tc","MOZ_WEBGL_compressed_textur"+
-      "e_s3tc","WEBKIT_WEBGL_compressed_texture_s3tc"].map(function(ext){return gl.getExtension(ext)})}catch(e){idoc.body.innerHTML="WebGL not supported.";iwin
-      .a=iwin.b=iwin.c=iwin.d=null;throw e;}return gl}()}var demo=idoc.createElement("script");demo.textContent=doc.querySelector('script[type="demo"]').
-      textContent;idoc.body.appendChild(demo);idoc.close();iframe.contentWindow.focus();var firstLine=doc.getElementsByTagName("div")[0];function reloadClick(b)
-      {doc.body.removeChild(iframe);r.parentElement.removeChild(r);iframe=null;r=null;idoc=null;header=null;reload(b)}window.reload=reloadClick;var r=doc.
-      createElement("div");r.innerHTML="&#8635;";r.className="button r";r.title="restart just the demo (local, without remote fetch)";r.onclick=reloadClick;
-      header.insertBefore(r,firstLine)})();
+      mozRequestPointerLock||idoc.body.webkitRequestPointerLock;iwin.navigator.getUserMedia=iwin.navigator.getUserMedia||iwin.navigator.webkitGetUserMedia||
+      iwin.navigator.mozGetUserMedia||iwin.navigator.msGetUserMedia;var iwo=iwin.OscillatorNode&&iwin.OscillatorNode.prototype;iwo&&(iwo.start=iwo.start||iwo.
+      noteOn)&&(iwo.stop=iwo.stop||iwo.noteOff);if(TOKEN_CANVAS_SHIM)iwin.a=canvas;iwin.b=idoc.body;d=idoc;if(TOKEN_CANVAS_SHIM){if(!TOKEN_WEBGL)iwin.c=canvas.
+      getContext("2d");if(TOKEN_WEBGL)iwin.g=function(){iwin.onorientationchange=iwin.onresize=null;try{var o={antialias:true,stencil:true};var gl=canvas.
+      getContext("webgl",o)||canvas.getContext("experimental-webgl",o);iwin.__glExts=["OES_texture_float","OES_texture_float_linear","OES_standard_derivatives",
+      "EXT_texture_filter_anisotropic","MOZ_EXT_texture_filter_anisotropic","WEBKIT_EXT_texture_filter_anisotropic","WEBGL_compressed_texture_s3tc","MOZ_WEBG"+
+      "L_compressed_texture_s3tc","WEBKIT_WEBGL_compressed_texture_s3tc"].map(function(ext){return gl.getExtension(ext)})}catch(e){idoc.body.innerHTML="WebGL"+
+      " not supported.";iwin.a=iwin.b=iwin.c=iwin.d=null;throw e;}return gl}()}var demo=idoc.createElement("script");demo.textContent=doc.querySelector('scri'+
+      'pt[type="demo"]').textContent;idoc.body.appendChild(demo);idoc.close();iframe.contentWindow.focus();var firstLine=doc.getElementsByTagName("div")[0];
+      function reloadClick(b){doc.body.removeChild(iframe);r.parentElement.removeChild(r);iframe=null;r=null;idoc=null;header=null;reload(b)}window.reload=
+      reloadClick;var r=doc.createElement("div");r.innerHTML="&#8635;";r.className="button r";r.title="restart just the demo (local, without remote fetch)";r.
+      onclick=reloadClick;header.insertBefore(r,firstLine)})();
     </script>
   </body>
 </html>
